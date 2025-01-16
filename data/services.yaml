@@ -7,3 +7,23 @@ services:
     name: GitHub
     openid-configuration: https://token.actions.githubusercontent.com/.well-known/openid-configuration
     jwks_uri: https://token.actions.githubusercontent.com/.well-known/jwks
+  - id: microsoft
+    name: Microsoft
+    openid-configuration: https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration
+    jwks_uri: https://login.microsoftonline.com/common/discovery/v2.0/keys
+  - id: apple
+    name: Apple
+    openid-configuration: https://appleid.apple.com/.well-known/openid-configuration
+    jwks_uri: https://appleid.apple.com/auth/keys
+  - id: slack
+    name: Slack
+    openid-configuration: https://slack.com/.well-known/openid-configuration
+    jwks_uri: https://slack.com/openid/connect/keys
+  - id: gitlab
+    name: GitLab
+    openid_configuration: https://gitlab.com/.well-known/openid-configuration
+    jwks_uri: https://gitlab.com/oauth/discovery/keys
+  - id: facebook
+    name: Facebook
+    openid-configuration: https://www.facebook.com/.well-known/openid-configuration
+    jwks_uri: https://www.facebook.com/.well-known/oauth/openid/jwks/
