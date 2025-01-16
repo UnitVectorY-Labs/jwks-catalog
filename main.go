@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"html/template"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -22,6 +23,24 @@ type Service struct {
 type Data struct {
 	Services []Service     `yaml:"services"`
 	Content  template.HTML // Added Content field
+}
+
+// copyFile copies a file from source to destination.
+func copyFile(source, destination string) error {
+	srcFile, err := os.Open(source)
+	if err != nil {
+		return err
+	}
+	defer srcFile.Close()
+
+	destFile, err := os.Create(destination)
+	if err != nil {
+		return err
+	}
+	defer destFile.Close()
+
+	_, err = io.Copy(destFile, srcFile)
+	return err
 }
 
 func main() {
@@ -50,6 +69,11 @@ func main() {
 	snippetsDir := filepath.Join(outputDir, "snippets")
 	if err := os.MkdirAll(snippetsDir, 0755); err != nil {
 		log.Fatalf("Error creating output directory: %v", err)
+	}
+
+	// Copy style.css to the output directory
+	if err := copyFile("assets/style.css", filepath.Join(outputDir, "style.css")); err != nil {
+		log.Fatalf("Error copying style.css: %v", err)
 	}
 
 	// Generate main index.html with home content
