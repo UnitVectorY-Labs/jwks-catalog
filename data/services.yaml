@@ -27,3 +27,32 @@ services:
     name: Facebook
     openid-configuration: https://www.facebook.com/.well-known/openid-configuration
     jwks_uri: https://www.facebook.com/.well-known/oauth/openid/jwks/
+  - id: zoom
+    name: Zoom
+    jwks_uri: https://zoom.us/.well-known/jwks.json
+  - id: spotify
+    name: Spotify
+    openid-configuration: https://accounts.spotify.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.spotify.com/oidc/certs/v1
+  - id: paypal
+    name: PayPal
+    openid-configuration: https://www.paypal.com/.well-known/openid-configuration
+    jwks_uri: https://api.paypal.com/v1/oauth2/certs
+  - id: twitch
+    name: Twitch
+    jwks_uri: https://id.twitch.tv/oauth2/keys
+  - id: docusign
+    name: DocuSign
+    openid-configuration: https://account.docusign.com/.well-known/openid-configuration
+    jwks_uri: https://account.docusign.com/openid-configuration/jwks
+  - id: salesforce
+    name: Salesforce
+    openid-configuration: https://login.salesforce.com/.well-known/openid-configuration
+    jwks_uri: https://login.salesforce.com/id/keys
+  - id: intuit
+    name: Intuit
+    jwks_uri: https://oauth.platform.intuit.com/op/v1/jwks
+  - id: yahoo
+    name: Yahoo
+    openid-configuration: https://api.login.yahoo.com/.well-known/openid-configuration
+    jwks_uri: https://api.login.yahoo.com/openid/v1/certs
