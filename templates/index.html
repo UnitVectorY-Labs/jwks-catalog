@@ -82,7 +82,7 @@
         <!-- Left Navigation Panel -->
         <nav class="left-panel">
             {{range .Services}}
-            <a href="/services/{{.Name | urlquery}}.html" hx-get="/services/{{.Id | urlquery}}.html" hx-target="#content">{{.Name}}</a>
+            <a href="./services/{{.Name | urlquery}}.html" hx-get="./services/{{.Id | urlquery}}.html" hx-target="#content">{{.Name}}</a>
             {{end}}
         </nav>
 
