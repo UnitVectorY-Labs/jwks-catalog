@@ -71,29 +71,45 @@
             padding: 1rem;
             border-top: 1px solid #e5e7eb;
         }
+
+        footer a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        header a {
+            text-decoration: none; 
+            color: inherit;
+        }
+
+        header a h1 {
+            color: white;
+            margin: 0;
+        }
+
     </style>
     <script src="https://unpkg.com/htmx.org@2.0.3/dist/htmx.min.js" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <h1>JWKS Catalog</h1>
+        <a href="index.html" hx-get="./snippets/home.html" hx-target="#content" hx-push-url="index.html"><h1>JWKS Catalog</h1></a>
     </header>
     <div class="container">
         <!-- Left Navigation Panel -->
         <nav class="left-panel">
             {{range .Services}}
-            <a href="./services/{{.Name | urlquery}}.html" hx-get="./services/{{.Id | urlquery}}.html" hx-target="#content">{{.Name}}</a>
+            <a href="./service-{{.Name | urlquery}}.html" hx-get="./snippets/{{.Id | urlquery}}.html" hx-target="#content"
+            hx-push-url="./service-{{.Name | urlquery}}.html">{{.Name}}</a>
             {{end}}
         </nav>
 
         <!-- Right Content Panel -->
         <main class="right-panel" id="content">
-            <h2>Welcome to JWKS Catalog</h2>
-            <p>Select a service from the left panel to view its details.</p>
+            {{.Content}}
         </main>
     </div>
     <footer>
-        <p>JWKS Catalog | Powered by Go</p>
+        <p><a href="https://github.com/UnitVectorY-Labs/jwks-catalog"><b>jwks-catalog</b> on GitHub</a></p>
     </footer>
 </body>
 </html>

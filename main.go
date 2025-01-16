@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"html/template"
 	"log"
 	"os"
@@ -17,9 +18,10 @@ type Service struct {
 	JWKSURI             string `yaml:"jwks_uri"`
 }
 
-// Data holds the list of services
+// Data holds the list of services and content
 type Data struct {
-	Services []Service `yaml:"services"`
+	Services []Service     `yaml:"services"`
+	Content  template.HTML // Added Content field
 }
 
 func main() {
@@ -38,15 +40,19 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error parsing snippet template: %v", err)
 	}
+	homeTemplate, err := template.ParseFiles("templates/home.html")
+	if err != nil {
+		log.Fatalf("Error parsing home template: %v", err)
+	}
 
 	// Create output directory
 	outputDir := "output"
-	servicesDir := filepath.Join(outputDir, "services")
-	if err := os.MkdirAll(servicesDir, 0755); err != nil {
+	snippetsDir := filepath.Join(outputDir, "snippets")
+	if err := os.MkdirAll(snippetsDir, 0755); err != nil {
 		log.Fatalf("Error creating output directory: %v", err)
 	}
 
-	// Generate main index.html
+	// Generate main index.html with home content
 	indexFile := filepath.Join(outputDir, "index.html")
 	indexOut, err := os.Create(indexFile)
 	if err != nil {
@@ -54,20 +60,67 @@ func main() {
 	}
 	defer indexOut.Close()
 
-	if err := mainTemplate.Execute(indexOut, data); err != nil {
+	contentBuffer := new(bytes.Buffer)
+	if err := homeTemplate.Execute(contentBuffer, nil); err != nil {
+		log.Fatalf("Error executing home template: %v", err)
+	}
+
+	mainData := Data{
+		Services: data.Services,
+		Content:  template.HTML(contentBuffer.String()), // Assign Content
+	}
+
+	if err := mainTemplate.Execute(indexOut, mainData); err != nil {
 		log.Fatalf("Error executing main template: %v", err)
+	}
+
+	// Save home.html to services directory
+	homeServiceFile := filepath.Join(snippetsDir, "home.html")
+	homeServiceOut, err := os.Create(homeServiceFile)
+	if err != nil {
+		log.Fatalf("Error creating home service file: %v", err)
+	}
+	defer homeServiceOut.Close()
+
+	if err := homeTemplate.Execute(homeServiceOut, nil); err != nil {
+		log.Fatalf("Error executing home template for services: %v", err)
 	}
 
 	// Generate services for each service
 	for _, service := range data.Services {
-		snippetFile := filepath.Join(servicesDir, service.Id+".html")
+
+		// Create the snippet file
+		snippetFile := filepath.Join(snippetsDir, service.Id+".html")
 		snippetOut, err := os.Create(snippetFile)
 		if err != nil {
-			log.Fatalf("Error creating snippet file for %s: %v", service.Name, err)
+			log.Fatalf("Error creating service file for %s: %v", service.Name, err)
 		}
 		defer snippetOut.Close()
 
+		// Capture snippet template output
+		snippetBuffer := new(bytes.Buffer)
+		if err := snippetTemplate.Execute(snippetBuffer, service); err != nil {
+			log.Fatalf("Error executing snippet template for %s: %v", service.Name, err)
+		}
+
 		if err := snippetTemplate.Execute(snippetOut, service); err != nil {
+			log.Fatalf("Error executing snippet template for %s: %v", service.Name, err)
+		}
+
+		// Create service file
+		serviceFile := filepath.Join(outputDir, "service-"+service.Id+".html")
+		serviceOut, err := os.Create(serviceFile)
+		if err != nil {
+			log.Fatalf("Error creating service file for %s: %v", service.Name, err)
+		}
+		defer serviceOut.Close()
+
+		serviceData := Data{
+			Services: data.Services,
+			Content:  template.HTML(snippetBuffer.String()), // Assign snippet content
+		}
+
+		if err := mainTemplate.Execute(serviceOut, serviceData); err != nil {
 			log.Fatalf("Error executing snippet template for %s: %v", service.Name, err)
 		}
 	}

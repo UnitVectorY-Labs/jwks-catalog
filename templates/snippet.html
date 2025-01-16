@@ -1,6 +1,7 @@
 <h2>{{.Name}}</h2>
 {{if .OpenIDConfiguration}}
-<p><strong>OpenID Configuration:</strong> <a href="{{.OpenIDConfiguration}}" target="_blank">{{.OpenIDConfiguration}}</a></p>
+<p><strong>OpenID Configuration:</strong></p>
+<pre><a href="{{.OpenIDConfiguration}}" target="_blank">{{.OpenIDConfiguration}}</a></pre>
 {{end}}
 <p><strong>JWKS URI:</strong></p>
-<pre>{{.JWKSURI}}</pre>
+<pre><a href="{{.JWKSURI}}" target="_blank">{{.JWKSURI}}</a></pre>
