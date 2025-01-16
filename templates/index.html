@@ -15,8 +15,8 @@
         <!-- Left Navigation Panel -->
         <nav class="left-panel">
             {{range .Services}}
-            <a href="./service-{{.Name | urlquery}}.html" hx-get="./snippets/{{.Id | urlquery}}.html" hx-target="#content"
-            hx-push-url="./service-{{.Name | urlquery}}.html">{{.Name}}</a>
+            <a href="./service-{{.Id | urlquery}}.html" hx-get="./snippets/{{.Id | urlquery}}.html" hx-target="#content"
+            hx-push-url="./service-{{.Id | urlquery}}.html">{{.Name}}</a>
             {{end}}
         </nav>
 
