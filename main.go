@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
 
 	"gopkg.in/yaml.v3"
 )
@@ -49,6 +50,11 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error loading services: %v", err)
 	}
+
+	// Sort services by Id
+	sort.Slice(data.Services, func(i, j int) bool {
+		return data.Services[i].Id < data.Services[j].Id
+	})
 
 	// Parse templates
 	mainTemplate, err := template.ParseFiles("templates/index.html")
