@@ -11,8 +11,9 @@ import (
 
 // Service represents a JWKS service
 type Service struct {
+	Id                  string `yaml:"id"`
 	Name                string `yaml:"name"`
-	OpenIDConfiguration string `yaml:"openid_configuration"`
+	OpenIDConfiguration string `yaml:"openid-configuration"`
 	JWKSURI             string `yaml:"jwks_uri"`
 }
 
@@ -28,31 +29,50 @@ func main() {
 		log.Fatalf("Error loading services: %v", err)
 	}
 
-	// Parse template
-	tmpl, err := template.ParseFiles("templates/catalog.html")
+	// Parse templates
+	mainTemplate, err := template.ParseFiles("templates/index.html")
 	if err != nil {
-		log.Fatalf("Error parsing template: %v", err)
+		log.Fatalf("Error parsing main template: %v", err)
+	}
+	snippetTemplate, err := template.ParseFiles("templates/snippet.html")
+	if err != nil {
+		log.Fatalf("Error parsing snippet template: %v", err)
 	}
 
 	// Create output directory
 	outputDir := "output"
-	if err := os.MkdirAll(outputDir, 0755); err != nil {
+	servicesDir := filepath.Join(outputDir, "services")
+	if err := os.MkdirAll(servicesDir, 0755); err != nil {
 		log.Fatalf("Error creating output directory: %v", err)
 	}
 
-	// Generate static file
-	outputFile := filepath.Join(outputDir, "index.html")
-	out, err := os.Create(outputFile)
+	// Generate main index.html
+	indexFile := filepath.Join(outputDir, "index.html")
+	indexOut, err := os.Create(indexFile)
 	if err != nil {
-		log.Fatalf("Error creating output file: %v", err)
+		log.Fatalf("Error creating index file: %v", err)
 	}
-	defer out.Close()
+	defer indexOut.Close()
 
-	if err := tmpl.Execute(out, data); err != nil {
-		log.Fatalf("Error executing template: %v", err)
+	if err := mainTemplate.Execute(indexOut, data); err != nil {
+		log.Fatalf("Error executing main template: %v", err)
 	}
 
-	log.Printf("Static file generated at %s", outputFile)
+	// Generate services for each service
+	for _, service := range data.Services {
+		snippetFile := filepath.Join(servicesDir, service.Id+".html")
+		snippetOut, err := os.Create(snippetFile)
+		if err != nil {
+			log.Fatalf("Error creating snippet file for %s: %v", service.Name, err)
+		}
+		defer snippetOut.Close()
+
+		if err := snippetTemplate.Execute(snippetOut, service); err != nil {
+			log.Fatalf("Error executing snippet template for %s: %v", service.Name, err)
+		}
+	}
+
+	log.Println("Static files generated successfully!")
 }
 
 func loadServices(filename string) (*Data, error) {

@@ -1,7 +1,9 @@
 services:
-  - name: Google
+  - id: google
+    name: Google
     openid-configuration: https://accounts.google.com/.well-known/openid-configuration
     jwks_uri: https://www.googleapis.com/oauth2/v3/certs
-  - name: GitHub
+  - id: github
+    name: GitHub
     openid-configuration: https://token.actions.githubusercontent.com/.well-known/openid-configuration
     jwks_uri: https://token.actions.githubusercontent.com/.well-known/jwks
