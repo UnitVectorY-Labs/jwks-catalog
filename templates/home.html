@@ -1,2 +1,47 @@
-<h2>Welcome to JWKS Catalog</h2>
-<p>Select a service from the left panel to view its details.</p>
+<section>
+<h2>Welcome to the JWKS Catalog</h2>
+<p>
+    The JWKS Catalog is a centralized, open resource designed for developers and security professionals to easily locate, compare, and evaluate public JSON Web Key Set (JWKS) endpoints from popular services. This site aggregates key endpoints from well-known providers to simplify the discovery of cryptographic keys used in modern authentication systems.
+</p>
+</section>
+
+<section>
+<h3>Catalog Purpose</h3>
+<ul>
+    <li>
+    <strong>Simplification and Comparison:</strong> 
+    Quickly find and compare the implementation of JWKS endpoints across different providers.
+    </li>
+    <li>
+    <strong>Reference and Research:</strong> 
+    Use this catalog to understand how various popular services implement token validation and key distribution.
+    </li>
+    <li>
+    <strong>Community Driven:</strong> 
+    Contributions are welcome! Add or update entries for any public-facing, popular sites by submitting the relevant JWKS and OIDC configuration endpoints on <a href="https://github.com/UnitVectorY-Labs/jwks-catalog" target="_blank">GitHub</a>.
+    </li>
+</ul>
+</section>
+
+<section>
+<h3>Understanding the Endpoints</h3>
+<p>
+    This catalog features two types of endpoints:
+</p>
+<dl>
+    <dt>OpenID Connect (OIDC) Endpoints</dt>
+    <dd>
+    OIDC endpoints provide configuration information as defined in the 
+    <a href="https://datatracker.ietf.org/doc/html/rfc8414" target="_blank">RFC 8414</a>. 
+    They offer a discovery mechanism for client applications to obtain necessary configuration data for authentication.
+    <br><em>Note:</em> Not all services expose a full OIDC configuration endpoint; in such cases, only the JWKS endpoint may be available.
+    </dd>
+    <dt>JWKS Endpoints</dt>
+    <dd>
+    JSON Web Key Set endpoints, standardized in 
+    <a href="https://datatracker.ietf.org/doc/html/rfc7517" target="_blank">RFC 7517</a>, 
+    allow clients to retrieve public keys used to verify the signatures of tokens (such as JWTs). 
+    These keys are critical for ensuring token integrity and authenticity.
+    </dd>
+</dl>
+</section>
