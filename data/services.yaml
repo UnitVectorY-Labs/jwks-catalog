@@ -3,6 +3,10 @@ services:
     name: Google
     openid-configuration: https://accounts.google.com/.well-known/openid-configuration
     jwks_uri: https://www.googleapis.com/oauth2/v3/certs
+  - id: google-iap
+    name: Google IaP
+    openid-configuration: https://cloud.google.com/iap/.well-known/openid-configuration
+    jwks_uri: https://www.gstatic.com/iap/verify/public_key-jwk
   - id: github
     name: GitHub
     openid-configuration: https://token.actions.githubusercontent.com/.well-known/openid-configuration
