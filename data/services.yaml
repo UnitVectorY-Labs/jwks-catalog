@@ -88,3 +88,7 @@ services:
     name: Naver
     openid-configuration: https://nid.naver.com/.well-known/openid-configuration
     jwks_uri: https://nid.naver.com/oauth2/jwks
+  - id: atlassian
+    name: Atlassian
+    openid-configuration: https://auth.atlassian.com/.well-known/openid-configuration
+    jwks_uri: https://auth.atlassian.com/.well-known/jwks.json
