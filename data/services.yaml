@@ -60,3 +60,11 @@ services:
     name: Yahoo
     openid-configuration: https://api.login.yahoo.com/.well-known/openid-configuration
     jwks_uri: https://api.login.yahoo.com/openid/v1/certs
+  - id: linkedin
+    name: LinkedIn
+    openid-configuration: https://www.linkedin.com/oauth/.well-known/openid-configuration
+    jwks_uri: https://www.linkedin.com/oauth/openid/jwks
+  - id: discord
+    name: Discord
+    openid-configuration: https://discord.com/.well-known/openid-configuration
+    jwks_uri: https://discord.com/api/oauth2/keys
