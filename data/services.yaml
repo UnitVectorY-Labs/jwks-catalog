@@ -68,3 +68,23 @@ services:
     name: Discord
     openid-configuration: https://discord.com/.well-known/openid-configuration
     jwks_uri: https://discord.com/api/oauth2/keys
+  - id: login-dot-gov
+    name: Login.gov
+    openid-configuration: https://secure.login.gov/.well-known/openid-configuration
+    jwks_uri: https://secure.login.gov/api/openid_connect/certs
+  - id: orcid
+    name: ORCID
+    openid-configuration: https://orcid.org/.well-known/openid-configuration
+    jwks_uri: https://orcid.org/oauth/jwks
+  - id: line
+    name: LINE
+    openid-configuration: https://access.line.me/.well-known/openid-configuration
+    jwks_uri: https://api.line.me/oauth2/v2.1/certs
+  - id: ibm-cloud
+    name: IBM Cloud
+    openid-configuration: https://iam.cloud.ibm.com/identity/.well-known/openid-configuration
+    jwks_uri: https://identity-1.us-south.iam.cloud.ibm.com/identity/keys
+  - id: naver
+    name: Naver
+    openid-configuration: https://nid.naver.com/.well-known/openid-configuration
+    jwks_uri: https://nid.naver.com/oauth2/jwks
