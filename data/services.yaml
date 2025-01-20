@@ -92,3 +92,7 @@ services:
     name: Atlassian
     openid-configuration: https://auth.atlassian.com/.well-known/openid-configuration
     jwks_uri: https://auth.atlassian.com/.well-known/jwks.json
+  - id: tesla
+    name: Tesla
+    openid-configuration: https://auth.tesla.com/oauth2/v3/.well-known/openid-configuration
+    jwks_uri: https://auth.tesla.com/oauth2/v3/discovery/keys
