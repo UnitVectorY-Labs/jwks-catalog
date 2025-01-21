@@ -25,10 +25,11 @@ Each entry in the YAML file should contain the following fields:
 
 The JWKS Catalog utilizes lightweight tech stack for static page generation. This process converts the data defined in a YAML file into the static HTML website, hosted on GitHub Pages.
 
-- **Tech Stack**:
-  - **Go**: The primary programming language used for the transformation of YAML data into structured HTML files.
-  - **HTMX**: Enhances the interactivity of the generated site by enabling dynamic content loading without full-page reloads. HTMX is used to fetch and display service-specific JWKS details without fully reloading the page.
-  - **HTML Templates**: Custom templates are used to define the layout and structure of the site. Go’s templating engine facilitates the seamless integration of dynamic data into the pre-defined templates.
+Tech Stack**:
+
+- **Go**: The primary programming language used for the transformation of YAML data into structured HTML files.
+- **HTMX**: Enhances the interactivity of the generated site by enabling dynamic content loading without full-page reloads. HTMX is used to fetch and display service-specific JWKS details without fully reloading the page.
+- **HTML Templates**: Custom templates are used to define the layout and structure of the site. Go’s templating engine facilitates the seamless integration of dynamic data into the pre-defined templates.
 
 The workflow includes:
 
