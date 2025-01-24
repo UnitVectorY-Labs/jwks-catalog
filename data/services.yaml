@@ -116,3 +116,7 @@ services:
     name: HuffPost
     openid-configuration: https://auth.huffpost.com/.well-known/openid-configuration
     jwks_uri: https://auth.huffpost.com/.well-known/jwks.json
+  - id: vimeo
+    name: Vimeo
+    openid-configuration: https://vimeo.com/.well-known/openid-configuration
+    jwks_uri: https://vimeo.com/.well-known/jwks.json
