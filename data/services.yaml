@@ -96,3 +96,23 @@ services:
     name: Tesla
     openid-configuration: https://auth.tesla.com/oauth2/v3/.well-known/openid-configuration
     jwks_uri: https://auth.tesla.com/oauth2/v3/discovery/keys
+  - id: autodesk
+    name: Autodesk
+    openid-configuration: https://developer.api.autodesk.com/.well-known/openid-configuration
+    jwks_uri: https://developer.api.autodesk.com/authentication/v2/keys
+  - id: myopenpass
+    name: OpenPass
+    openid-configuration: https://auth.myopenpass.com/.well-known/openid-configuration
+    jwks_uri: https://auth.myopenpass.com/.well-known/jwks
+  - id: uber
+    name: Uber
+    openid-configuration: https://auth.uber.com/.well-known/openid-configuration
+    jwks_uri: https://auth.uber.com/oauth/v2/certs
+  - id: indeed
+    name: Indeed
+    openid-configuration: https://secure.indeed.com/.well-known/openid-configuration
+    jwks_uri: https://secure.indeed.com/.well-known/keys
+  - id: huffpost
+    name: HuffPost
+    openid-configuration: https://auth.huffpost.com/.well-known/openid-configuration
+    jwks_uri: https://auth.huffpost.com/.well-known/jwks.json
