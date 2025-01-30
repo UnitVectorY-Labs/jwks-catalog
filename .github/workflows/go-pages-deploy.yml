@@ -22,6 +22,8 @@ jobs:
   build:
     if: github.repository_owner == 'UnitVectorY-Labs'
     runs-on: ubuntu-latest
+    env:
+      WEBSITE: ${{ secrets.WEBSITE }}
     steps:
       # Step 1: Checkout the repository
       - name: Checkout code

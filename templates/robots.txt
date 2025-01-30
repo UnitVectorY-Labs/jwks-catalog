@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /snippets/
+
+User-agent: *
+Allow: /
+
+Sitemap: {{.SitemapURL}}

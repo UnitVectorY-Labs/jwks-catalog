@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/xml"
 	"html/template"
 	"io"
 	"log"
@@ -26,6 +27,27 @@ type Data struct {
 	Content  template.HTML // Added Content field
 }
 
+// SitemapURL represents a single URL entry in sitemap.xml
+type SitemapURL struct {
+	Loc        string `xml:"loc"`
+	LastMod    string `xml:"lastmod,omitempty"`
+	ChangeFreq string `xml:"changefreq,omitempty"`
+	Priority   string `xml:"priority,omitempty"`
+}
+
+// Sitemap represents the sitemap.xml structure
+type Sitemap struct {
+	XMLName xml.Name     `xml:"urlset"`
+	Xmlns   string       `xml:"xmlns,attr"`
+	URLs    []SitemapURL `xml:"url"`
+}
+
+// RobotsTxt represents the robots.txt content
+type RobotsTxt struct {
+	SitemapURL string
+	Disallow   []string
+}
+
 // copyFile copies a file from source to destination.
 func copyFile(source, destination string) error {
 	srcFile, err := os.Open(source)
@@ -45,6 +67,17 @@ func copyFile(source, destination string) error {
 }
 
 func main() {
+	// Retrieve the WEBSITE environment variable
+	website := os.Getenv("WEBSITE")
+	if website == "" {
+		log.Fatal("Environment variable 'WEBSITE' is not set")
+	}
+
+	// Ensure the website URL does not have a trailing slash
+	if website[len(website)-1] == '/' {
+		website = website[:len(website)-1]
+	}
+
 	// Load services data
 	data, err := loadServices("data/services.yaml")
 	if err != nil {
@@ -155,6 +188,16 @@ func main() {
 		}
 	}
 
+	// Generate sitemap.xml
+	if err := generateSitemap(outputDir, website); err != nil {
+		log.Fatalf("Error generating sitemap.xml: %v", err)
+	}
+
+	// Generate robots.txt
+	if err := generateRobotsTxt(outputDir, website); err != nil {
+		log.Fatalf("Error generating robots.txt: %v", err)
+	}
+
 	log.Println("Static files generated successfully!")
 }
 
@@ -169,4 +212,104 @@ func loadServices(filename string) (*Data, error) {
 		return nil, err
 	}
 	return &data, nil
+}
+
+func generateSitemap(outputDir, website string) error {
+	var sitemap Sitemap
+	sitemap.Xmlns = "http://www.sitemaps.org/schemas/sitemap/0.9"
+
+	// Collect all .html files in outputDir excluding /snippets
+	err := filepath.Walk(outputDir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		// Skip directories
+		if info.IsDir() {
+			return nil
+		}
+
+		// Skip files in /snippets
+		relPath, err := filepath.Rel(outputDir, path)
+		if err != nil {
+			return err
+		}
+		if filepath.Dir(relPath) == "snippets" {
+			return nil
+		}
+
+		// Include only .html files
+		if filepath.Ext(info.Name()) == ".html" {
+			url := SitemapURL{
+				Loc:     website + "/" + relPath,
+				LastMod: info.ModTime().Format("2006-01-02"),
+			}
+			// Special cases for index.html
+			if info.Name() == "index.html" {
+				url.Loc = website + "/"
+			}
+			sitemap.URLs = append(sitemap.URLs, url)
+		}
+		return nil
+	})
+	if err != nil {
+		return err
+	}
+
+	// Sort URLs alphabetically
+	sort.Slice(sitemap.URLs, func(i, j int) bool {
+		return sitemap.URLs[i].Loc < sitemap.URLs[j].Loc
+	})
+
+	// Create sitemap.xml file
+	sitemapFile := filepath.Join(outputDir, "sitemap.xml")
+	sitemapOut, err := os.Create(sitemapFile)
+	if err != nil {
+		return err
+	}
+	defer sitemapOut.Close()
+
+	// Marshal sitemap to XML with indentation
+	xmlData, err := xml.MarshalIndent(sitemap, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	// Add XML header
+	finalSitemap := []byte(xml.Header + string(xmlData))
+	if _, err := sitemapOut.Write(finalSitemap); err != nil {
+		return err
+	}
+
+	log.Println("sitemap.xml generated successfully.")
+	return nil
+}
+
+func generateRobotsTxt(outputDir, website string) error {
+	robots := RobotsTxt{
+		SitemapURL: website + "/sitemap.xml",
+		Disallow:   []string{"/snippets"},
+	}
+
+	// Parse robots.txt template from file
+	tmpl, err := template.ParseFiles("templates/robots.txt")
+	if err != nil {
+		return err
+	}
+
+	// Create robots.txt file
+	robotsFile := filepath.Join(outputDir, "robots.txt")
+	robotsOut, err := os.Create(robotsFile)
+	if err != nil {
+		return err
+	}
+	defer robotsOut.Close()
+
+	// Execute template
+	if err := tmpl.Execute(robotsOut, robots); err != nil {
+		return err
+	}
+
+	log.Println("robots.txt generated successfully.")
+	return nil
 }
