@@ -124,3 +124,63 @@ services:
     name: UPS
     openid-configuration: https://id.ups.com/.well-known/openid-configuration
     jwks_uri: https://id.ups.com/.well-known/jwks.json
+  - id: openai
+    name: OpenAI
+    openid-configuration: https://auth0.openai.com/.well-known/openid-configuration
+    jwks_uri: https://auth0.openai.com/.well-known/jwks.json
+  - id: expedia
+    name: Expedia
+    openid-configuration: https://auth.expedia.com/.well-known/openid-configuration
+    jwks_uri: https://auth.expedia.com/oauth2/v1/keys
+  - id: nike
+    name: Nike
+    openid-configuration: https://accounts.nike.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.nike.com/discovery/keys
+  - id: costco
+    name: Costco
+    openid-configuration: https://login.costco.com/.well-known/openid-configuration
+    jwks_uri: https://login.costco.com/pf/JWKS
+  - id: samsung
+    name: Samsung
+    openid-configuration: https://account.samsung.com/.well-known/openid-configuration
+    jwks_uri: https://api.account.samsung.com/v1/oidc/certs
+  - id: shopify
+    name: Shopify
+    openid-configuration: https://accounts.shopify.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.shopify.com/oauth/discovery/keys
+  - id: statefarm
+    name: State Farm
+    openid-configuration: https://auth.statefarm.com/.well-known/openid-configuration
+    jwks_uri: https://auth.statefarm.com/oauth2/v1/keys
+  - id: progressive
+    name: Progressive
+    openid-configuration: https://login.progressive.com/.well-known/openid-configuration
+    jwks_uri: https://login.progressive.com/pf/JWKS
+  - id: cigna
+    name: Cigna
+    openid-configuration: https://login.cigna.com/.well-known/openid-configuration
+    jwks_uri: https://login.cigna.com/oauth2/v1/keys
+  - id: dropbox
+    name: Dropbox
+    openid-configuration: https://dropbox.com/.well-known/openid-configuration
+    jwks_uri: https://www.dropbox.com/.well-known/jwks
+  - id: coinbase
+    name: Coinbase
+    openid-configuration: https://login.coinbase.com/.well-known/openid-configuration
+    jwks_uri: https://login.coinbase.com/.well-known/jwks.json
+  - id: dowjones
+    name: Dow Jones
+    openid-configuration: https://sso.accounts.dowjones.com/.well-known/openid-configuration
+    jwks_uri: https://sso.accounts.dowjones.com/.well-known/jwks.json
+  - id: tumblr
+    name: Tumblr
+    openid-configuration: https://tumblr.com/.well-known/openid-configuration
+    jwks_uri: https://www.tumblr.com/openid/v1/certs
+  - id: mercedes-benz
+    name: Mercedes-Benz
+    openid-configuration: https://id.mercedes-benz.com/.well-known/openid-configuration
+    jwks_uri: https://id.mercedes-benz.com/pf/JWKS
+  - id: siemens
+    name: Siemens
+    openid-configuration: https://login.siemens.com/.well-known/openid-configuration
+    jwks_uri: https://login.siemens.com/.well-known/jwks.json
