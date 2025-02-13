@@ -120,3 +120,7 @@ services:
     name: Vimeo
     openid-configuration: https://vimeo.com/.well-known/openid-configuration
     jwks_uri: https://vimeo.com/.well-known/jwks.json
+  - id: ups
+    name: UPS
+    openid-configuration: https://id.ups.com/.well-known/openid-configuration
+    jwks_uri: https://id.ups.com/.well-known/jwks.json
