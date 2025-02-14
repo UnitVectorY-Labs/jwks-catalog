@@ -256,3 +256,115 @@ services:
     name: Boeing
     openid-configuration: https://auth.boeing.com/.well-known/openid-configuration
     jwks_uri: https://auth.boeing.com/pf/JWKS
+  - id: freecodecamp
+    name: freeCodeCamp
+    openid-configuration: https://auth.freecodecamp.org/.well-known/openid-configuration
+    jwks_uri: https://auth.freecodecamp.org/.well-known/jwks.json
+  - id: codecademy
+    name: Codecademy
+    openid-configuration: https://www.codecademy.com/.well-known/openid-configuration
+    jwks_uri: https://www.codecademy.com/openid-connect/jwks
+  - id: futurelearn
+    name: FutureLearn
+    openid-configuration: https://www.futurelearn.com/.well-known/openid-configuration
+    jwks_uri: https://www.futurelearn.com/oauth/discovery/keys
+  - id: salesloft
+    name: Salesloft
+    openid-configuration: https://accounts.salesloft.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.salesloft.com/oidc/discovery/keys
+  - id: freshbooks
+    name: FreshBooks
+    openid-configuration: https://auth.freshbooks.com/.well-known/openid-configuration
+    jwks_uri: https://auth.freshbooks.com/service/auth/oauth/discovery/keys
+  - id: circleci
+    name: CircleCI
+    openid-configuration: https://auth.circleci.com/.well-known/openid-configuration
+    jwks_uri: https://auth.circleci.com/.well-known/jwks.json
+  - id: apigee
+    name: Apigee
+    openid-configuration: https://login.apigee.com/.well-known/openid-configuration
+    jwks_uri: https://login.apigee.com/token_key
+  - id: auth0
+    name: Auth0
+    openid-configuration: https://auth.auth0.com/.well-known/openid-configuration
+    jwks_uri: https://auth.auth0.com/.well-known/jwks.json
+  - id: okta
+    name: Okta
+    openid-configuration: https://id.okta.com/.well-known/openid-configuration
+    jwks_uri: https://id.okta.com/.well-known/jwks.json
+  - id: lastpass
+    name: LastPass
+    openid-configuration: https://auth.lastpass.com/.well-known/openid-configuration
+    jwks_uri: https://auth.lastpass.com/.well-known/openid-configuration/jwks
+  - id: zoho
+    name: Zoho
+    openid-configuration: https://accounts.zoho.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.zoho.com/oauth/v2/keys
+  - id: broadcom
+    name: Broadcom
+    openid-configuration: https://login.broadcom.com/.well-known/openid-configuration
+    jwks_uri: https://login.broadcom.com/oauth2/v1/keys
+  - id: ti
+    name: Texas Instruments
+    openid-configuration: https://login.ti.com/.well-known/openid-configuration
+    jwks_uri: https://login.ti.com/pf/JWKS
+  - id: vizio
+    name: VIZIO
+    openid-configuration: https://auth.vizio.com/.well-known/openid-configuration
+    jwks_uri: https://auth.vizio.com/pf/JWKS
+  - id: sonos
+    name: Sonos
+    openid-configuration: https://login.sonos.com/.well-known/openid-configuration
+    jwks_uri: https://login.sonos.com/oauth2/v1/keys
+  - id: simplyhired
+    name: Simply Hired
+    openid-configuration: https://account.simplyhired.com/.well-known/openid-configuration
+    jwks_uri: https://account.simplyhired.com/.well-known/jwks.json
+  - id: careerbuilder
+    name: CareerBuilder
+    openid-configuration: https://auth.careerbuilder.com/.well-known/openid-configuration
+    jwks_uri: https://auth.careerbuilder.com/.well-known/openid-configuration/jwks
+  - id: jobvite
+    name: Jobvite
+    openid-configuration: https://auth.jobvite.com/.well-known/openid-configuration
+    jwks_uri: https://auth.jobvite.com/.well-known/jwks.json
+  - id: cnet
+    name: CNET
+    openid-configuration: https://login.cnet.com/.well-known/openid-configuration
+    jwks_uri: https://login.cnet.com/.well-known/jwks.json
+  - id: aldi
+    name: Aldi
+    openid-configuration: https://account.aldi.us/.well-known/openid-configuration
+    jwks_uri: https://account.aldi.us/id/keys
+  - id: sephora
+    name: Sephora
+    openid-configuration: https://login.sephora.com/.well-known/openid-configuration
+    jwks_uri: https://login.sephora.com/oauth2/v1/keys
+  - id: lonelyplanet
+    name: Lonely Planet
+    openid-configuration: https://auth.lonelyplanet.com/.well-known/openid-configuration
+    jwks_uri: https://auth.lonelyplanet.com/.well-known/jwks.json
+  - id: vrbo
+    name: Vrbo
+    openid-configuration: https://auth.vrbo.com/.well-known/openid-configuration
+    jwks_uri: https://auth.vrbo.com/oauth2/v1/keys
+  - id: crateandbarrel
+    name: Crate & Barrel
+    openid-configuration: https://auth.crateandbarrel.com/.well-known/openid-configuration
+    jwks_uri: https://auth.crateandbarrel.com/oauth2/v1/keys
+  - id: peets
+    name: Peet's Coffee
+    openid-configuration: https://login.peets.com/.well-known/openid-configuration
+    jwks_uri: https://login.peets.com/oauth2/v1/keys
+  - id: arbys
+    name: Arbys
+    openid-configuration: https://login.arbys.com/.well-known/openid-configuration
+    jwks_uri: https://login.arbys.com/.well-known/jwks.json
+  - id: redlobster
+    name: Red Lobster
+    openid-configuration: https://auth.redlobster.com/.well-known/openid-configuration
+    jwks_uri: https://auth.redlobster.com/.well-known/jwks.json
+  - id: underarmour
+    name: Under Armour
+    openid-configuration: https://auth.underarmour.com/.well-known/openid-configuration
+    jwks_uri: https://auth.underarmour.com/oauth2/v1/keys
