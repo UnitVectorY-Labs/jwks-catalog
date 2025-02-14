@@ -3,6 +3,8 @@ package main
 import (
 	"bytes"
 	"encoding/xml"
+	"flag"
+	"fmt"
 	"html/template"
 	"io"
 	"log"
@@ -66,7 +68,72 @@ func copyFile(source, destination string) error {
 	return err
 }
 
+func validateServices(data *Data) error {
+	seenIds := make(map[string]bool)
+	seenNames := make(map[string]bool)
+	seenJWKS := make(map[string]bool)
+	seenOIDC := make(map[string]bool)
+
+	for _, service := range data.Services {
+		// Check required fields
+		if service.Id == "" {
+			return fmt.Errorf("service is missing required 'id' field: %v", service)
+		}
+		if service.Name == "" {
+			return fmt.Errorf("service is missing required 'name' field (id: %s)", service.Id)
+		}
+		if service.JWKSURI == "" {
+			return fmt.Errorf("service is missing required 'jwks_uri' field (id: %s)", service.Id)
+		}
+
+		// Check for duplicate ID
+		if seenIds[service.Id] {
+			return fmt.Errorf("duplicate service ID found: %s", service.Id)
+		}
+		seenIds[service.Id] = true
+
+		// Check for duplicate Name
+		if seenNames[service.Name] {
+			return fmt.Errorf("duplicate service Name found: %s (id: %s)", service.Name, service.Id)
+		}
+		seenNames[service.Name] = true
+
+		// Check for duplicate JWKS URI
+		if seenJWKS[service.JWKSURI] {
+			return fmt.Errorf("duplicate JWKS URI found: %s (service: %s)", service.JWKSURI, service.Id)
+		}
+		seenJWKS[service.JWKSURI] = true
+
+		// Check for duplicate OpenID Configuration if present
+		if service.OpenIDConfiguration != "" {
+			if seenOIDC[service.OpenIDConfiguration] {
+				return fmt.Errorf("duplicate OpenID Configuration URL found: %s (service: %s)", service.OpenIDConfiguration, service.Id)
+			}
+			seenOIDC[service.OpenIDConfiguration] = true
+		}
+	}
+
+	return nil
+}
+
 func main() {
+	validateFlag := flag.Bool("validate", false, "Validate the services.yaml configuration file")
+	flag.Parse()
+
+	// If validate flag is set, only perform validation
+	if *validateFlag {
+		data, err := loadServices("data/services.yaml")
+		if err != nil {
+			log.Fatalf("Error loading services: %v", err)
+		}
+
+		if err := validateServices(data); err != nil {
+			log.Fatalf("Validation failed: %v", err)
+		}
+		fmt.Println("Configuration file is valid!")
+		os.Exit(0)
+	}
+
 	// Retrieve the WEBSITE environment variable
 	website := os.Getenv("WEBSITE")
 	if website == "" {
