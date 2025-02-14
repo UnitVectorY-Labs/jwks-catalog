@@ -184,3 +184,75 @@ services:
     name: Siemens
     openid-configuration: https://login.siemens.com/.well-known/openid-configuration
     jwks_uri: https://login.siemens.com/.well-known/jwks.json
+  - id: ikea
+    name: Ikea
+    openid-configuration: https://nl.accounts.ikea.com/.well-known/openid-configuration
+    jwks_uri: https://nl.accounts.ikea.com/.well-known/jwks.json
+  - id: carvana
+    name: Carvana
+    openid-configuration: https://auth.carvana.com/.well-known/openid-configuration
+    jwks_uri: https://auth.carvana.com/.well-known/openid-configuration/jwks
+  - id: jetblue
+    name: JetBlue
+    openid-configuration: https://accounts.jetblue.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.jetblue.com/oauth2/v1/keys
+  - id: alaskaair
+    name: Alaska Airlines
+    openid-configuration: https://auth0.alaskaair.com/.well-known/openid-configuration
+    jwks_uri: https://auth0.alaskaair.com/.well-known/jwks.json
+  - id: emirates
+    name: Emirates
+    openid-configuration: https://auth.emirates.com/.well-known/openid-configuration
+    jwks_uri: https://auth.emirates.com/oauth2/v1/keys
+  - id: britishairways
+    name: British Airways
+    openid-configuration: https://accounts.britishairways.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.britishairways.com/.well-known/jwks.json
+  - id: nvidia
+    name: Nvidia
+    openid-configuration: https://login.nvidia.com/.well-known/openid-configuration
+    jwks_uri: https://login.nvidia.com/.well-known/jwks.json
+  - id: amd
+    name: AMD
+    openid-configuration: https://login.amd.com/.well-known/openid-configuration
+    jwks_uri: https://login.amd.com/oauth2/v1/keys
+  - id: pandora
+    name: Pandora
+    openid-configuration: https://www.pandora.com/.well-known/openid-configuration
+    jwks_uri: https://www.pandora.com/oauth/v1/jwks
+  - id: vice
+    name: Vice
+    openid-configuration: https://login.vice.com/.well-known/openid-configuration
+    jwks_uri: https://login.vice.com/oauth2/v1/keys
+  - id: buzzfeed
+    name: BuzzFeed
+    openid-configuration: https://auth.buzzfeed.com/.well-known/openid-configuration
+    jwks_uri: https://auth.buzzfeed.com/.well-known/jwks.json
+  - id: fedex
+    name: FedEx
+    openid-configuration: https://auth.fedex.com/.well-known/openid-configuration
+    jwks_uri: https://auth.fedex.com/am/oauth2/connect/jwk_uri
+  - id: wetransfer
+    name: WeTransfer
+    openid-configuration: https://auth.wetransfer.com/.well-known/openid-configuration
+    jwks_uri: https://auth.wetransfer.com/.well-known/jwks.json
+  - id: evernote
+    name: Evernote
+    openid-configuration: https://accounts.evernote.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.evernote.com/jwks
+  - id: sap
+    name: SAP
+    openid-configuration: https://accounts.sap.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.sap.com/oauth2/certs
+  - id: letterboxd
+    name: Letterboxd
+    openid-configuration: https://letterboxd.com/.well-known/openid-configuration
+    jwks_uri: https://letterboxd.com/.well-known/jwks.json
+  - id: goodreads
+    name: Goodreads
+    openid-configuration: https://goodreads.com/.well-known/openid-configuration
+    jwks_uri: https://www.goodreads.com/open_id/keys
+  - id: boeing
+    name: Boeing
+    openid-configuration: https://auth.boeing.com/.well-known/openid-configuration
+    jwks_uri: https://auth.boeing.com/pf/JWKS
