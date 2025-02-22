@@ -84,10 +84,6 @@ services:
     name: IBM Cloud
     openid-configuration: https://iam.cloud.ibm.com/identity/.well-known/openid-configuration
     jwks_uri: https://identity-1.us-south.iam.cloud.ibm.com/identity/keys
-  - id: naver
-    name: Naver
-    openid-configuration: https://nid.naver.com/.well-known/openid-configuration
-    jwks_uri: https://nid.naver.com/oauth2/jwks
   - id: atlassian
     name: Atlassian
     openid-configuration: https://auth.atlassian.com/.well-known/openid-configuration
