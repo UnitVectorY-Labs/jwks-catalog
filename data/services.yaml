@@ -364,3 +364,19 @@ services:
     name: Under Armour
     openid-configuration: https://auth.underarmour.com/.well-known/openid-configuration
     jwks_uri: https://auth.underarmour.com/oauth2/v1/keys
+  - id: adobe
+    name: Adobe
+    openid-configuration: https://ims-na1.adobelogin.com/ims/.well-known/openid-configuration
+    jwks_uri: https://ims-na1.adobelogin.com/ims/keys
+  - id: alibabacloud
+    name: Alibaba Cloud
+    openid-configuration: https://oauth.alibabacloud.com/.well-known/openid-configuration
+    jwks_uri: https://oauth.alibabacloud.com/v1/keys
+  - id: idme
+    name: ID.me
+    openid-configuration: https://api.id.me/oidc/.well-known/openid-configuration
+    jwks_uri: https://api.id.me/oidc/.well-known/jwks
+  - id: idmelabs
+    name: ID.me Labs
+    openid-configuration: https://api.idmelabs.com/oidc/.well-known/openid-configuration
+    jwks_uri: https://api.idmelabs.com/oidc/.well-known/jwks
