@@ -44,6 +44,7 @@ services:
     jwks_uri: https://api.paypal.com/v1/oauth2/certs
   - id: twitch
     name: Twitch
+    openid-configuration: https://id.twitch.tv/oauth2/.well-known/openid-configuration
     jwks_uri: https://id.twitch.tv/oauth2/keys
   - id: docusign
     name: DocuSign
@@ -55,6 +56,7 @@ services:
     jwks_uri: https://login.salesforce.com/id/keys
   - id: intuit
     name: Intuit
+    open_id_configuration: https://developer.api.intuit.com/.well-known/openid_configuration
     jwks_uri: https://oauth.platform.intuit.com/op/v1/jwks
   - id: yahoo
     name: Yahoo
