@@ -1,4 +1,4 @@
-module jwks-catalog
+module github.com/UnitVectorY-Labs/jwks-catalog
 
 go 1.24.3 // GOVERSION
 
