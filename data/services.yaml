@@ -382,3 +382,163 @@ services:
     name: ID.me Labs
     openid-configuration: https://api.idmelabs.com/oidc/.well-known/openid-configuration
     jwks_uri: https://api.idmelabs.com/oidc/.well-known/jwks
+  - id: healthline
+    name: Healthline
+    openid-configuration: https://auth.healthline.com/.well-known/openid-configuration
+    jwks_uri: https://auth.healthline.com/.well-known/jwks.json
+  - id: realtor.com
+    name: Realtor.com
+    openid-configuration: https://login.realtor.com/.well-known/openid-configuration
+    jwks_uri: https://login.realtor.com/.well-known/jwks.json
+  - id: zillow
+    name: Zillow
+    openid-configuration: https://auth.zillow.com/.well-known/openid-configuration
+    jwks_uri: https://auth.zillow.com/.well-known/jwks.json
+  - id: skillshare
+    name: Skillshare
+    openid-configuration: https://auth.skillshare.com/.well-known/openid-configuration
+    jwks_uri: https://auth.skillshare.com/.well-known/jwks.json
+  - id: amplitude
+    name: Amplitude
+    openid-configuration: https://auth.amplitude.com/.well-known/openid-configuration
+    jwks_uri: https://auth.amplitude.com/.well-known/jwks.json
+  - id: connectad
+    name: ConnectAd
+    openid-configuration: https://auth.connectad.io/.well-known/openid-configuration
+    jwks_uri: https://auth.connectad.io/.well-known/jwks.json
+  - id: conviva
+    name: Conviva
+    openid-configuration: https://auth.conviva.com/.well-known/openid-configuration
+    jwks_uri: https://auth.conviva.com/oauth2/v1/keys
+  - id: datadome
+    name: DataDome
+    openid-configuration: https://auth.datadome.co/.well-known/openid-configuration
+    jwks_uri: https://auth.datadome.co/.well-known/jwks.json
+  - id: datto
+    name: Datto
+    openid-configuration: https://auth.datto.com/.well-known/openid-configuration
+    jwks_uri: https://auth.datto.com/.well-known/jwks.json
+  - id: iterable
+    name: Iterable
+    openid-configuration: https://auth.iterable.com/.well-known/openid-configuration
+    jwks_uri: https://auth.iterable.com/.well-known/jwks.json
+  - id: kargo-auth
+    name: Kargo (Auth)
+    openid-configuration: https://auth.kargo.com/.well-known/openid-configuration
+    jwks_uri: https://auth.kargo.com/oauth2/v1/keys
+  - id: phillipshue
+    name: Philips Hue
+    openid-configuration: https://auth.meethue.com/.well-known/openid-configuration
+    jwks_uri: https://auth.meethue.com/.well-known/jwks.json
+  - id: auth.mozilla.com
+    name: Mozilla
+    openid-configuration: https://auth.mozilla.com/.well-known/openid-configuration
+    jwks_uri: https://auth.mozilla.com/.well-known/jwks.json
+  - id: nextdoor
+    name: Nextdoor
+    openid-configuration: https://auth.nextdoor.com/.well-known/openid-configuration
+    jwks_uri: https://auth.nextdoor.com/v2/jwks
+  - id: phantom-auth
+    name: Phantom (Auth)
+    openid-configuration: https://auth.phantom.app/.well-known/openid-configuration
+    jwks_uri: https://auth.phantom.app/.well-known/jwks.json
+  - id: quantummetric
+    name: Quantum Metric
+    openid-configuration: https://auth.quantummetric.com/.well-known/openid-configuration
+    jwks_uri: https://auth.quantummetric.com/.well-known/jwks.json
+  - id: riotgames
+    name: Riot Games
+    openid-configuration: https://auth.riotgames.com/.well-known/openid-configuration
+    jwks_uri: https://auth.riotgames.com/jwks.json
+  - id: riskified
+    name: Riskified
+    openid-configuration: https://auth.riskified.com/.well-known/openid-configuration
+    jwks_uri: https://auth.riskified.com/.well-known/jwks.json
+  - id: spacex
+    name: SpaceX
+    openid-configuration: https://auth.spacex.com/.well-known/openid-configuration
+    jwks_uri: https://auth.spacex.com/keys
+  - id: speedtest
+    name: Speedtest
+    openid-configuration: https://auth.speedtest.net/.well-known/openid-configuration
+    jwks_uri: https://auth.speedtest.net/.well-known/jwks.json
+  - id: yotpo
+    name: Yotpo
+    openid-configuration: https://auth.yotpo.com/.well-known/openid-configuration
+    jwks_uri: https://auth.yotpo.com/.well-known/jwks.json
+  - id: accuweather
+    name: AccuWeather
+    openid-configuration: https://login.accuweather.com/.well-known/openid-configuration
+    jwks_uri: https://login.accuweather.com/.well-known/jwks.json
+  - id: checkpoint
+    name: Check Point
+    openid-configuration: https://login.checkpoint.com/.well-known/openid-configuration
+    jwks_uri: https://login.checkpoint.com/.well-known/jwks.json
+  - id: criteo
+    name: Criteo
+    openid-configuration: https://login.criteo.com/.well-known/openid-configuration
+    jwks_uri: https://login.criteo.com/oauth2/v1/keys
+  - id: docker
+    name: Docker
+    openid-configuration: https://login.docker.com/.well-known/openid-configuration
+    jwks_uri: https://login.docker.com/.well-known/jwks.json
+  - id: eset
+    name: ESET
+    openid-configuration: https://login.eset.com/.well-known/openid-configuration
+    jwks_uri: https://login.eset.com/.well-known/openid-configuration/jwks
+  - id: intentiq
+    name: IntentIQ
+    openid-configuration: https://login.intentiq.com/.well-known/openid-configuration
+    jwks_uri: https://login.intentiq.com/.well-known/jwks.json
+  - id: kargo-login
+    name: Kargo (Login)
+    openid-configuration: https://login.kargo.com/.well-known/openid-configuration
+    jwks_uri: https://login.kargo.com/oauth2/v1/keys
+  - id: live
+    name: Microsoft Live
+    openid-configuration: https://login.live.com/.well-known/openid-configuration
+    jwks_uri: https://nexus.passport.com/public/partner/discovery/key
+  - id: nist
+    name: NIST
+    openid-configuration: https://login.nist.gov/.well-known/openid-configuration
+    jwks_uri: https://login.nist.gov/oauth2/v1/keys
+  - id: ntppool
+    name: NTP Pool
+    openid-configuration: https://login.ntppool.org/.well-known/openid-configuration
+    jwks_uri: https://login.ntppool.org/.well-known/jwks.json
+  - id: optimizely
+    name: Optimizely
+    openid-configuration: https://login.optimizely.com/.well-known/openid-configuration
+    jwks_uri: https://login.optimizely.com/oauth2/v1/keys
+  - id: permutive
+    name: Permutive
+    openid-configuration: https://login.permutive.com/.well-known/openid-configuration
+    jwks_uri: https://login.permutive.com/.well-known/jwks.json
+  - id: phantom-login
+    name: Phantom (Login)
+    openid-configuration: https://login.phantom.app/.well-known/openid-configuration
+    jwks_uri: https://login.phantom.app/.well-known/jwks.json
+  - id: simpli.fi
+    name: Simpli.fi
+    openid-configuration: https://login.simpli.fi/.well-known/openid-configuration
+    jwks_uri: https://login.simpli.fi/oauth2/v1/keys
+  - id: smartadserver
+    name: Equativ Smart AdServer
+    openid-configuration: https://login.smartadserver.com/.well-known/openid-configuration
+    jwks_uri: https://login.smartadserver.com/.well-known/jwks.json
+  - id: twilio
+    name: Twilio
+    openid-configuration: https://login.twilio.com/.well-known/openid-configuration
+    jwks_uri: https://login.twilio.com/.well-known/jwks.json
+  - id: usercentrics
+    name: Usercentrics
+    openid-configuration: https://login.usercentrics.eu/.well-known/openid-configuration
+    jwks_uri: https://login.usercentrics.eu/.well-known/jwks.json
+  - id: vungle
+    name: Vungle
+    openid-configuration: https://login.vungle.com/.well-known/openid-configuration
+    jwks_uri: https://login.vungle.com/oauth2/v1/keys
+  - id: avast
+    name: Avast
+    openid-configuration: https://openid.avast.com/.well-known/openid-configuration
+    jwks_uri: https://openid.avast.com/certs
