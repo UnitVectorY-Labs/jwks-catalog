@@ -542,3 +542,15 @@ services:
     name: Avast
     openid-configuration: https://openid.avast.com/.well-known/openid-configuration
     jwks_uri: https://openid.avast.com/certs
+  - id: firefox
+    name: Firefox
+    openid-configuration: https://accounts.firefox.com/.well-known/openid-configuration
+    jwks_uri: https://oauth.accounts.firefox.com/v1/jwks
+  - id: incognia
+    name: Incognia
+    openid-configuration: https://accounts.incognia.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.incognia.com/.well-known/jwks.json
+  - id: shop
+    name: Shop
+    openid-configuration: https://accounts.shop.app/.well-known/openid-configuration
+    jwks_uri: https://accounts.shop.app/auth/jwks
