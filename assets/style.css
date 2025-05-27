@@ -28,7 +28,7 @@ header {
     background-color: #ffffff;
     border-right: 1px solid #e5e7eb;
     overflow-y: auto;
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
 }
 
 .left-panel a {
@@ -47,7 +47,7 @@ header {
 
 .right-panel {
     flex-grow: 1;
-    padding: 2rem;
+    padding: 1rem 2rem 2rem 2rem;
     overflow-y: auto;
     background-color: #f9fafb;
 }
@@ -108,8 +108,14 @@ header a h1 {
 }
 
 .search-container {
-    position: relative;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 100;
     margin-bottom: 1rem;
+    padding: 1.5rem 0 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .search-input {
@@ -124,7 +130,7 @@ header a h1 {
     position: absolute;
     right: 1rem;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-25%);
     color: #888;
     pointer-events: none;
     font-size: 1rem;
