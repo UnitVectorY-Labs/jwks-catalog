@@ -286,10 +286,14 @@ services:
     name: Auth0
     openid-configuration: https://auth.auth0.com/.well-known/openid-configuration
     jwks_uri: https://auth.auth0.com/.well-known/jwks.json
-  - id: okta
-    name: Okta
+  - id: okta-id
+    name: Okta (Id)
     openid-configuration: https://id.okta.com/.well-known/openid-configuration
     jwks_uri: https://id.okta.com/.well-known/jwks.json
+  - id: okta-auth
+    name: Okta (Auth)
+    openid-configuration: https://auth.okta.com/.well-known/openid-configuration
+    jwks_uri: https://auth.okta.com/oauth2/v1/keys
   - id: lastpass
     name: LastPass
     openid-configuration: https://auth.lastpass.com/.well-known/openid-configuration
@@ -382,10 +386,6 @@ services:
     name: ID.me Labs
     openid-configuration: https://api.idmelabs.com/oidc/.well-known/openid-configuration
     jwks_uri: https://api.idmelabs.com/oidc/.well-known/jwks
-  - id: healthline
-    name: Healthline
-    openid-configuration: https://auth.healthline.com/.well-known/openid-configuration
-    jwks_uri: https://auth.healthline.com/.well-known/jwks.json
   - id: realtor.com
     name: Realtor.com
     openid-configuration: https://login.realtor.com/.well-known/openid-configuration
@@ -554,3 +554,51 @@ services:
     name: Shop
     openid-configuration: https://accounts.shop.app/.well-known/openid-configuration
     jwks_uri: https://accounts.shop.app/auth/jwks
+  - id: here
+    name: HERE
+    openid-configuration: https://account.here.com/.well-known/openid-configuration
+    jwks_uri: https://account.here.com/openid/jwk
+  - id: audioeye
+    name: AudioEye
+    openid-configuration: https://auth.audioeye.com/.well-known/openid-configuration
+    jwks_uri: https://auth.audioeye.com/.well-known/jwks
+  - id: emergetools
+    name: Emerge Tools
+    openid-configuration: https://auth.emergetools.com/.well-known/openid-configuration
+    jwks_uri: https://auth.emergetools.com/.well-known/jwks.json
+  - id: growthbook
+    name: GrowthBook
+    openid-configuration: https://auth.growthbook.io/.well-known/openid-configuration
+    jwks_uri: https://auth.growthbook.io/.well-known/jwks.json
+  - id: linktree
+    name: Linktree
+    openid-configuration: https://auth.linktr.ee/.well-known/openid-configuration
+    jwks_uri: https://auth.linktr.ee/.well-known/jwks.json
+  - id: liveperson
+    name: LivePerson
+    openid-configuration: https://auth.liveperson.net/.well-known/openid-configuration
+    jwks_uri: https://auth.liveperson.net/.well-known/jwks.json
+  - id: pandasecurity
+    name: Panda Security
+    openid-configuration: https://auth.pandasecurity.com/.well-known/openid-configuration
+    jwks_uri: https://auth.pandasecurity.com/.well-known/jwks
+  - id: piano
+    name: Piano
+    openid-configuration: https://auth.piano.io/.well-known/openid-configuration
+    jwks_uri: https://auth.piano.io/.well-known/jwks.json
+  - id: quicksetcloud
+    name: Quickset Cloud
+    openid-configuration: https://auth.quicksetcloud.com/.well-known/openid-configuration
+    jwks_uri: https://auth.quicksetcloud.com/.well-known/openid-configuration/jwks
+  - id: samba-tv
+    name: Samba TV
+    openid-configuration: https://auth.samba.tv/.well-known/openid-configuration
+    jwks_uri: https://auth.samba.tv/.well-known/jwks.json
+  - id: sportradar
+    name: Sport Radar
+    openid-configuration: https://auth.sportradar.com/.well-known/openid-configuration
+    jwks_uri: https://auth.sportradar.com/.well-known/jwks.json
+  - id: walkme
+    name: WalkMe
+    openid-configuration: https://auth.walkme.com/.well-known/openid-configuration
+    jwks_uri: https://auth.walkme.com/oauth2/v1/keys
