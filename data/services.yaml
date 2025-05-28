@@ -294,6 +294,10 @@ services:
     name: Okta (Auth)
     openid-configuration: https://auth.okta.com/.well-known/openid-configuration
     jwks_uri: https://auth.okta.com/oauth2/v1/keys
+  - id: okta-login
+    name: Okta (Login)
+    openid-configuration: https://login.okta.com/.well-known/openid-configuration
+    jwks_uri: https://login.okta.com/oauth2/v1/keys
   - id: lastpass
     name: LastPass
     openid-configuration: https://auth.lastpass.com/.well-known/openid-configuration
