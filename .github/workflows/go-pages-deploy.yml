@@ -50,7 +50,7 @@ jobs:
 
       # Step 4: Install dependencies
       - name: Install dependencies
-        run: go mod tidy
+        run: go mod download
 
       # Step 5: Build and run the Go application
       - name: Generate static files
