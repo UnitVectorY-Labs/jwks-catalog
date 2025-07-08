@@ -7,6 +7,10 @@ on:
 
   # Allows manual runs from the Actions tab
   workflow_dispatch:
+  
+  # Run the schedule after the daily observer crawl runs to ensure the latest crawl is deployed
+  schedule:
+    - cron: "15 5 * * *"
 
 permissions:
   contents: read  # Required to clone the repository
@@ -25,12 +29,19 @@ jobs:
     env:
       WEBSITE: ${{ secrets.WEBSITE }}
     steps:
-      # Step 1: Checkout the repository
+      # Step 1: Checkout the main repository
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           persist-credentials: false
 
+      # Step 1b: Checkout the jwks-observer repository
+      - name: Checkout jwks-observer repository
+        uses: actions/checkout@v4
+        with:
+          repository: UnitVectorY-Labs/jwks-observer.git
+          path: jwks-observer
+          
       # Step 2: Set up Go environment
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -59,6 +70,7 @@ jobs:
           go run main.go
         env:
           OUTPUT_DIR: output  # Adjust this to match your Go program
+          JWKS_OBSERVER_PATH: ./jwks-observer
 
       # Step 6: Upload artifact for deployment
       - name: Upload artifact

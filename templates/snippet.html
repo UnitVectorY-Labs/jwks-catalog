@@ -5,3 +5,70 @@
 {{end}}
 <p><strong>JWKS URI:</strong></p>
 <pre><a href="{{.JWKSURI}}" target="_blank">{{.JWKSURI}}</a></pre>
+
+{{- if .ActiveKeys}}
+<h3>Active Keys</h3>
+<table class="key-history">
+  <thead>
+    <tr>
+  <th class="kid-col">KID</th>
+  <th class="use-col">Use</th>
+  <th class="alg-col">Alg/Crv</th>
+  <th class="keylength-col">Key Length</th>
+  <th class="keydate-col">Observed</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{- range .ActiveKeys}}
+    <tr class="status-active">
+      <td class="kid">{{.Kid}}</td>
+      <td>{{.Use}}</td>
+      {{if eq .Kty "EC"}}
+      <td>{{.Crv}}</td>
+      {{else}}
+      <td>{{.Alg}}</td>
+      {{end}}
+      <td>{{.KeyLength}}</td>
+      <td>
+        {{.FirstObservedFormatted}}
+      </td>
+    </tr>
+    {{- end}}
+  </tbody>
+</table>
+{{- end}}
+
+{{- if .InactiveKeys}}
+<h3>Recently Deactivated Keys</h3>
+{{if eq $.DefaultKeyHistorySize (len .InactiveKeys)}}
+<p><em>(Most recent {{.DefaultKeyHistorySize}} records shown)</em></p>
+{{end}}
+<table class="key-history">
+  <thead>
+    <tr>
+  <th class="kid-col">KID</th>
+  <th class="use-col">Use</th>
+  <th class="alg-col">Alg/Crv</th>
+  <th class="keylength-col">Key Length</th>
+  <th class="keydate-col">Observed</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{- range .InactiveKeys}}
+    <tr class="status-inactive">
+      <td class="kid">{{.Kid}}</td>
+      <td>{{.Use}}</td>
+      {{if eq .Kty "EC"}}
+      <td>{{.Crv}}</td>
+      {{else}}
+      <td>{{.Alg}}</td>
+      {{end}}
+      <td>{{.KeyLength}}</td>
+      <td>
+        {{.FirstObservedFormatted}} to {{.LastObservedFormatted}} ({{.DaysActive}} days)
+      </td>
+    </tr>
+    {{- end}}
+  </tbody>
+</table>
+{{- end}}

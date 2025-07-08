@@ -2,6 +2,8 @@ package main
 
 import (
 	"bytes"
+	"encoding/base64"
+	"encoding/json"
 	"encoding/xml"
 	"flag"
 	"fmt"
@@ -11,16 +13,67 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"time"
 
 	"gopkg.in/yaml.v3"
 )
 
-// Service represents a JWKS service
+const (
+	// DefaultKeyHistorySize is the default number of recent keys to show in the history.
+	DefaultKeyHistorySize = 10
+)
+
+// KeyRecord represents a single key's history for template rendering.
+type KeyRecord struct {
+	Kid                    string
+	Kty                    string
+	Use                    string
+	Alg                    string
+	Crv                    string
+	Status                 string // "active" or "inactive"
+	DaysActive             int
+	FirstObserved          time.Time
+	LastObserved           *time.Time // Pointer to handle null for ongoing keys
+	FirstObservedFormatted string
+	LastObservedFormatted  string
+	KeyLength              int // Key length in bits
+}
+
+// KeyFile is the JSON structure for a key file from the observer.
+type KeyFile struct {
+	Kty string `json:"kty"`
+	Use string `json:"use,omitempty"`
+	Alg string `json:"alg"`
+	Crv string `json:"crv,omitempty"`
+	Kid string `json:"kid"`
+
+	// Attributes for key history
+	FirstObserved time.Time  `json:"first_observed"`
+	LastObserved  *time.Time `json:"last_observed,omitempty"`
+
+	// For RSA
+	N string `json:"n,omitempty"`
+	E string `json:"e,omitempty"`
+
+	// For EC
+	X string `json:"x,omitempty"`
+	Y string `json:"y,omitempty"`
+}
+
+// Service represents a JWKS service.
 type Service struct {
 	Id                  string `yaml:"id"`
 	Name                string `yaml:"name"`
 	OpenIDConfiguration string `yaml:"openid-configuration"`
 	JWKSURI             string `yaml:"jwks_uri"`
+}
+
+// ServicePageData holds all the data needed to render a service page.
+type ServicePageData struct {
+	Service
+	ActiveKeys            []KeyRecord
+	InactiveKeys          []KeyRecord
+	DefaultKeyHistorySize int
 }
 
 // Data holds the list of services and content
@@ -218,6 +271,22 @@ func main() {
 
 	// Generate services for each service
 	for _, service := range data.Services {
+		pageData := ServicePageData{
+			Service:               service,
+			DefaultKeyHistorySize: DefaultKeyHistorySize,
+		}
+
+		// Load key history if observer path is set
+		observerPath := os.Getenv("JWKS_OBSERVER_PATH")
+		if observerPath != "" {
+			activeKeys, inactiveKeys, err := loadKeyHistory(service.Id, observerPath)
+			if err != nil {
+				log.Printf("Warning: could not load key history for service '%s': %v", service.Id, err)
+			} else {
+				pageData.ActiveKeys = activeKeys
+				pageData.InactiveKeys = inactiveKeys
+			}
+		}
 
 		// Create the snippet file
 		snippetFile := filepath.Join(snippetsDir, service.Id+".html")
@@ -229,11 +298,11 @@ func main() {
 
 		// Capture snippet template output
 		snippetBuffer := new(bytes.Buffer)
-		if err := snippetTemplate.Execute(snippetBuffer, service); err != nil {
+		if err := snippetTemplate.Execute(snippetBuffer, pageData); err != nil {
 			log.Fatalf("Error executing snippet template for %s: %v", service.Name, err)
 		}
 
-		if err := snippetTemplate.Execute(snippetOut, service); err != nil {
+		if err := snippetTemplate.Execute(snippetOut, pageData); err != nil {
 			log.Fatalf("Error executing snippet template for %s: %v", service.Name, err)
 		}
 
@@ -379,4 +448,137 @@ func generateRobotsTxt(outputDir, website string) error {
 
 	log.Println("robots.txt generated successfully.")
 	return nil
+}
+
+// loadKeyHistory loads, processes, and sorts the key history for a service.
+func loadKeyHistory(serviceID, observerPath string) ([]KeyRecord, []KeyRecord, error) {
+	serviceDataPath := filepath.Join(observerPath, "data", serviceID)
+	if _, err := os.Stat(serviceDataPath); os.IsNotExist(err) {
+		return nil, nil, nil // No observer data for this service, skip silently.
+	}
+
+	keysPath := filepath.Join(serviceDataPath, "keys")
+	keyFiles, err := os.ReadDir(keysPath)
+	if err != nil {
+		return nil, nil, fmt.Errorf("could not read keys directory: %w", err)
+	}
+
+	var allKeys []KeyRecord
+	for _, kf := range keyFiles {
+		if filepath.Ext(kf.Name()) != ".json" {
+			continue
+		}
+
+		keyFilePath := filepath.Join(keysPath, kf.Name())
+		keyData, err := os.ReadFile(keyFilePath)
+		if err != nil {
+			log.Printf("Warning: could not read key file %s: %v", keyFilePath, err)
+			continue
+		}
+
+		var keyFile KeyFile
+		if err := json.Unmarshal(keyData, &keyFile); err != nil {
+			log.Printf("Warning: could not parse key file %s: %v", keyFilePath, err)
+			continue
+		}
+
+		status := "inactive"
+		if keyFile.LastObserved == nil {
+			status = "active"
+		}
+
+		lastObservedFormatted := ""
+		if keyFile.LastObserved != nil {
+			lastObservedFormatted = keyFile.LastObserved.Format("2006-01-02")
+		}
+
+		allKeys = append(allKeys, KeyRecord{
+			Kid:                    keyFile.Kid,
+			Kty:                    keyFile.Kty,
+			Use:                    keyFile.Use,
+			Alg:                    keyFile.Alg,
+			Crv:                    keyFile.Crv,
+			Status:                 status,
+			FirstObserved:          keyFile.FirstObserved,
+			LastObserved:           keyFile.LastObserved,
+			DaysActive:             calculateDaysActive(keyFile.FirstObserved, keyFile.LastObserved),
+			FirstObservedFormatted: keyFile.FirstObserved.Format("2006-01-02"),
+			LastObservedFormatted:  lastObservedFormatted,
+			KeyLength:              calculateKeyLength(&keyFile),
+		})
+	}
+
+	var activeKeys, inactiveKeys []KeyRecord
+	for _, key := range allKeys {
+		if key.Status == "active" {
+			activeKeys = append(activeKeys, key)
+		} else {
+			inactiveKeys = append(inactiveKeys, key)
+		}
+	}
+
+	// Sort active keys by FirstObserved (newest first)
+	sort.Slice(activeKeys, func(i, j int) bool {
+		return activeKeys[i].FirstObserved.After(activeKeys[j].FirstObserved)
+	})
+
+	// Sort inactive keys by LastObserved (newest first)
+	sort.Slice(inactiveKeys, func(i, j int) bool {
+		if inactiveKeys[i].LastObserved == nil || inactiveKeys[j].LastObserved == nil {
+			return false // Should not happen for inactive keys
+		}
+		return (*inactiveKeys[i].LastObserved).After(*inactiveKeys[j].LastObserved)
+	})
+
+	// Limit inactive keys to the most recent N
+	if len(inactiveKeys) > DefaultKeyHistorySize {
+		inactiveKeys = inactiveKeys[:DefaultKeyHistorySize]
+	}
+
+	return activeKeys, inactiveKeys, nil
+}
+
+// calculateDaysActive computes the number of days a key was active.
+func calculateDaysActive(start time.Time, end *time.Time) int {
+	until := time.Now()
+	if end != nil {
+		until = *end
+	}
+	duration := until.Sub(start)
+	return int(duration.Hours() / 24)
+}
+
+// calculateKeyLength determines the key length in bits for RSA and EC keys.
+func calculateKeyLength(kf *KeyFile) int {
+	switch kf.Kty {
+	case "RSA":
+		// N is base64url-encoded big-endian integer
+		if kf.N == "" {
+			return 0
+		}
+		nBytes, err := decodeBase64URL(kf.N)
+		if err != nil {
+			return 0
+		}
+		return len(nBytes) * 8
+	case "EC":
+		// Use curve name
+		switch kf.Crv {
+		case "P-256":
+			return 256
+		case "P-384":
+			return 384
+		case "P-521":
+			return 521
+		}
+		return 0
+	default:
+		return 0
+	}
+}
+
+// decodeBase64URL decodes a base64url-encoded string.
+func decodeBase64URL(s string) ([]byte, error) {
+	// base64.RawURLEncoding ignores padding
+	return base64.RawURLEncoding.DecodeString(s)
 }
