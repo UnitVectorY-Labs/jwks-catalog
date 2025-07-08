@@ -24,9 +24,9 @@
       <td class="kid">{{.Kid}}</td>
       <td>{{.Use}}</td>
       {{if eq .Kty "EC"}}
-      <td class="alg-{{.Crv}}">{{.Crv}}</td>
+      <td>{{.Crv}}</td>
       {{else}}
-      <td class="alg-{{.Alg}}">{{.Alg}}</td>
+      <td>{{.Alg}}</td>
       {{end}}
       <td>{{.KeyLength}}</td>
       <td>
