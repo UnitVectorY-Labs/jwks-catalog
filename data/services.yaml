@@ -229,7 +229,7 @@ services:
   - id: fedex
     name: FedEx
     openid-configuration: https://auth.fedex.com/.well-known/openid-configuration
-    jwks_uri: https://auth.fedex.com/am/oauth2/connect/jwk_uri
+    jwks_uri: https://auth.fedex.com:443/am/oauth2/connect/jwk_uri
   - id: wetransfer
     name: WeTransfer
     openid-configuration: https://auth.wetransfer.com/.well-known/openid-configuration
@@ -437,7 +437,7 @@ services:
   - id: auth.mozilla.com
     name: Mozilla
     openid-configuration: https://auth.mozilla.com/.well-known/openid-configuration
-    jwks_uri: https://auth.mozilla.com/.well-known/jwks.json
+    jwks_uri: https://auth.mozilla.auth0.com/.well-known/jwks.json
   - id: nextdoor
     name: Nextdoor
     openid-configuration: https://auth.nextdoor.com/.well-known/openid-configuration
@@ -521,7 +521,7 @@ services:
   - id: phantom-login
     name: Phantom (Login)
     openid-configuration: https://login.phantom.app/.well-known/openid-configuration
-    jwks_uri: https://login.phantom.app/.well-known/jwks.json
+    jwks_uri: https://login.phantom.app/oauth2/v1/keys
   - id: simpli.fi
     name: Simpli.fi
     openid-configuration: https://login.simpli.fi/.well-known/openid-configuration
