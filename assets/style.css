@@ -135,3 +135,80 @@ header a h1 {
     pointer-events: none;
     font-size: 1rem;
 }
+
+
+.key-history {
+    width: 100%;
+    min-width: 800px;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2em;
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.key-history .kid-col { width: 30%; }
+.key-history .use-col { width: 8%; }
+.key-history .alg-col { width: 12%; }
+.key-history .keylength-col { width: 12%; }
+.key-history .keydate-col { width: 38%; }
+/* Key Date column styling */
+.key-history .keydate-col {
+    vertical-align: middle;
+}
+
+/* Make header row more prominent */
+.key-history thead tr {
+    border-bottom: 2px solid #ccc;
+}
+
+/* Improve readability of tables */
+.key-history {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Fix right panel overflow on smaller screens */
+.right-panel {
+    overflow-x: auto;
+}
+
+.key-history th, .key-history td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    word-break: break-word;
+    vertical-align: middle;
+}
+
+.key-history th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+    padding: 12px 10px;
+}
+
+.key-history .kid {
+    font-family: monospace;
+    font-size: 0.9em;
+    word-break: break-all;
+}
+
+.status-active {
+    background-color: #e6ffed;
+}
+
+.status-active:hover {
+    background-color: #d0f0dd;
+}
+
+.status-inactive {
+    background-color: #ffe6e6;
+}
+
+.status-inactive:hover {
+    background-color: #ffd6d6;
+}
