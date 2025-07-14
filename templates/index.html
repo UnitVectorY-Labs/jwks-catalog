@@ -13,18 +13,8 @@
     </header>
     <div class="container">
         <!-- Left Navigation Panel -->
-        <nav class="left-panel">
-            <!-- Search Container -->
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search services...">
-                <span class="search-icon">&#128269;</span>
-            </div>
-
-            <!-- Service Links -->
-            {{range .Services}}
-            <a href="./service-{{.Id | urlquery}}.html" hx-get="./snippets/{{.Id | urlquery}}.html" hx-target="#content"
-            hx-push-url="./service-{{.Id | urlquery}}.html">{{.Name}}</a>
-            {{end}}
+        <nav class="left-panel" hx-get="./nav.html" hx-trigger="load" hx-swap="innerHTML">
+            <!-- Navigation will be loaded here via HTMX -->
         </nav>
 
         <!-- Right Content Panel -->

@@ -222,6 +222,10 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error parsing home template: %v", err)
 	}
+	navTemplate, err := template.ParseFiles("templates/nav.html")
+	if err != nil {
+		log.Fatalf("Error parsing nav template: %v", err)
+	}
 
 	// Create output directory
 	outputDir := "output"
@@ -255,6 +259,22 @@ func main() {
 
 	if err := mainTemplate.Execute(indexOut, mainData); err != nil {
 		log.Fatalf("Error executing main template: %v", err)
+	}
+
+	// Generate nav.html
+	navFile := filepath.Join(outputDir, "nav.html")
+	navOut, err := os.Create(navFile)
+	if err != nil {
+		log.Fatalf("Error creating nav file: %v", err)
+	}
+	defer navOut.Close()
+
+	navData := Data{
+		Services: data.Services,
+	}
+
+	if err := navTemplate.Execute(navOut, navData); err != nil {
+		log.Fatalf("Error executing nav template: %v", err)
 	}
 
 	// Save home.html to services directory
