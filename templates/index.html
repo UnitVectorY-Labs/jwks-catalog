@@ -32,16 +32,34 @@
 
     <!-- JavaScript for Search Functionality -->
     <script>
-    document.getElementById('searchInput').addEventListener('input', function() {
-        const filter = this.value.toLowerCase();
-        const links = document.querySelectorAll('.left-panel a');
-        links.forEach(function(link) {
-            if (link.textContent.toLowerCase().includes(filter)) {
-                link.style.display = 'block';
-            } else {
-                link.style.display = 'none';
-            }
-        });
+    // Function to initialize search functionality
+    function initializeSearch() {
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const filter = this.value.toLowerCase();
+                const links = document.querySelectorAll('.left-panel a');
+                links.forEach(function(link) {
+                    if (link.textContent.toLowerCase().includes(filter)) {
+                        link.style.display = 'block';
+                    } else {
+                        link.style.display = 'none';
+                    }
+                });
+            });
+        }
+    }
+
+    // Initialize search when navigation is loaded
+    document.body.addEventListener('htmx:afterSwap', function(event) {
+        if (event.target.classList.contains('left-panel')) {
+            initializeSearch();
+        }
+    });
+
+    // Also initialize on page load (fallback)
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initializeSearch, 100);
     });
     </script>
 </body>
