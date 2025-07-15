@@ -39,4 +39,4 @@ The workflow includes:
 2. Using Go templates to generate the primary `index.html` and complete page for each service.  
 3. Generating “snippet” pages for each service to support HTMX-driven dynamic content loading without requiring a full-page reload.
 
-The final static files are deployed to GitHub Pages using the [go-pages-deploy.yml](https://github.com/UnitVectorY-Labs/jwks-catalog/blob/main/.github/workflows/go-pages-deploy.yml) GitHub Action workflow, which is automatically triggered on every push to the `main` branch.
+The final static files are deployed to GitHub Pages using the [jwks-catalog-go-pages-deploy.yml](https://github.com/UnitVectorY-Labs/jwks-catalog/blob/main/.github/workflows/jwks-catalog-go-pages-deploy.yml) GitHub Action workflow, which is automatically triggered on every push to the `main` branch.
