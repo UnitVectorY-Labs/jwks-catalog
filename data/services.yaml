@@ -626,10 +626,6 @@ services:
     name: Cloudflare Access (Accounts)
     openid-configuration: https://accounts.cloudflareaccess.com/.well-known/openid-configuration
     jwks_uri: https://accounts.cloudflareaccess.com/cdn-cgi/access/certs
-  - id: coursera-accounts
-    name: Coursera
-    openid-configuration: https://accounts.coursera.org/.well-known/openid-configuration
-    jwks_uri: ""
   - id: huya-accounts
     name: Huya
     openid-configuration: https://accounts.huya.com/.well-known/openid-configuration
@@ -1130,10 +1126,6 @@ services:
     name: NetBird
     openid-configuration: https://login.netbird.io/.well-known/openid-configuration
     jwks_uri: https://login.netbird.io/.well-known/jwks.json
-  - id: netsuite-login
-    name: NetSuite (Login)
-    openid-configuration: https://login.netsuite.com/.well-known/openid-configuration
-    jwks_uri: https://login.netsuite.com/services/rest/auth/oauth2/v1/keys
   - id: sailthru-login
     name: Sailthru
     openid-configuration: https://login.sailthru.com/.well-known/openid-configuration
@@ -1418,10 +1410,6 @@ services:
     name: NIH
     openid-configuration: https://sts.nih.gov/.well-known/openid-configuration
     jwks_uri: https://sts.nih.gov/openid/connect/jwks.json
-  - id: netsuite-system
-    name: NetSuite (System)
-    openid-configuration: https://system.netsuite.com/.well-known/openid-configuration
-    jwks_uri: https://system.netsuite.com/services/rest/auth/oauth2/v1/keys
   - id: tumblr-web
     name: Tumblr (WWW)
     openid-configuration: https://www.tumblr.com/.well-known/openid-configuration
