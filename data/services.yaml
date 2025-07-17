@@ -79,7 +79,7 @@ services:
     openid-configuration: https://orcid.org/.well-known/openid-configuration
     jwks_uri: https://orcid.org/oauth/jwks
   - id: line
-    name: LINE
+    name: LINE (Access)
     openid-configuration: https://access.line.me/.well-known/openid-configuration
     jwks_uri: https://api.line.me/oauth2/v2.1/certs
   - id: ibm-cloud
@@ -95,7 +95,7 @@ services:
     openid-configuration: https://auth.tesla.com/oauth2/v3/.well-known/openid-configuration
     jwks_uri: https://auth.tesla.com/oauth2/v3/discovery/keys
   - id: autodesk
-    name: Autodesk
+    name: Autodesk (Developer API)
     openid-configuration: https://developer.api.autodesk.com/.well-known/openid-configuration
     jwks_uri: https://developer.api.autodesk.com/authentication/v2/keys
   - id: myopenpass
@@ -143,7 +143,7 @@ services:
     openid-configuration: https://account.samsung.com/.well-known/openid-configuration
     jwks_uri: https://api.account.samsung.com/v1/oidc/certs
   - id: shopify
-    name: Shopify
+    name: Shopify (Accounts)
     openid-configuration: https://accounts.shopify.com/.well-known/openid-configuration
     jwks_uri: https://accounts.shopify.com/oauth/discovery/keys
   - id: statefarm
@@ -175,7 +175,7 @@ services:
     openid-configuration: https://tumblr.com/.well-known/openid-configuration
     jwks_uri: https://www.tumblr.com/openid/v1/certs
   - id: mercedes-benz
-    name: Mercedes-Benz
+    name: Mercedes-Benz (SSO)
     openid-configuration: https://id.mercedes-benz.com/.well-known/openid-configuration
     jwks_uri: https://id.mercedes-benz.com/pf/JWKS
   - id: siemens
@@ -395,7 +395,7 @@ services:
     openid-configuration: https://login.realtor.com/.well-known/openid-configuration
     jwks_uri: https://login.realtor.com/.well-known/jwks.json
   - id: zillow
-    name: Zillow
+    name: Zillow (Auth)
     openid-configuration: https://auth.zillow.com/.well-known/openid-configuration
     jwks_uri: https://auth.zillow.com/.well-known/jwks.json
   - id: skillshare
@@ -451,7 +451,7 @@ services:
     openid-configuration: https://auth.quantummetric.com/.well-known/openid-configuration
     jwks_uri: https://auth.quantummetric.com/.well-known/jwks.json
   - id: riotgames
-    name: Riot Games
+    name: Riot Games (Auth)
     openid-configuration: https://auth.riotgames.com/.well-known/openid-configuration
     jwks_uri: https://auth.riotgames.com/jwks.json
   - id: riskified
@@ -487,11 +487,11 @@ services:
     openid-configuration: https://login.docker.com/.well-known/openid-configuration
     jwks_uri: https://login.docker.com/.well-known/jwks.json
   - id: eset
-    name: ESET
+    name: ESET (Login)
     openid-configuration: https://login.eset.com/.well-known/openid-configuration
     jwks_uri: https://login.eset.com/.well-known/openid-configuration/jwks
   - id: intentiq
-    name: IntentIQ
+    name: IntentIQ (Login)
     openid-configuration: https://login.intentiq.com/.well-known/openid-configuration
     jwks_uri: https://login.intentiq.com/.well-known/jwks.json
   - id: kargo-login
@@ -611,7 +611,7 @@ services:
     openid-configuration: https://account.cloudflareaccess.com/.well-known/openid-configuration
     jwks_uri: https://account.cloudflareaccess.com/cdn-cgi/access/certs
   - id: line-biz
-    name: LINE
+    name: LINE (Account)
     openid-configuration: https://account.line.biz/.well-known/openid-configuration
     jwks_uri: https://account.line.biz/oauth2/certs
   - id: matrix-account
@@ -635,7 +635,7 @@ services:
     openid-configuration: https://accounts.huya.com/.well-known/openid-configuration
     jwks_uri: https://accounts.huya.com/keys
   - id: loopme-accounts
-    name: LoopMe
+    name: LoopMe (Accounts)
     openid-configuration: https://accounts.loopme.com/.well-known/openid-configuration
     jwks_uri: https://accounts.loopme.com/oauth2/v1/keys
   - id: sfr-accounts
@@ -647,11 +647,11 @@ services:
     openid-configuration: https://accounts.securly.com/.well-known/openid-configuration
     jwks_uri: https://accounts.securly.com/login/oidc/jwks
   - id: zoho-accounts-eu
-    name: Zoho
+    name: Zoho (EU)
     openid-configuration: https://accounts.zoho.eu/.well-known/openid-configuration
     jwks_uri: https://accounts.zoho.eu/oauth/v2/keys
   - id: zoho-accounts-in
-    name: Zoho
+    name: Zoho (IN)
     openid-configuration: https://accounts.zoho.in/.well-known/openid-configuration
     jwks_uri: https://accounts.zoho.in/oauth/v2/keys
   - id: avid-api
@@ -679,7 +679,7 @@ services:
     openid-configuration: https://api.crowdsec.net/.well-known/openid-configuration
     jwks_uri: https://api.crowdsec.net/.well-known/jwks.json
   - id: lego-api
-    name: LEGO
+    name: LEGO (API)
     openid-configuration: https://api.lego.com/.well-known/openid-configuration
     jwks_uri: https://api.lego.com/discovery/keys
   - id: otto-api
@@ -687,7 +687,7 @@ services:
     openid-configuration: https://api.otto.de/.well-known/openid-configuration
     jwks_uri: https://api.otto.de/.well-known/jwks.json
   - id: porsche-api
-    name: Porsche
+    name: Porsche (API)
     openid-configuration: https://api.porsche.com/.well-known/openid-configuration
     jwks_uri: https://api.porsche.com/jwt/jwks.json
   - id: 3dos-auth
@@ -767,7 +767,7 @@ services:
     openid-configuration: https://auth.infoblox.com/.well-known/openid-configuration
     jwks_uri: https://auth.infoblox.com/oauth2/v1/keys
   - id: ionos-auth
-    name: IONOS
+    name: IONOS (Auth)
     openid-configuration: https://auth.ionos.com/.well-known/openid-configuration
     jwks_uri: https://auth.ionos.com/1.0/oauth/.well-known/jwks.json
   - id: jio-auth
@@ -851,7 +851,7 @@ services:
     openid-configuration: https://auth.videotron.com/.well-known/openid-configuration
     jwks_uri: https://auth.videotron.com/oauth2/v1/keys
   - id: walkme-auth
-    name: WalkMe
+    name: WalkMe (Default)
     openid-configuration: https://auth.walkme.com/oauth2/default/.well-known/openid-configuration
     jwks_uri: https://auth.walkme.com/oauth2/default/v1/keys
   - id: wyze-auth
@@ -883,7 +883,7 @@ services:
     openid-configuration: https://authn.auth0.com/.well-known/openid-configuration
     jwks_uri: https://authn.auth0.com/.well-known/jwks.json
   - id: autodesk-authn
-    name: Autodesk
+    name: Autodesk (AuthN)
     openid-configuration: https://authn.autodesk.com/.well-known/openid-configuration
     jwks_uri: https://authn.autodesk.com/oauth2/v1/keys
   - id: cloudflareaccess-authn
@@ -911,7 +911,7 @@ services:
     openid-configuration: https://dash.cloudflare.com/.well-known/openid-configuration
     jwks_uri: https://dash.cloudflare.com/.well-known/jwks.json
   - id: dropbox-www
-    name: Dropbox
+    name: Dropbox (WWW)
     openid-configuration: https://www.dropbox.com/.well-known/openid-configuration
     jwks_uri: https://www.dropbox.com/.well-known/jwks
   - id: gaijin-net
@@ -951,11 +951,11 @@ services:
     openid-configuration: https://id.gamma.app/.well-known/openid-configuration
     jwks_uri: https://id.gamma.app/.well-known/jwks.json
   - id: instructure-id
-    name: Instructure
+    name: Instructure (ID)
     openid-configuration: https://id.instructure.com/.well-known/openid-configuration
     jwks_uri: https://id.instructure.com/login/oauth2/jwks
   - id: ionos-id
-    name: IONOS
+    name: IONOS (ID)
     openid-configuration: https://id.ionos.com/.well-known/openid-configuration
     jwks_uri: https://id.ionos.com/.well-known/jwks.json
   - id: itau-id
@@ -983,7 +983,7 @@ services:
     openid-configuration: https://id.tritondigital.com/.well-known/openid-configuration
     jwks_uri: https://id.tritondigital.com/.well-known/jwks.json
   - id: virginmedia-id
-    name: Virgin Media
+    name: Virgin Media (ID)
     openid-configuration: https://id.virginmedia.com/oidc/.well-known/openid-configuration
     jwks_uri: https://id.virginmedia.com/oidc/jwk
   - id: admixer-identity
@@ -995,7 +995,7 @@ services:
     openid-configuration: https://identity.appdynamics.com/.well-known/openid-configuration
     jwks_uri: https://identity.appdynamics.com/oauth2/v1/keys
   - id: bitwarden-identity
-    name: Bitwarden
+    name: Bitwarden (Identity)
     openid-configuration: https://identity.bitwarden.com/.well-known/openid-configuration
     jwks_uri: https://identity.bitwarden.com/.well-known/openid-configuration/jwks
   - id: cambridge-identity
@@ -1011,7 +1011,7 @@ services:
     openid-configuration: https://identity.constantcontact.com/.well-known/openid-configuration
     jwks_uri: https://identity.constantcontact.com/oauth2/v1/keys
   - id: eset-identity
-    name: ESET
+    name: ESET (Identity)
     openid-configuration: https://identity.eset.com/.well-known/openid-configuration
     jwks_uri: https://identity.eset.com/.well-known/openid-configuration/jwks
   - id: freshworks-identity
@@ -1019,19 +1019,19 @@ services:
     openid-configuration: https://identity.freshworks.com/.well-known/openid-configuration
     jwks_uri: https://identity.freshworks.com/.well-known/jwks.json
   - id: lego-identity
-    name: LEGO
+    name: LEGO (Identity)
     openid-configuration: https://identity.lego.com/.well-known/openid-configuration
     jwks_uri: https://identity.lego.com/.well-known/openid-configuration/jwks
   - id: machineq-identity
-    name: machineQ
+    name: machineQ (Identity)
     openid-configuration: https://identity.machineq.net/.well-known/openid-configuration
     jwks_uri: https://identity.machineq.net/.well-known/jwks.json
   - id: paloaltonetworks-identity
-    name: Palo Alto Networks
+    name: Palo Alto Networks (Identity)
     openid-configuration: https://identity.paloaltonetworks.com/.well-known/openid-configuration
     jwks_uri: https://identity.paloaltonetworks.com/pf/JWKS
   - id: porsche-identity
-    name: Porsche
+    name: Porsche (Identity)
     openid-configuration: https://identity.porsche.com/.well-known/openid-configuration
     jwks_uri: https://identity.porsche.com/.well-known/jwks.json
   - id: synology-identity
@@ -1051,7 +1051,7 @@ services:
     openid-configuration: https://identity.xero.com/.well-known/openid-configuration
     jwks_uri: https://identity.xero.com/.well-known/openid-configuration/jwks
   - id: zillow-identity
-    name: Zillow
+    name: Zillow (Identity)
     openid-configuration: https://identity.zillow.com/.well-known/openid-configuration
     jwks_uri: https://identity.zillow.com/.well-known/jwks.json
   - id: cloudflareaccess-keycloak
@@ -1103,7 +1103,7 @@ services:
     openid-configuration: https://login.ecosia.org/.well-known/openid-configuration
     jwks_uri: https://login.ecosia.org/.well-known/jwks.json
   - id: gaijin-login
-    name: Gaijin Entertainment
+    name: Gaijin Entertainment (Login)
     openid-configuration: https://login.gaijin.net/.well-known/openid-configuration
     jwks_uri: https://login.gaijin.net/proxy/oauth/keys
   - id: infomaniak-login
@@ -1119,7 +1119,7 @@ services:
     openid-configuration: https://login.lansweeper.com/.well-known/openid-configuration
     jwks_uri: https://login.lansweeper.com/.well-known/jwks.json
   - id: loopme-login
-    name: LoopMe
+    name: LoopMe (Login)
     openid-configuration: https://login.loopme.com/.well-known/openid-configuration
     jwks_uri: https://login.loopme.com/.well-known/jwks.json
   - id: melcloud-login
@@ -1131,7 +1131,7 @@ services:
     openid-configuration: https://login.netbird.io/.well-known/openid-configuration
     jwks_uri: https://login.netbird.io/.well-known/jwks.json
   - id: netsuite-login
-    name: NetSuite
+    name: NetSuite (Login)
     openid-configuration: https://login.netsuite.com/.well-known/openid-configuration
     jwks_uri: https://login.netsuite.com/services/rest/auth/oauth2/v1/keys
   - id: sailthru-login
@@ -1147,7 +1147,7 @@ services:
     openid-configuration: https://login.techsmith.com/.well-known/openid-configuration
     jwks_uri: https://login.techsmith.com/.well-known/jwks.json
   - id: trellix-login
-    name: Trellix
+    name: Trellix (Login)
     openid-configuration: https://login.trellix.com/.well-known/openid-configuration
     jwks_uri: https://login.trellix.com/oauth2/v1/keys
   - id: videoamp-login
@@ -1159,7 +1159,7 @@ services:
     openid-configuration: https://www.namecheap.com/.well-known/openid-configuration
     jwks_uri: https://www.namecheap.com/.well-known/openid-configuration/jwks
   - id: aliyun-oauth
-    name: Alibaba Cloud
+    name: Alibaba Cloud (aliyun)
     openid-configuration: https://oauth.aliyun.com/.well-known/openid-configuration
     jwks_uri: https://oauth.aliyun.com/v1/keys
   - id: battlenet-oauth
@@ -1175,7 +1175,7 @@ services:
     openid-configuration: https://oauth.infura.io/.well-known/openid-configuration
     jwks_uri: https://oauth.infura.io/.well-known/jwks.json
   - id: instructure-oauth
-    name: Instructure
+    name: Instructure (OAuth)
     openid-configuration: https://oauth.instructure.com/.well-known/openid-configuration
     jwks_uri: https://oauth.instructure.com/login/oauth2/jwks
   - id: jumpcloud-oauth
@@ -1187,7 +1187,7 @@ services:
     openid-configuration: https://oauth.libreview.io/.well-known/openid-configuration
     jwks_uri: https://oauth.libreview.io/.well-known/jwks.json
   - id: machineq-oauth
-    name: machineQ
+    name: machineQ (OAuth)
     openid-configuration: https://oauth.machineq.net/.well-known/openid-configuration
     jwks_uri: https://oauth.machineq.net/.well-known/jwks.json
   - id: mts-oauth
@@ -1195,7 +1195,7 @@ services:
     openid-configuration: https://oauth.mts.by/.well-known/openid-configuration
     jwks_uri: https://oauth.mts.by/.well-known/jwks
   - id: shuzilm-oauth
-    name: Shuzilm
+    name: Shuzilm (OAuth)
     openid-configuration: https://oauth.shuzilm.cn/.well-known/openid-configuration
     jwks_uri: https://oauth.shuzilm.cn/.well-known/jwks
   - id: tawk-oauth
@@ -1203,7 +1203,7 @@ services:
     openid-configuration: https://oauth.tawk.to/.well-known/openid-configuration
     jwks_uri: https://oauth.tawk.to/.well-known/jwks.json
   - id: virginmedia-oauth
-    name: Virgin Media
+    name: Virgin Media (OAuth)
     openid-configuration: https://oauth.virginmedia.com/.well-known/openid-configuration
     jwks_uri: https://oauth.virginmedia.com/pf/JWKS
   - id: xfinity-oauth
@@ -1211,11 +1211,11 @@ services:
     openid-configuration: https://oauth.xfinity.com/.well-known/openid-configuration
     jwks_uri: https://oauth.xfinity.com/oauth/keys/jwks
   - id: okta-instructure
-    name: Okta
+    name: Okta Instructure
     openid-configuration: https://instructure.okta.com/.well-known/openid-configuration
     jwks_uri: https://instructure.okta.com/oauth2/v1/keys
   - id: okta-weather
-    name: Okta
+    name: Okta Weather
     openid-configuration: https://weather.okta.com/.well-known/openid-configuration
     jwks_uri: https://weather.okta.com/oauth2/v1/keys
   - id: avg-openid
@@ -1283,7 +1283,7 @@ services:
     openid-configuration: https://sso.barracuda.com/.well-known/openid-configuration
     jwks_uri: https://sso.barracuda.com/.well-known/jwks.json
   - id: bitwarden-sso
-    name: Bitwarden
+    name: Bitwarden (SSO)
     openid-configuration: https://sso.bitwarden.com/.well-known/openid-configuration
     jwks_uri: https://sso.bitwarden.com/.well-known/openid-configuration/jwks
   - id: bytedance-sso
@@ -1323,7 +1323,7 @@ services:
     openid-configuration: https://sso.hotjar.com/.well-known/openid-configuration
     jwks_uri: https://sso.hotjar.com/.well-known/jwks.json
   - id: intentiq-sso
-    name: IntentIQ
+    name: IntentIQ (SSO)
     openid-configuration: https://sso.intentiq.com/.well-known/openid-configuration
     jwks_uri: https://sso.intentiq.com/oauth2/v1/keys
   - id: klarna-sso
@@ -1331,7 +1331,7 @@ services:
     openid-configuration: https://sso.klarna.net/.well-known/openid-configuration
     jwks_uri: https://sso.klarna.net/oauth2/v1/keys
   - id: mercedes-sso
-    name: Mercedes-Benz
+    name: Mercedes-Benz (SSO)
     openid-configuration: https://sso.mercedes-benz.com/.well-known/openid-configuration
     jwks_uri: https://sso.mercedes-benz.com/pf/JWKS
   - id: mixpanel-sso
@@ -1351,7 +1351,7 @@ services:
     openid-configuration: https://sso.nytimes.com/.well-known/openid-configuration
     jwks_uri: https://sso.nytimes.com/.well-known/jwks.json
   - id: paloaltonetworks-sso
-    name: Palo Alto Networks
+    name: Palo Alto Networks (SSO)
     openid-configuration: https://sso.paloaltonetworks.com/.well-known/openid-configuration
     jwks_uri: https://sso.paloaltonetworks.com/oauth2/v1/keys
   - id: paymetric-sso
@@ -1363,11 +1363,11 @@ services:
     openid-configuration: https://sso.qortex.ai/.well-known/openid-configuration
     jwks_uri: https://sso.qortex.ai/oauth2/v1/keys
   - id: riotgames-sso
-    name: Riot Games
+    name: Riot Games (SSO)
     openid-configuration: https://sso.riotgames.com/.well-known/openid-configuration
     jwks_uri: https://sso.riotgames.com/oauth2/v1/keys
   - id: shuzilm-sso
-    name: Shuzilm
+    name: Shuzilm (SSO)
     openid-configuration: https://sso.shuzilm.cn/.well-known/openid-configuration
     jwks_uri: https://sso.shuzilm.cn/.well-known/jwks.json
   - id: supercell-sso
@@ -1383,7 +1383,7 @@ services:
     openid-configuration: https://sso.treasuredata.com/.well-known/openid-configuration
     jwks_uri: https://sso.treasuredata.com/.well-known/jwks.json
   - id: trellix-sso
-    name: Trellix
+    name: Trellix (SSO)
     openid-configuration: https://sso.trellix.com/.well-known/openid-configuration
     jwks_uri: https://sso.trellix.com/oauth2/v1/keys
   - id: tripledot-sso
@@ -1419,11 +1419,11 @@ services:
     openid-configuration: https://sts.nih.gov/.well-known/openid-configuration
     jwks_uri: https://sts.nih.gov/openid/connect/jwks.json
   - id: netsuite-system
-    name: NetSuite
+    name: NetSuite (System)
     openid-configuration: https://system.netsuite.com/.well-known/openid-configuration
     jwks_uri: https://system.netsuite.com/services/rest/auth/oauth2/v1/keys
   - id: tumblr-web
-    name: Tumblr
+    name: Tumblr (WWW)
     openid-configuration: https://www.tumblr.com/.well-known/openid-configuration
     jwks_uri: https://www.tumblr.com/openid/v1/certs
   - id: vivint
