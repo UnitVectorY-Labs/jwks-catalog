@@ -283,7 +283,7 @@ services:
     openid-configuration: https://login.apigee.com/.well-known/openid-configuration
     jwks_uri: https://login.apigee.com/token_key
   - id: auth0
-    name: Auth0
+    name: Auth0 (Auth)
     openid-configuration: https://auth.auth0.com/.well-known/openid-configuration
     jwks_uri: https://auth.auth0.com/.well-known/jwks.json
   - id: okta-id
@@ -855,27 +855,27 @@ services:
     openid-configuration: https://auth.wyze.com/.well-known/openid-configuration
     jwks_uri: https://auth.wyze.com/.well-known/jwks.json
   - id: auth0-account
-    name: Auth0
+    name: Auth0 (Account)
     openid-configuration: https://account.auth0.com/.well-known/openid-configuration
     jwks_uri: https://account.auth0.com/.well-known/jwks.json
   - id: auth0-keycloak
-    name: Auth0
+    name: Auth0 (Keycloak)
     openid-configuration: https://keycloak.auth0.com/.well-known/openid-configuration
     jwks_uri: https://keycloak.auth0.com/.well-known/jwks.json
   - id: auth0-identity
-    name: Auth0
+    name: Auth0 (Identity)
     openid-configuration: https://identity.auth0.com/.well-known/openid-configuration
     jwks_uri: https://identity.auth0.com/.well-known/jwks.json
   - id: auth0-secure
-    name: Auth0
+    name: Auth0 (Secure)
     openid-configuration: https://secure.auth0.com/.well-known/openid-configuration
     jwks_uri: https://secure.auth0.com/.well-known/jwks.json
   - id: auth0-sts
-    name: Auth0
+    name: Auth0 (STS)
     openid-configuration: https://sts.auth0.com/.well-known/openid-configuration
     jwks_uri: https://sts.auth0.com/.well-known/jwks.json
   - id: auth0-authn
-    name: Auth0
+    name: Auth0 (AuthN)
     openid-configuration: https://authn.auth0.com/.well-known/openid-configuration
     jwks_uri: https://authn.auth0.com/.well-known/jwks.json
   - id: autodesk-authn
