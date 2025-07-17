@@ -568,7 +568,7 @@ func calculateDaysActive(start time.Time, end *time.Time) int {
 	return int(duration.Hours() / 24)
 }
 
-// calculateKeyLength determines the key length in bits for RSA and EC keys.
+// calculateKeyLength determines the key length in bits for different key types.
 func calculateKeyLength(kf *KeyFile) int {
 	switch kf.Kty {
 	case "RSA":
@@ -578,7 +578,24 @@ func calculateKeyLength(kf *KeyFile) int {
 		}
 		nBytes, err := decodeBase64URL(kf.N)
 		if err != nil {
-			return 0
+			// The N value is not following the spec and cannot be decoded properly
+			// We'll apply the transformations to convert it to base64url and then decode again
+			// Remove the = padding if present from the end and substitue the + and / characters
+			revisedN := kf.N
+			if len(revisedN) > 0 && revisedN[len(revisedN)-1] == '=' {
+				revisedN = revisedN[:len(revisedN)-1]
+			}
+			if len(revisedN) > 0 && revisedN[len(revisedN)-1] == '=' {
+				revisedN = revisedN[:len(revisedN)-1]
+			}
+			revisedN = string(bytes.ReplaceAll([]byte(revisedN), []byte{'+'}, []byte{'-'}))
+			revisedN = string(bytes.ReplaceAll([]byte(revisedN), []byte{'/'}, []byte{'_'}))
+			nBytes, err = decodeBase64URL(string(revisedN))
+			if err != nil {
+				return 0
+			}
+
+			// We should really log the fact these sites aren't following the spec and include that warning
 		}
 		return len(nBytes) * 8
 	case "EC":
@@ -590,6 +607,30 @@ func calculateKeyLength(kf *KeyFile) int {
 			return 384
 		case "P-521":
 			return 521
+		case "secp256k1":
+			return 256
+		}
+		return 0
+	case "oct":
+		switch kf.Alg {
+		case "HS256":
+			return 256
+		case "HS384":
+			return 384
+		case "HS512":
+			return 512
+		}
+		return 0
+	case "OKP":
+		switch kf.Crv {
+		case "Ed25519":
+			return 256
+		case "Ed448":
+			return 456
+		case "X25519":
+			return 256
+		case "X448":
+			return 448
 		}
 		return 0
 	default:
