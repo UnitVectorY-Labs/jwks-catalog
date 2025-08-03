@@ -24,7 +24,7 @@ header {
 
 .left-panel {
     width: 240px;
-    min-width: 240px; 
+    min-width: 240px;
     background-color: #ffffff;
     border-right: 1px solid #e5e7eb;
     overflow-y: auto;
@@ -63,26 +63,32 @@ header {
 }
 
 footer {
-    background-color: #2c3e50; 
-    color: #ecf0f1;
-    font-size: 0.8em;
-    padding: 1rem;
-    border-top: 1px solid #e5e7eb;
+    background-color: #2c3e50;
+    color: #9ca3af;
     text-align: center;
+    padding: 1rem;
+    font-size: 0.8em;
+    border-top: 1px solid #e5e7eb;
     margin-top: auto;
+}
+
+footer p {
+    margin: 0;
+    line-height: 1.4;
 }
 
 footer a {
     color: #9ca3af;
     text-decoration: none;
+    transition: color 0.2s;
 }
 
 footer a:hover {
-    text-decoration: none;
+    color: #fff;
 }
 
 header a {
-    text-decoration: none; 
+    text-decoration: none;
     color: inherit;
 }
 
@@ -153,11 +159,25 @@ header a h1 {
     overflow: hidden;
 }
 
-.key-history .kid-col { width: 30%; }
-.key-history .use-col { width: 8%; }
-.key-history .alg-col { width: 12%; }
-.key-history .keylength-col { width: 12%; }
-.key-history .keydate-col { width: 38%; }
+.key-history .kid-col {
+    width: 30%;
+}
+
+.key-history .use-col {
+    width: 8%;
+}
+
+.key-history .alg-col {
+    width: 12%;
+}
+
+.key-history .keylength-col {
+    width: 12%;
+}
+
+.key-history .keydate-col {
+    width: 38%;
+}
 
 .key-history .keydate-col {
     vertical-align: middle;
@@ -171,7 +191,8 @@ header a h1 {
     overflow-x: auto;
 }
 
-.key-history th, .key-history td {
+.key-history th,
+.key-history td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
