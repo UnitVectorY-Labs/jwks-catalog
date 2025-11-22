@@ -31,13 +31,13 @@ jobs:
     steps:
       # Step 1: Checkout the main repository
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
       # Step 1b: Checkout the jwks-observer repository
       - name: Checkout jwks-observer repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: UnitVectorY-Labs/jwks-observer.git
           path: jwks-observer
