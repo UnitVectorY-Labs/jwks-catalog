@@ -227,3 +227,83 @@ header a h1 {
 .status-inactive:hover {
     background-color: #ffd6d6;
 }
+
+/* Hamburger menu button - hidden on desktop */
+.nav-toggle {
+    display: none;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.25rem 0.5rem;
+        line-height: 1;
+        z-index: 200;
+    }
+
+    header {
+        position: relative;
+    }
+
+    .container {
+        flex-direction: column;
+        overflow: visible;
+    }
+
+    .left-panel {
+        display: none;
+        width: 100%;
+        min-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    .left-panel.nav-open {
+        display: block;
+    }
+
+    .right-panel {
+        padding: 1rem;
+        overflow-x: auto;
+    }
+
+    .right-panel pre {
+        overflow-x: auto;
+        word-break: break-all;
+        white-space: pre-wrap;
+    }
+
+    .key-history {
+        min-width: 100%;
+        font-size: 0.8em;
+    }
+
+    .key-history th,
+    .key-history td {
+        padding: 6px;
+    }
+
+    .key-history .kid-col {
+        width: 25%;
+    }
+
+    .key-history .keydate-col {
+        width: 30%;
+    }
+
+    footer {
+        font-size: 0.7em;
+    }
+}

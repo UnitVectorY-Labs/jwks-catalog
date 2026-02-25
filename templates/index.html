@@ -9,6 +9,7 @@
 </head>
 <body>
     <header>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
         <a href="index.html" hx-get="./snippets/home.html" hx-target="#content" hx-push-url="index.html"><h1>JWKS Catalog</h1></a>
     </header>
     <div class="container">
@@ -61,6 +62,23 @@
     // Also initialize on page load (fallback)
     document.addEventListener('DOMContentLoaded', function() {
         setTimeout(initializeSearch, 100);
+    });
+
+    // Mobile navigation toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        var navToggle = document.getElementById('navToggle');
+        var leftPanel = document.querySelector('.left-panel');
+        if (navToggle && leftPanel) {
+            navToggle.addEventListener('click', function() {
+                leftPanel.classList.toggle('nav-open');
+            });
+            // Close nav when a link inside is clicked on mobile
+            leftPanel.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    leftPanel.classList.remove('nav-open');
+                }
+            });
+        }
     });
     </script>
 </body>
