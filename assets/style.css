@@ -25,6 +25,7 @@ header {
 .left-panel {
     width: 240px;
     min-width: 240px;
+    box-sizing: border-box;
     background-color: #ffffff;
     border-right: 1px solid #e5e7eb;
     overflow-y: auto;
@@ -122,10 +123,14 @@ header a h1 {
     padding: 1.5rem 0 0.5rem;
     display: flex;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .search-input {
     width: 100%;
+    min-width: 0;
+    flex: 1 1 auto;
     padding: 0.5rem 2.5rem 0.5rem 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -263,7 +268,7 @@ header a h1 {
     .left-panel {
         display: none;
         width: 100%;
-        min-width: 100%;
+        min-width: 0;
         border-right: none;
         border-bottom: 1px solid #e5e7eb;
         max-height: 60vh;
