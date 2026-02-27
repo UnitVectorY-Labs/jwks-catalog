@@ -48,19 +48,82 @@ header {
 
 .right-panel {
     flex-grow: 1;
-    padding: 1rem 2rem 2rem 2rem;
+    padding: 1.5rem 2rem 2rem 2rem;
     overflow-y: auto;
-    background-color: #f9fafb;
+    background-color: #f0f2f5;
 }
 
 .right-panel h2 {
     color: #1e3a8a;
     margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #3b82f6;
+}
+
+.right-panel h3 {
+    color: #1e40af;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
 }
 
 .right-panel p {
     margin-bottom: 1rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    color: #374151;
+}
+
+/* Content cards for section grouping */
+.content-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.welcome-card {
+    border-left: 4px solid #3b82f6;
+}
+
+/* Endpoint info cards for service pages */
+.endpoint-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.endpoint-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.875rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.endpoint-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    margin-bottom: 0.375rem;
+}
+
+.endpoint-card a {
+    color: #2563eb;
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.endpoint-card a:hover {
+    text-decoration: underline;
+    color: #1d4ed8;
 }
 
 footer {
@@ -103,15 +166,27 @@ header a h1 {
 }
 
 .right-panel dt {
-    font-weight: bold;
+    font-weight: 600;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+    color: #1e40af;
 }
 
 .right-panel dd {
     margin-left: 1rem;
     margin-bottom: 1rem;
-    line-height: 1.4;
+    line-height: 1.5;
+    color: #374151;
+}
+
+.right-panel ul {
+    padding-left: 1.5rem;
+}
+
+.right-panel li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    color: #374151;
 }
 
 .search-container {
@@ -206,9 +281,10 @@ header a h1 {
 }
 
 .key-history th {
-    background-color: #f2f2f2;
+    background-color: #eff6ff;
     font-weight: 600;
     padding: 12px 10px;
+    color: #1e40af;
 }
 
 .key-history .kid {
@@ -288,6 +364,14 @@ header a h1 {
         overflow-x: auto;
         word-break: break-all;
         white-space: pre-wrap;
+    }
+
+    .content-card {
+        padding: 1rem;
+    }
+
+    .endpoint-card {
+        padding: 0.75rem 1rem;
     }
 
     .key-history {
