@@ -264,7 +264,7 @@ func computeMetrics(services []Service, observerPath string, config MetricsConfi
 	crvCount := make(map[string]int)
 
 	var totalLifetimeDays int
-	metrics.MinKeyLifetimeDays = -1
+	minKeyLifetimeSet := false
 
 	for _, s := range services {
 		activeKeys, inactiveKeys, err := loadAllKeyRecords(s.Id, observerPath)
@@ -306,23 +306,19 @@ func computeMetrics(services []Service, observerPath string, config MetricsConfi
 			}
 		}
 
-		// Rotation stats from inactive keys
 		for _, k := range inactiveKeys {
 			if k.DaysActive > 0 {
 				totalLifetimeDays += k.DaysActive
 				metrics.RotatedKeyCount++
-				if metrics.MinKeyLifetimeDays < 0 || k.DaysActive < metrics.MinKeyLifetimeDays {
+				if !minKeyLifetimeSet || k.DaysActive < metrics.MinKeyLifetimeDays {
 					metrics.MinKeyLifetimeDays = k.DaysActive
+					minKeyLifetimeSet = true
 				}
 				if k.DaysActive > metrics.MaxKeyLifetimeDays {
 					metrics.MaxKeyLifetimeDays = k.DaysActive
 				}
 			}
 		}
-	}
-
-	if metrics.MinKeyLifetimeDays < 0 {
-		metrics.MinKeyLifetimeDays = 0
 	}
 
 	if metrics.RotatedKeyCount > 0 {
@@ -483,7 +479,15 @@ func main() {
 	// Load metrics configuration
 	metricsConfig, err := loadMetricsConfig("data/metrics.yaml")
 	if err != nil {
-		log.Printf("Warning: could not load metrics config, metrics disabled: %v", err)
+		log.Printf("Warning: could not load metrics config, defaulting all metrics to enabled: %v", err)
+		metricsConfig.Metrics.CatalogOverview = true
+		metricsConfig.Metrics.KeyTypeDistribution = true
+		metricsConfig.Metrics.AlgorithmDistribution = true
+		metricsConfig.Metrics.KeyLengthDistribution = true
+		metricsConfig.Metrics.KeyUsageDistribution = true
+		metricsConfig.Metrics.CurveDistribution = true
+		metricsConfig.Metrics.KeyStatusOverview = true
+		metricsConfig.Metrics.KeyRotationStats = true
 	}
 
 	// Compute metrics from observer data
