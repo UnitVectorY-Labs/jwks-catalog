@@ -314,6 +314,91 @@ header a h1 {
     display: none;
 }
 
+/* Metrics grid layout */
+.metrics-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.metric-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    flex: 1 1 120px;
+    min-width: 120px;
+}
+
+.metric-box-green {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.metric-box-red {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+}
+
+.metric-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    line-height: 1.2;
+}
+
+.metric-box-green .metric-value {
+    color: #166534;
+}
+
+.metric-box-red .metric-value {
+    color: #991b1b;
+}
+
+.metric-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+/* Metrics table */
+.metrics-table {
+    width: 100%;
+    max-width: 400px;
+    border-collapse: collapse;
+    margin-top: 0.75rem;
+}
+
+.metrics-table th,
+.metrics-table td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.metrics-table th {
+    background-color: #eff6ff;
+    font-weight: 600;
+    color: #1e40af;
+    font-size: 0.85rem;
+}
+
+.metrics-table td {
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+.metrics-table td:last-child {
+    text-align: right;
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
 /* Mobile responsive styles */
 @media (max-width: 768px) {
     .nav-toggle {
@@ -394,5 +479,23 @@ header a h1 {
 
     footer {
         font-size: 0.7em;
+    }
+
+    .metrics-grid {
+        gap: 0.5rem;
+    }
+
+    .metric-box {
+        flex: 1 1 80px;
+        min-width: 80px;
+        padding: 0.75rem;
+    }
+
+    .metric-value {
+        font-size: 1.25rem;
+    }
+
+    .metrics-table {
+        max-width: 100%;
     }
 }
