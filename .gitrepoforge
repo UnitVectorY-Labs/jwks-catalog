@@ -1,0 +1,21 @@
+name: jwks-catalog
+default_branch: main
+config:
+  description: "A catalog of JWKS endpoints for popular websites."
+  license: MIT
+  language: go
+  release: release-go
+  justfile: true
+  codecov: true
+  gitignore:
+    - output
+    - node_modules
+    - package.json
+    - package-lock.json
+  repver:
+    goversion:
+      paths:
+        - .github/workflows/jwks-catalog-go-pages-deploy.yml
+  clip4llm:
+    exclude:
+      - output
