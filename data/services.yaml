@@ -1426,3 +1426,75 @@ services:
     name: Xumo
     openid-configuration: https://www.xumo.com/.well-known/openid-configuration
     jwks_uri: https://www.xumo.com/oauth/keys/jwks
+  - id: amagi
+    name: Amagi
+    openid-configuration: https://login.amagi.tv/.well-known/openid-configuration
+    jwks_uri: https://login.amagi.tv/.well-known/jwks.json
+  - id: american-express
+    name: American Express
+    openid-configuration: https://openid.americanexpress.com/.well-known/openid-configuration
+    jwks_uri: https://openid.americanexpress.com/keys
+  - id: apptentive
+    name: Apptentive
+    openid-configuration: https://login.apptentive.com/.well-known/openid-configuration
+    jwks_uri: https://login.apptentive.com/.well-known/jwks.json
+  - id: consentmanager
+    name: consentmanager
+    openid-configuration: https://login.consentmanager.net/.well-known/openid-configuration
+    jwks_uri: https://login.consentmanager.net/oauth2/v1/keys
+  - id: octopus-energy
+    name: Octopus Energy
+    openid-configuration: https://auth.octopus.energy/.well-known/openid-configuration/
+    jwks_uri: https://auth.octopus.energy/.well-known/jwks.json
+  - id: opera
+    name: Opera
+    openid-configuration: https://accounts.opera.com/.well-known/openid-configuration
+    jwks_uri: https://oauth2.opera-api.com/oauth2/v1/certs
+  - id: optimove
+    name: Optimove
+    openid-configuration: https://login.optimove.net/.well-known/openid-configuration
+    jwks_uri: https://login.optimove.net/.well-known/jwks.json
+  - id: rokt
+    name: Rokt
+    openid-configuration: https://login.rokt.com/.well-known/openid-configuration
+    jwks_uri: https://login.rokt.com/.well-known/jwks.json
+  - id: smartclip
+    name: smartclip
+    openid-configuration: https://login.smartclip.net/.well-known/openid-configuration
+    jwks_uri: https://login.smartclip.net/.well-known/jwks.json
+  - id: stackoverflow
+    name: Stack Overflow
+    openid-configuration: https://stackoverflow.com/.well-known/openid-configuration
+    jwks_uri: https://stackoverflow.com/.well-known/jwks.json
+  - id: tenable
+    name: Tenable
+    openid-configuration: https://login.tenable.com/.well-known/openid-configuration
+    jwks_uri: https://login.tenable.com/.well-known/jwks.json
+  - id: trustarc
+    name: TrustArc
+    openid-configuration: https://login.trustarc.com/.well-known/openid-configuration
+    jwks_uri: https://login.trustarc.com/oauth2/jwks
+  - id: truste
+    name: TRUSTe
+    openid-configuration: https://login.truste.com/.well-known/openid-configuration
+    jwks_uri: https://login.truste.com/oauth2/jwks
+  - id: zeotap
+    name: Zeotap
+    openid-configuration: https://login.zeotap.com/.well-known/openid-configuration
+    jwks_uri: https://login.zeotap.com/oauth2/v1/keys
+  - id: zscaler
+    name: Zscaler
+    openid-configuration: https://login.zscaler.net/.well-known/openid-configuration
+    jwks_uri: https://zservice.zscaler.net/_zsjwks/.well-known/jwks.json
+  - id: zscaler-three
+    name: Zscaler Three
+    openid-configuration: https://login.zscalerthree.net/.well-known/openid-configuration
+    jwks_uri: https://zservice.zscalerthree.net/_zsjwks/.well-known/jwks.json
+  - id: zscaler-two
+    name: Zscaler Two
+    openid-configuration: https://login.zscalertwo.net/.well-known/openid-configuration
+    jwks_uri: https://zservice.zscalertwo.net/_zsjwks/.well-known/jwks.json
+  - id: zscloud
+    name: ZSCloud
+    openid-configuration: https://login.zscloud.net/.well-known/openid-configuration
+    jwks_uri: https://zservice.zscloud.net/_zsjwks/.well-known/jwks.json
