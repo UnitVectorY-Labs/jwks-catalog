@@ -1498,3 +1498,7 @@ services:
     name: ZSCloud
     openid-configuration: https://login.zscloud.net/.well-known/openid-configuration
     jwks_uri: https://zservice.zscloud.net/_zsjwks/.well-known/jwks.json
+  - id: malwarebytes
+    name: Malwarebytes
+    openid-configuration: https://sso.malwarebytes.com/realms/master/.well-known/openid-configuration
+    jwks_uri: https://sso.malwarebytes.com/realms/master/protocol/openid-connect/certs
