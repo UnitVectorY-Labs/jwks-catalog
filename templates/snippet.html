@@ -13,6 +13,17 @@
 </div>
 </div>
 
+{{- if .AliasDisplays}}
+<div class="content-card aliases-card">
+<h3>Also Discoverable Via</h3>
+<ul class="alias-list">
+{{- range .AliasDisplays}}
+  <li><a href="{{.OpenIDConfiguration}}" target="_blank">{{.Domain}}</a></li>
+{{- end}}
+</ul>
+</div>
+{{- end}}
+
 {{- if .ActiveKeys}}
 <div class="content-card">
 <h3>Active Keys</h3>

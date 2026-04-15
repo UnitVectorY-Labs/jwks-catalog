@@ -179,7 +179,7 @@ services:
     aliases:
       - tumblr.com
   - id: mercedes-benz
-    name: Mercedes-Benz (SSO)
+    name: Mercedes-Benz (ID)
     openid-configuration: https://id.mercedes-benz.com/.well-known/openid-configuration
     jwks_uri: https://id.mercedes-benz.com/pf/JWKS
   - id: siemens
