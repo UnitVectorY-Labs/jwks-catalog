@@ -160,8 +160,10 @@ services:
     jwks_uri: https://login.cigna.com/oauth2/v1/keys
   - id: dropbox
     name: Dropbox
-    openid-configuration: https://dropbox.com/.well-known/openid-configuration
+    openid-configuration: https://www.dropbox.com/.well-known/openid-configuration
     jwks_uri: https://www.dropbox.com/.well-known/jwks
+    aliases:
+      - dropbox.com
   - id: coinbase
     name: Coinbase
     openid-configuration: https://login.coinbase.com/.well-known/openid-configuration
@@ -172,10 +174,12 @@ services:
     jwks_uri: https://sso.accounts.dowjones.com/.well-known/jwks.json
   - id: tumblr
     name: Tumblr
-    openid-configuration: https://tumblr.com/.well-known/openid-configuration
+    openid-configuration: https://www.tumblr.com/.well-known/openid-configuration
     jwks_uri: https://www.tumblr.com/openid/v1/certs
+    aliases:
+      - tumblr.com
   - id: mercedes-benz
-    name: Mercedes-Benz (SSO)
+    name: Mercedes-Benz (ID)
     openid-configuration: https://id.mercedes-benz.com/.well-known/openid-configuration
     jwks_uri: https://id.mercedes-benz.com/pf/JWKS
   - id: siemens
@@ -248,8 +252,10 @@ services:
     jwks_uri: https://letterboxd.com/.well-known/jwks.json
   - id: goodreads
     name: Goodreads
-    openid-configuration: https://goodreads.com/.well-known/openid-configuration
+    openid-configuration: https://www.goodreads.com/.well-known/openid-configuration
     jwks_uri: https://www.goodreads.com/open_id/keys
+    aliases:
+      - goodreads.com
   - id: boeing
     name: Boeing
     openid-configuration: https://auth.boeing.com/.well-known/openid-configuration
@@ -272,8 +278,10 @@ services:
     jwks_uri: https://accounts.salesloft.com/oidc/discovery/keys
   - id: freshbooks
     name: FreshBooks
-    openid-configuration: https://auth.freshbooks.com/.well-known/openid-configuration
+    openid-configuration: https://my.freshbooks.com/.well-known/openid-configuration
     jwks_uri: https://auth.freshbooks.com/service/auth/oauth/discovery/keys
+    aliases:
+      - auth.freshbooks.com
   - id: circleci
     name: CircleCI
     openid-configuration: https://auth.circleci.com/.well-known/openid-configuration
@@ -436,8 +444,10 @@ services:
     jwks_uri: https://auth.meethue.com/.well-known/jwks.json
   - id: auth.mozilla.com
     name: Mozilla
-    openid-configuration: https://auth.mozilla.com/.well-known/openid-configuration
+    openid-configuration: https://auth.mozilla.auth0.com/.well-known/openid-configuration
     jwks_uri: https://auth.mozilla.auth0.com/.well-known/jwks.json
+    aliases:
+      - auth.mozilla.com
   - id: nextdoor
     name: Nextdoor
     openid-configuration: https://auth.nextdoor.com/.well-known/openid-configuration
@@ -528,8 +538,10 @@ services:
     jwks_uri: https://login.simpli.fi/oauth2/v1/keys
   - id: smartadserver
     name: Equativ Smart AdServer
-    openid-configuration: https://login.smartadserver.com/.well-known/openid-configuration
+    openid-configuration: https://auth.equativ.com/.well-known/openid-configuration
     jwks_uri: https://login.smartadserver.com/.well-known/jwks.json
+    aliases:
+      - login.smartadserver.com
   - id: twilio
     name: Twilio
     openid-configuration: https://login.twilio.com/.well-known/openid-configuration
@@ -906,10 +918,7 @@ services:
     name: Cloudflare
     openid-configuration: https://dash.cloudflare.com/.well-known/openid-configuration
     jwks_uri: https://dash.cloudflare.com/.well-known/jwks.json
-  - id: dropbox-www
-    name: Dropbox (WWW)
-    openid-configuration: https://www.dropbox.com/.well-known/openid-configuration
-    jwks_uri: https://www.dropbox.com/.well-known/jwks
+
   - id: gaijin-net
     name: Gaijin Entertainment
     openid-configuration: https://gaijin.net/.well-known/openid-configuration
@@ -1410,10 +1419,7 @@ services:
     name: NIH
     openid-configuration: https://sts.nih.gov/.well-known/openid-configuration
     jwks_uri: https://sts.nih.gov/openid/connect/jwks.json
-  - id: tumblr-web
-    name: Tumblr (WWW)
-    openid-configuration: https://www.tumblr.com/.well-known/openid-configuration
-    jwks_uri: https://www.tumblr.com/openid/v1/certs
+
   - id: vivint
     name: Vivint
     openid-configuration: https://vivintsky.com/.well-known/openid-configuration
@@ -1432,8 +1438,10 @@ services:
     jwks_uri: https://login.amagi.tv/.well-known/jwks.json
   - id: american-express
     name: American Express
-    openid-configuration: https://openid.americanexpress.com/.well-known/openid-configuration
+    openid-configuration: https://www.americanexpress.com/.well-known/openid-configuration
     jwks_uri: https://openid.americanexpress.com/keys
+    aliases:
+      - openid.americanexpress.com
   - id: apptentive
     name: Apptentive
     openid-configuration: https://login.apptentive.com/.well-known/openid-configuration
@@ -1448,8 +1456,10 @@ services:
     jwks_uri: https://auth.octopus.energy/.well-known/jwks.json
   - id: opera
     name: Opera
-    openid-configuration: https://accounts.opera.com/.well-known/openid-configuration
+    openid-configuration: https://oauth2.opera-api.com/.well-known/openid-configuration
     jwks_uri: https://oauth2.opera-api.com/oauth2/v1/certs
+    aliases:
+      - accounts.opera.com
   - id: optimove
     name: Optimove
     openid-configuration: https://login.optimove.net/.well-known/openid-configuration

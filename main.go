@@ -10,6 +10,7 @@ import (
 	"html/template"
 	"io"
 	"log"
+	"net/url"
 	"os"
 	"path/filepath"
 	"sort"
@@ -62,10 +63,17 @@ type KeyFile struct {
 
 // Service represents a JWKS service.
 type Service struct {
-	Id                  string `yaml:"id"`
-	Name                string `yaml:"name"`
-	OpenIDConfiguration string `yaml:"openid-configuration"`
-	JWKSURI             string `yaml:"jwks_uri"`
+	Id                  string   `yaml:"id"`
+	Name                string   `yaml:"name"`
+	OpenIDConfiguration string   `yaml:"openid-configuration"`
+	JWKSURI             string   `yaml:"jwks_uri"`
+	Aliases             []string `yaml:"aliases,omitempty"`
+}
+
+// AliasDisplay holds an alias domain and its OIDC discovery URL for template rendering.
+type AliasDisplay struct {
+	Domain              string
+	OpenIDConfiguration string
 }
 
 // ServicePageData holds all the data needed to render a service page.
@@ -74,6 +82,7 @@ type ServicePageData struct {
 	ActiveKeys            []KeyRecord
 	InactiveKeys          []KeyRecord
 	DefaultKeyHistorySize int
+	AliasDisplays         []AliasDisplay
 }
 
 // Data holds the list of services and content
@@ -126,6 +135,7 @@ func validateServices(data *Data) error {
 	seenNames := make(map[string]bool)
 	seenJWKS := make(map[string]bool)
 	seenOIDC := make(map[string]bool)
+	seenAliases := make(map[string]bool)
 
 	for _, service := range data.Services {
 		// Check required fields
@@ -163,6 +173,30 @@ func validateServices(data *Data) error {
 				return fmt.Errorf("duplicate OpenID Configuration URL found: %s (service: %s)", service.OpenIDConfiguration, service.Id)
 			}
 			seenOIDC[service.OpenIDConfiguration] = true
+		}
+
+		// Extract the domain from the OpenID Configuration URL for comparison
+		oidcDomain := ""
+		if service.OpenIDConfiguration != "" {
+			if u, err := url.Parse(service.OpenIDConfiguration); err == nil {
+				oidcDomain = u.Hostname()
+			}
+		}
+
+		// Check aliases
+		for _, alias := range service.Aliases {
+			if alias == "" {
+				return fmt.Errorf("service '%s' has an empty alias", service.Id)
+			}
+			// Alias should not match the service's own OIDC domain
+			if alias == oidcDomain {
+				return fmt.Errorf("alias '%s' matches the service's own OIDC domain (service: %s)", alias, service.Id)
+			}
+			// Check for duplicate aliases across all services
+			if seenAliases[alias] {
+				return fmt.Errorf("duplicate alias found: %s (service: %s)", alias, service.Id)
+			}
+			seenAliases[alias] = true
 		}
 	}
 
@@ -291,9 +325,19 @@ func main() {
 
 	// Generate services for each service
 	for _, service := range data.Services {
+		// Build alias display data
+		var aliasDisplays []AliasDisplay
+		for _, alias := range service.Aliases {
+			aliasDisplays = append(aliasDisplays, AliasDisplay{
+				Domain:              alias,
+				OpenIDConfiguration: "https://" + alias + "/.well-known/openid-configuration",
+			})
+		}
+
 		pageData := ServicePageData{
 			Service:               service,
 			DefaultKeyHistorySize: DefaultKeyHistorySize,
+			AliasDisplays:         aliasDisplays,
 		}
 
 		// Load key history if observer path is set
