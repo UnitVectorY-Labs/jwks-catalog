@@ -694,10 +694,6 @@ services:
     name: Otto
     openid-configuration: https://api.otto.de/.well-known/openid-configuration
     jwks_uri: https://api.otto.de/.well-known/jwks.json
-  - id: porsche-api
-    name: Porsche (API)
-    openid-configuration: https://api.porsche.com/.well-known/openid-configuration
-    jwks_uri: https://api.porsche.com/jwt/jwks.json
   - id: 3dos-auth
     name: 3DOS
     openid-configuration: https://auth.3dos.io/.well-known/openid-configuration
