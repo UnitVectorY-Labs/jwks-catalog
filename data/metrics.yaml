@@ -1,0 +1,27 @@
+# Metrics Configuration
+# Feature flags for enabling/disabling different statistics on the home page.
+# Set each flag to true/false to control which metrics are displayed.
+metrics:
+  # Catalog overview statistics (total services, OIDC vs JWKS-only)
+  catalog_overview: true
+
+  # Key type distribution (RSA, EC, OKP, oct)
+  key_type_distribution: true
+
+  # Algorithm breakdown (RS256, ES256, etc.)
+  algorithm_distribution: true
+
+  # Key length distribution (2048-bit, 4096-bit, 256-bit, etc.)
+  key_length_distribution: true
+
+  # Key usage distribution (sig, enc)
+  key_usage_distribution: true
+
+  # Elliptic curve distribution for EC/OKP keys (P-256, P-384, Ed25519, etc.)
+  curve_distribution: true
+
+  # Key status overview (total active vs inactive keys)
+  key_status_overview: true
+
+  # Key rotation statistics (average key lifetime for rotated keys)
+  key_rotation_stats: true
