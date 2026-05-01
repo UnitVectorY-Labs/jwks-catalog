@@ -24,6 +24,59 @@ const (
 	DefaultKeyHistorySize = 10
 )
 
+// MetricsConfig holds the feature flags for which metrics to display.
+type MetricsConfig struct {
+	Metrics struct {
+		CatalogOverview       bool `yaml:"catalog_overview"`
+		KeyTypeDistribution   bool `yaml:"key_type_distribution"`
+		AlgorithmDistribution bool `yaml:"algorithm_distribution"`
+		KeyLengthDistribution bool `yaml:"key_length_distribution"`
+		KeyUsageDistribution  bool `yaml:"key_usage_distribution"`
+		CurveDistribution     bool `yaml:"curve_distribution"`
+		KeyStatusOverview     bool `yaml:"key_status_overview"`
+		KeyRotationStats      bool `yaml:"key_rotation_stats"`
+	} `yaml:"metrics"`
+}
+
+// MetricItem represents a single label-count pair for display.
+type MetricItem struct {
+	Label string
+	Count int
+}
+
+// CatalogMetrics holds all computed metrics for the home page.
+type CatalogMetrics struct {
+	Config MetricsConfig
+
+	// Catalog overview
+	TotalServices     int
+	ServicesWithOIDC  int
+	ServicesJWKSOnly  int
+	TotalActiveKeys   int
+	TotalInactiveKeys int
+
+	// Distributions
+	KeyTypeDistribution   []MetricItem
+	AlgorithmDistribution []MetricItem
+	KeyLengthDistribution []MetricItem
+	KeyUsageDistribution  []MetricItem
+	CurveDistribution     []MetricItem
+
+	// Rotation stats
+	AvgKeyLifetimeDays int
+	MinKeyLifetimeDays int
+	MaxKeyLifetimeDays int
+	RotatedKeyCount    int
+
+	// Whether observer data is available
+	HasObserverData bool
+}
+
+// HomePageData holds the data for the home page template.
+type HomePageData struct {
+	Metrics CatalogMetrics
+}
+
 // KeyRecord represents a single key's history for template rendering.
 type KeyRecord struct {
 	Kid                    string
@@ -203,6 +256,190 @@ func validateServices(data *Data) error {
 	return nil
 }
 
+// loadMetricsConfig loads the metrics feature flags from a YAML config file.
+func loadMetricsConfig(filename string) (MetricsConfig, error) {
+	var config MetricsConfig
+	file, err := os.ReadFile(filename)
+	if err != nil {
+		return config, err
+	}
+	if err := yaml.Unmarshal(file, &config); err != nil {
+		return config, err
+	}
+	return config, nil
+}
+
+// computeMetrics aggregates metrics across all services using observer data.
+func computeMetrics(services []Service, observerPath string, config MetricsConfig) CatalogMetrics {
+	metrics := CatalogMetrics{
+		Config:          config,
+		TotalServices:   len(services),
+		HasObserverData: observerPath != "",
+	}
+
+	// Catalog overview: OIDC vs JWKS-only
+	for _, s := range services {
+		if s.OpenIDConfiguration != "" {
+			metrics.ServicesWithOIDC++
+		} else {
+			metrics.ServicesJWKSOnly++
+		}
+	}
+
+	if observerPath == "" {
+		return metrics
+	}
+
+	// Aggregate key data across all services
+	ktyCount := make(map[string]int)
+	algCount := make(map[string]int)
+	keyLenCount := make(map[string]int)
+	useCount := make(map[string]int)
+	crvCount := make(map[string]int)
+
+	var totalLifetimeDays int
+	minKeyLifetimeSet := false
+
+	for _, s := range services {
+		activeKeys, inactiveKeys, err := loadAllKeyRecords(s.Id, observerPath)
+		if err != nil {
+			continue
+		}
+
+		allKeys := append(activeKeys, inactiveKeys...)
+		metrics.TotalActiveKeys += len(activeKeys)
+		metrics.TotalInactiveKeys += len(inactiveKeys)
+
+		for _, k := range allKeys {
+			// Key type
+			if k.Kty != "" {
+				ktyCount[k.Kty]++
+			}
+
+			// Algorithm
+			if k.Alg != "" {
+				algCount[k.Alg]++
+			}
+
+			// Key length
+			if k.KeyLength > 0 {
+				label := fmt.Sprintf("%d-bit", k.KeyLength)
+				keyLenCount[label]++
+			}
+
+			// Key usage
+			u := k.Use
+			if u == "" {
+				u = "unspecified"
+			}
+			useCount[u]++
+
+			// Curve (for EC and OKP)
+			if k.Crv != "" {
+				crvCount[k.Crv]++
+			}
+		}
+
+		for _, k := range inactiveKeys {
+			if k.DaysActive > 0 {
+				totalLifetimeDays += k.DaysActive
+				metrics.RotatedKeyCount++
+				if !minKeyLifetimeSet || k.DaysActive < metrics.MinKeyLifetimeDays {
+					metrics.MinKeyLifetimeDays = k.DaysActive
+					minKeyLifetimeSet = true
+				}
+				if k.DaysActive > metrics.MaxKeyLifetimeDays {
+					metrics.MaxKeyLifetimeDays = k.DaysActive
+				}
+			}
+		}
+	}
+
+	if metrics.RotatedKeyCount > 0 {
+		metrics.AvgKeyLifetimeDays = totalLifetimeDays / metrics.RotatedKeyCount
+	}
+
+	// Convert maps to sorted slices
+	metrics.KeyTypeDistribution = mapToSortedItems(ktyCount)
+	metrics.AlgorithmDistribution = mapToSortedItems(algCount)
+	metrics.KeyLengthDistribution = mapToSortedItems(keyLenCount)
+	metrics.KeyUsageDistribution = mapToSortedItems(useCount)
+	metrics.CurveDistribution = mapToSortedItems(crvCount)
+
+	return metrics
+}
+
+// loadAllKeyRecords loads all key records for a service (without limiting inactive keys).
+func loadAllKeyRecords(serviceID, observerPath string) ([]KeyRecord, []KeyRecord, error) {
+	serviceDataPath := filepath.Join(observerPath, "data", serviceID)
+	if _, err := os.Stat(serviceDataPath); os.IsNotExist(err) {
+		return nil, nil, nil
+	}
+
+	keysPath := filepath.Join(serviceDataPath, "keys")
+	keyFiles, err := os.ReadDir(keysPath)
+	if err != nil {
+		return nil, nil, fmt.Errorf("could not read keys directory: %w", err)
+	}
+
+	var activeKeys, inactiveKeys []KeyRecord
+	for _, kf := range keyFiles {
+		if filepath.Ext(kf.Name()) != ".json" {
+			continue
+		}
+
+		keyFilePath := filepath.Join(keysPath, kf.Name())
+		keyData, err := os.ReadFile(keyFilePath)
+		if err != nil {
+			continue
+		}
+
+		var keyFile KeyFile
+		if err := json.Unmarshal(keyData, &keyFile); err != nil {
+			continue
+		}
+
+		status := "inactive"
+		if keyFile.LastObserved == nil {
+			status = "active"
+		}
+
+		record := KeyRecord{
+			Kid:       keyFile.Kid,
+			Kty:       keyFile.Kty,
+			Use:       keyFile.Use,
+			Alg:       keyFile.Alg,
+			Crv:       keyFile.Crv,
+			Status:    status,
+			DaysActive: calculateDaysActive(keyFile.FirstObserved, keyFile.LastObserved),
+			KeyLength: calculateKeyLength(&keyFile),
+		}
+
+		if status == "active" {
+			activeKeys = append(activeKeys, record)
+		} else {
+			inactiveKeys = append(inactiveKeys, record)
+		}
+	}
+
+	return activeKeys, inactiveKeys, nil
+}
+
+// mapToSortedItems converts a map to a sorted slice of MetricItems (sorted by count descending).
+func mapToSortedItems(m map[string]int) []MetricItem {
+	items := make([]MetricItem, 0, len(m))
+	for label, count := range m {
+		items = append(items, MetricItem{Label: label, Count: count})
+	}
+	sort.Slice(items, func(i, j int) bool {
+		if items[i].Count != items[j].Count {
+			return items[i].Count > items[j].Count
+		}
+		return items[i].Label < items[j].Label
+	})
+	return items
+}
+
 func main() {
 	validateFlag := flag.Bool("validate", false, "Validate the services.yaml configuration file")
 	flag.Parse()
@@ -273,6 +510,27 @@ func main() {
 		log.Fatalf("Error copying style.css: %v", err)
 	}
 
+	// Load metrics configuration
+	metricsConfig, err := loadMetricsConfig("data/metrics.yaml")
+	if err != nil {
+		log.Printf("Warning: could not load metrics config, defaulting all metrics to enabled: %v", err)
+		metricsConfig.Metrics.CatalogOverview = true
+		metricsConfig.Metrics.KeyTypeDistribution = true
+		metricsConfig.Metrics.AlgorithmDistribution = true
+		metricsConfig.Metrics.KeyLengthDistribution = true
+		metricsConfig.Metrics.KeyUsageDistribution = true
+		metricsConfig.Metrics.CurveDistribution = true
+		metricsConfig.Metrics.KeyStatusOverview = true
+		metricsConfig.Metrics.KeyRotationStats = true
+	}
+
+	// Compute metrics from observer data
+	observerPath := os.Getenv("JWKS_OBSERVER_PATH")
+	catalogMetrics := computeMetrics(data.Services, observerPath, metricsConfig)
+	homePageData := HomePageData{
+		Metrics: catalogMetrics,
+	}
+
 	// Generate main index.html with home content
 	indexFile := filepath.Join(outputDir, "index.html")
 	indexOut, err := os.Create(indexFile)
@@ -282,7 +540,7 @@ func main() {
 	defer indexOut.Close()
 
 	contentBuffer := new(bytes.Buffer)
-	if err := homeTemplate.Execute(contentBuffer, nil); err != nil {
+	if err := homeTemplate.Execute(contentBuffer, homePageData); err != nil {
 		log.Fatalf("Error executing home template: %v", err)
 	}
 
@@ -319,7 +577,7 @@ func main() {
 	}
 	defer homeServiceOut.Close()
 
-	if err := homeTemplate.Execute(homeServiceOut, nil); err != nil {
+	if err := homeTemplate.Execute(homeServiceOut, homePageData); err != nil {
 		log.Fatalf("Error executing home template for services: %v", err)
 	}
 
