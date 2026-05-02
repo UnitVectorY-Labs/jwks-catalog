@@ -1508,3 +1508,6 @@ services:
     name: Malwarebytes
     openid-configuration: https://sso.malwarebytes.com/realms/master/.well-known/openid-configuration
     jwks_uri: https://sso.malwarebytes.com/realms/master/protocol/openid-connect/certs
+  - id: firebaseappcheck
+    name: Firebase App Check
+    jwks_uri: https://firebaseappcheck.googleapis.com/v1/jwks
