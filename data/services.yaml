@@ -1510,5 +1510,4 @@ services:
     jwks_uri: https://sso.malwarebytes.com/realms/master/protocol/openid-connect/certs
   - id: firebase-pvn
     name: Firebase PVN
-    openid-configuration: https://fpnv.googleapis.com/.well-known/openid-configuration
     jwks_uri: https://fpnv.googleapis.com/v1beta/jwks
