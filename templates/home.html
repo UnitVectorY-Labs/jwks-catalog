@@ -5,6 +5,146 @@
 </p>
 </section>
 
+{{if .Metrics.Config.Metrics.CatalogOverview}}
+<section class="content-card">
+<h3>Catalog Overview</h3>
+<div class="metrics-grid">
+    <div class="metric-box">
+        <span class="metric-value">{{.Metrics.TotalServices}}</span>
+        <span class="metric-label">Total Services</span>
+    </div>
+    <div class="metric-box">
+        <span class="metric-value">{{.Metrics.ServicesWithOIDC}}</span>
+        <span class="metric-label">With OIDC Endpoint</span>
+    </div>
+    <div class="metric-box">
+        <span class="metric-value">{{.Metrics.ServicesJWKSOnly}}</span>
+        <span class="metric-label">JWKS Only</span>
+    </div>
+</div>
+</section>
+{{end}}
+
+{{if and .Metrics.HasObserverData .Metrics.Config.Metrics.KeyStatusOverview}}
+<section class="content-card">
+<h3>Key Status Overview</h3>
+<div class="metrics-grid">
+    <div class="metric-box metric-box-green">
+        <span class="metric-value">{{.Metrics.TotalActiveKeys}}</span>
+        <span class="metric-label">Active Keys</span>
+    </div>
+    <div class="metric-box metric-box-red">
+        <span class="metric-value">{{.Metrics.TotalInactiveKeys}}</span>
+        <span class="metric-label">Inactive Keys</span>
+    </div>
+</div>
+</section>
+{{end}}
+
+{{if and .Metrics.HasObserverData .Metrics.Config.Metrics.AlgorithmDistribution (gt (len .Metrics.AlgorithmDistribution) 0)}}
+<section class="content-card">
+<h3>Algorithm Distribution</h3>
+<table class="metrics-table">
+    <thead>
+        <tr><th>Algorithm</th><th>Count</th></tr>
+    </thead>
+    <tbody>
+        {{range .Metrics.AlgorithmDistribution}}
+        <tr><td>{{.Label}}</td><td>{{.Count}}</td></tr>
+        {{end}}
+    </tbody>
+</table>
+</section>
+{{end}}
+
+{{if and .Metrics.HasObserverData .Metrics.Config.Metrics.KeyTypeDistribution (gt (len .Metrics.KeyTypeDistribution) 0)}}
+<section class="content-card">
+<h3>Key Type Distribution</h3>
+<table class="metrics-table">
+    <thead>
+        <tr><th>Key Type</th><th>Count</th></tr>
+    </thead>
+    <tbody>
+        {{range .Metrics.KeyTypeDistribution}}
+        <tr><td>{{.Label}}</td><td>{{.Count}}</td></tr>
+        {{end}}
+    </tbody>
+</table>
+</section>
+{{end}}
+
+{{if and .Metrics.HasObserverData .Metrics.Config.Metrics.KeyLengthDistribution (gt (len .Metrics.KeyLengthDistribution) 0)}}
+<section class="content-card">
+<h3>Key Length Distribution</h3>
+<table class="metrics-table">
+    <thead>
+        <tr><th>Key Length</th><th>Count</th></tr>
+    </thead>
+    <tbody>
+        {{range .Metrics.KeyLengthDistribution}}
+        <tr><td>{{.Label}}</td><td>{{.Count}}</td></tr>
+        {{end}}
+    </tbody>
+</table>
+</section>
+{{end}}
+
+{{if and .Metrics.HasObserverData .Metrics.Config.Metrics.KeyUsageDistribution (gt (len .Metrics.KeyUsageDistribution) 0)}}
+<section class="content-card">
+<h3>Key Usage Distribution</h3>
+<table class="metrics-table">
+    <thead>
+        <tr><th>Usage</th><th>Count</th></tr>
+    </thead>
+    <tbody>
+        {{range .Metrics.KeyUsageDistribution}}
+        <tr><td>{{.Label}}</td><td>{{.Count}}</td></tr>
+        {{end}}
+    </tbody>
+</table>
+</section>
+{{end}}
+
+{{if and .Metrics.HasObserverData .Metrics.Config.Metrics.CurveDistribution (gt (len .Metrics.CurveDistribution) 0)}}
+<section class="content-card">
+<h3>Elliptic Curve Distribution</h3>
+<table class="metrics-table">
+    <thead>
+        <tr><th>Curve</th><th>Count</th></tr>
+    </thead>
+    <tbody>
+        {{range .Metrics.CurveDistribution}}
+        <tr><td>{{.Label}}</td><td>{{.Count}}</td></tr>
+        {{end}}
+    </tbody>
+</table>
+</section>
+{{end}}
+
+{{if and .Metrics.HasObserverData .Metrics.Config.Metrics.KeyRotationStats (gt .Metrics.RotatedKeyCount 0)}}
+<section class="content-card">
+<h3>Key Rotation Statistics</h3>
+<div class="metrics-grid">
+    <div class="metric-box">
+        <span class="metric-value">{{.Metrics.RotatedKeyCount}}</span>
+        <span class="metric-label">Rotated Keys</span>
+    </div>
+    <div class="metric-box">
+        <span class="metric-value">{{.Metrics.AvgKeyLifetimeDays}}</span>
+        <span class="metric-label">Avg Lifetime (days)</span>
+    </div>
+    <div class="metric-box">
+        <span class="metric-value">{{.Metrics.MinKeyLifetimeDays}}</span>
+        <span class="metric-label">Min Lifetime (days)</span>
+    </div>
+    <div class="metric-box">
+        <span class="metric-value">{{.Metrics.MaxKeyLifetimeDays}}</span>
+        <span class="metric-label">Max Lifetime (days)</span>
+    </div>
+</div>
+</section>
+{{end}}
+
 <section class="content-card">
 <h3>Catalog Purpose</h3>
 <ul>
