@@ -126,10 +126,6 @@ services:
     name: OpenAI
     openid-configuration: https://auth0.openai.com/.well-known/openid-configuration
     jwks_uri: https://auth0.openai.com/.well-known/jwks.json
-  - id: expedia
-    name: Expedia
-    openid-configuration: https://auth.expedia.com/.well-known/openid-configuration
-    jwks_uri: https://auth.expedia.com/oauth2/v1/keys
   - id: nike
     name: Nike
     openid-configuration: https://accounts.nike.com/.well-known/openid-configuration
@@ -314,10 +310,6 @@ services:
     name: Zoho
     openid-configuration: https://accounts.zoho.com/.well-known/openid-configuration
     jwks_uri: https://accounts.zoho.com/oauth/v2/keys
-  - id: broadcom
-    name: Broadcom
-    openid-configuration: https://login.broadcom.com/.well-known/openid-configuration
-    jwks_uri: https://login.broadcom.com/oauth2/v1/keys
   - id: ti
     name: Texas Instruments
     openid-configuration: https://login.ti.com/.well-known/openid-configuration
@@ -358,14 +350,6 @@ services:
     name: Lonely Planet
     openid-configuration: https://auth.lonelyplanet.com/.well-known/openid-configuration
     jwks_uri: https://auth.lonelyplanet.com/.well-known/jwks.json
-  - id: vrbo
-    name: Vrbo
-    openid-configuration: https://auth.vrbo.com/.well-known/openid-configuration
-    jwks_uri: https://auth.vrbo.com/oauth2/v1/keys
-  - id: crateandbarrel
-    name: Crate & Barrel
-    openid-configuration: https://auth.crateandbarrel.com/.well-known/openid-configuration
-    jwks_uri: https://auth.crateandbarrel.com/oauth2/v1/keys
   - id: peets
     name: Peet's Coffee
     openid-configuration: https://login.peets.com/.well-known/openid-configuration
@@ -774,10 +758,6 @@ services:
     name: IONOS (Auth)
     openid-configuration: https://auth.ionos.com/.well-known/openid-configuration
     jwks_uri: https://auth.ionos.com/1.0/oauth/.well-known/jwks.json
-  - id: jio-auth
-    name: Jio
-    openid-configuration: https://auth.jio.com/.well-known/openid-configuration
-    jwks_uri: https://auth.jio.com/.well-known/jwks.json
   - id: kandji-auth
     name: Kandji
     openid-configuration: https://auth.kandji.io/.well-known/openid-configuration
@@ -794,10 +774,6 @@ services:
     name: MongoDB
     openid-configuration: https://auth.mongodb.com/.well-known/openid-configuration
     jwks_uri: https://auth.mongodb.com/oauth2/v1/keys
-  - id: next-auth
-    name: Next
-    openid-configuration: https://auth.next.co.uk/.well-known/openid-configuration
-    jwks_uri: https://auth.next.co.uk/.well-known/jwks.json
   - id: nit-auth
     name: NIT
     openid-configuration: https://auth.nit.ro/.well-known/openid-configuration
@@ -923,10 +899,6 @@ services:
     name: Hugging Face
     openid-configuration: https://huggingface.co/.well-known/openid-configuration
     jwks_uri: https://huggingface.co/oauth/jwks
-  - id: affirm-id
-    name: Affirm
-    openid-configuration: https://id.affirm.com/.well-known/openid-configuration
-    jwks_uri: https://id.affirm.com/.well-known/jwks.json
   - id: cisco-id
     name: Cisco
     openid-configuration: https://id.cisco.com/.well-known/openid-configuration
@@ -947,10 +919,6 @@ services:
     name: FOX
     openid-configuration: https://id.fox.com/.well-known/openid-configuration
     jwks_uri: https://id.fox.com/.well-known/jwks.json
-  - id: gamma-id
-    name: Gamma
-    openid-configuration: https://id.gamma.app/.well-known/openid-configuration
-    jwks_uri: https://id.gamma.app/.well-known/jwks.json
   - id: instructure-id
     name: Instructure (ID)
     openid-configuration: https://id.instructure.com/.well-known/openid-configuration
@@ -1171,10 +1139,6 @@ services:
     name: Infura
     openid-configuration: https://oauth.infura.io/.well-known/openid-configuration
     jwks_uri: https://oauth.infura.io/.well-known/jwks.json
-  - id: instructure-oauth
-    name: Instructure (OAuth)
-    openid-configuration: https://oauth.instructure.com/.well-known/openid-configuration
-    jwks_uri: https://oauth.instructure.com/login/oauth2/jwks
   - id: jumpcloud-oauth
     name: JumpCloud
     openid-configuration: https://oauth.jumpcloud.com/.well-known/openid-configuration
@@ -1183,10 +1147,6 @@ services:
     name: LibreView
     openid-configuration: https://oauth.libreview.io/.well-known/openid-configuration
     jwks_uri: https://oauth.libreview.io/.well-known/jwks.json
-  - id: machineq-oauth
-    name: machineQ (OAuth)
-    openid-configuration: https://oauth.machineq.net/.well-known/openid-configuration
-    jwks_uri: https://oauth.machineq.net/.well-known/jwks.json
   - id: mts-oauth
     name: MTS
     openid-configuration: https://oauth.mts.by/.well-known/openid-configuration
@@ -1476,14 +1436,6 @@ services:
     name: Tenable
     openid-configuration: https://login.tenable.com/.well-known/openid-configuration
     jwks_uri: https://login.tenable.com/.well-known/jwks.json
-  - id: trustarc
-    name: TrustArc
-    openid-configuration: https://login.trustarc.com/.well-known/openid-configuration
-    jwks_uri: https://login.trustarc.com/oauth2/jwks
-  - id: truste
-    name: TRUSTe
-    openid-configuration: https://login.truste.com/.well-known/openid-configuration
-    jwks_uri: https://login.truste.com/oauth2/jwks
   - id: zeotap
     name: Zeotap
     openid-configuration: https://login.zeotap.com/.well-known/openid-configuration
