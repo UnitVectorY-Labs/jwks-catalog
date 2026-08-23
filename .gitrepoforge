@@ -1,7 +1,7 @@
 name: jwks-catalog
 default_branch: main
 config:
-  description: "A catalog of JWKS endpoints for popular websites."
+  description: "A catalog of JWKS endpoints and OAuth/OpenID discovery metadata for popular websites."
   license: MIT
   language: go
   release: release-go

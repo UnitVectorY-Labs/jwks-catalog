@@ -7,6 +7,12 @@
 <a href="{{.OpenIDConfiguration}}" target="_blank">{{.OpenIDConfiguration}}</a>
 </div>
 {{end}}
+{{if .OAuthAuthorizationServerURI}}
+<div class="endpoint-card">
+<span class="endpoint-label">OAuth 2.0 Authorization Server Metadata</span>
+<a href="{{.OAuthAuthorizationServerURI}}" target="_blank">{{.OAuthAuthorizationServerURI}}</a>
+</div>
+{{end}}
 <div class="endpoint-card">
 <span class="endpoint-label">JWKS URI</span>
 <a href="{{.JWKSURI}}" target="_blank">{{.JWKSURI}}</a>

@@ -63,11 +63,12 @@ type KeyFile struct {
 
 // Service represents a JWKS service.
 type Service struct {
-	Id                  string   `yaml:"id"`
-	Name                string   `yaml:"name"`
-	OpenIDConfiguration string   `yaml:"openid-configuration"`
-	JWKSURI             string   `yaml:"jwks_uri"`
-	Aliases             []string `yaml:"aliases,omitempty"`
+	Id                          string   `yaml:"id"`
+	Name                        string   `yaml:"name"`
+	OpenIDConfiguration         string   `yaml:"openid-configuration"`
+	OAuthAuthorizationServerURI string   `yaml:"oauth-authorization-server"`
+	JWKSURI                     string   `yaml:"jwks_uri"`
+	Aliases                     []string `yaml:"aliases,omitempty"`
 }
 
 // AliasDisplay holds an alias domain and its OIDC discovery URL for template rendering.
@@ -135,6 +136,7 @@ func validateServices(data *Data) error {
 	seenNames := make(map[string]bool)
 	seenJWKS := make(map[string]bool)
 	seenOIDC := make(map[string]bool)
+	seenOAuthAuthorizationServer := make(map[string]bool)
 	seenAliases := make(map[string]bool)
 
 	for _, service := range data.Services {
@@ -173,6 +175,14 @@ func validateServices(data *Data) error {
 				return fmt.Errorf("duplicate OpenID Configuration URL found: %s (service: %s)", service.OpenIDConfiguration, service.Id)
 			}
 			seenOIDC[service.OpenIDConfiguration] = true
+		}
+
+		// Check for duplicate OAuth 2.0 Authorization Server Metadata URL if present
+		if service.OAuthAuthorizationServerURI != "" {
+			if seenOAuthAuthorizationServer[service.OAuthAuthorizationServerURI] {
+				return fmt.Errorf("duplicate OAuth 2.0 Authorization Server Metadata URL found: %s (service: %s)", service.OAuthAuthorizationServerURI, service.Id)
+			}
+			seenOAuthAuthorizationServer[service.OAuthAuthorizationServerURI] = true
 		}
 
 		// Extract the domain from the OpenID Configuration URL for comparison
