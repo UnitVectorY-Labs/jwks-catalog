@@ -14,6 +14,8 @@ The `aliases` field on a service entry is a list of alternative domain names thr
 
 Domain and issuer information is validated against crawl results from [jwks-observer](https://github.com/UnitVectorY-Labs/jwks-observer). The observer stores per-service data in `data/{service-id}/oidc.json`, which contains the raw OIDC discovery response including the `issuer` field. This crawl data is the source of truth for determining whether a domain mismatch or duplicate exists — the catalog build environment cannot call OIDC endpoints directly.
 
+When configured, the observer also stores RFC 8414 OAuth 2.0 Authorization Server Metadata in `data/{service-id}/oauth-authorization-server.json`; its fetch status is recorded as `oauth_authorization_server` in `status.json`.
+
 ## Duplicate Consolidation
 
 When two service entries share the same JWKS URI and the same issuer (e.g., `dropbox.com` and `www.dropbox.com`), they should be consolidated into a single entry. The canonical entry uses the issuer-matching domain for its `openid-configuration` URL, and the other domain is added as an alias. The duplicate entry is removed.

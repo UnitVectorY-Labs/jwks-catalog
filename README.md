@@ -2,7 +2,7 @@
 
 # jwks-catalog
 
-A catalog of JWKS endpoints for popular websites.
+A catalog of JWKS endpoints and OAuth/OpenID discovery metadata for popular websites.
 
 Available at: [https://jwks-catalog.unitvectorylabs.com/](https://jwks-catalog.unitvectorylabs.com/)
 
@@ -10,7 +10,7 @@ Available at: [https://jwks-catalog.unitvectorylabs.com/](https://jwks-catalog.u
 
 [JSON Web Key Sets](https://datatracker.ietf.org/doc/html/rfc7517) (JWKS) are a standard mechanism used in modern authentication systems to facilitate secure communication and validation of digital signatures. A JWKS URL provides a publicly accessible endpoint that hosts cryptographic keys used by identity providers to sign tokens like JSON Web Tokens (JWTs).
 
-This catalog aggregates JWKS URLs from popular services such as Google, GitHub, Microsoft, Apple, and others creating a resource for developers to quickly find and reference JWKS endpoints.
+This catalog aggregates JWKS URLs and discovery metadata from popular services such as Google, GitHub, Microsoft, Apple, and others, creating a resource for developers to quickly find and reference token-validation keys and authorization-server configuration. OAuth 2.0 authorization server metadata endpoints follow [RFC 8414](https://datatracker.ietf.org/doc/html/rfc8414).
 
 ## Contributing
 
@@ -21,6 +21,7 @@ Each entry in the YAML file should contain the following fields:
 - `id`: A unique identifier for the service
 - `name`: The name of the service
 - `openid-configuration`: The OpenID configuration URL for the service (optional)
+- `oauth-authorization-server`: The OAuth 2.0 Authorization Server Metadata URL, as defined by RFC 8414 (optional)
 - `jwks_uri`: The JWKS URL for the service
 
 ## Site Generation

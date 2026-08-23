@@ -26,15 +26,22 @@
 <section class="content-card">
 <h3>Understanding the Endpoints</h3>
 <p>
-    This catalog features two types of endpoints:
+    This catalog features three types of endpoints:
 </p>
 <dl>
     <dt>OpenID Connect (OIDC) Endpoints</dt>
     <dd>
-    OIDC endpoints provide configuration information as defined in the 
-    <a href="https://datatracker.ietf.org/doc/html/rfc8414" target="_blank">RFC 8414</a>. 
+    OIDC endpoints provide configuration information as defined in the
+    <a href="https://openid.net/specs/openid-connect-discovery-1_0.html" target="_blank">OpenID Connect Discovery 1.0 specification</a>.
     They offer a discovery mechanism for client applications to obtain necessary configuration data for authentication.
-    <br><em>Note:</em> Not all services expose a full OIDC configuration endpoint; in such cases, only the JWKS endpoint may be available.
+    <br><em>Note:</em> Not all services expose an OIDC configuration endpoint. Some instead expose OAuth 2.0 authorization-server metadata, or only a JWKS endpoint.
+    </dd>
+    <dt>OAuth 2.0 Authorization Server Metadata Endpoints</dt>
+    <dd>
+    OAuth 2.0 authorization server metadata endpoints, standardized in
+    <a href="https://datatracker.ietf.org/doc/html/rfc8414" target="_blank">RFC 8414</a>,
+    publish authorization-server configuration such as authorization, token, and (when available) JWKS endpoints.
+    They provide OAuth 2.0 discovery independently of OpenID Connect.
     </dd>
     <dt>JWKS Endpoints</dt>
     <dd>
