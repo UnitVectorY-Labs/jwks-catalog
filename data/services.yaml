@@ -1671,3 +1671,9 @@ services:
   - id: firebaseappcheck
     name: Firebase App Check
     jwks_uri: https://firebaseappcheck.googleapis.com/v1/jwks
+  - id: instagram
+    name: Instagram
+    openid-configuration: https://www.instagram.com/.well-known/openid-configuration
+    jwks_uri: https://www.instagram.com/.well-known/oauth/openid/jwks/
+    aliases:
+      - instagram.com
