@@ -2570,3 +2570,497 @@ services:
     name: U.S. Census Bureau
     openid-configuration: https://auth.census.gov/.well-known/openid-configuration
     jwks_uri: https://auth.census.gov/oauth2/v1/keys
+  - id: 3m
+    name: 3M
+    openid-configuration: https://sso.3m.com/.well-known/openid-configuration
+    jwks_uri: https://sso.3m.com/jwks
+  - id: aave
+    name: Aave
+    openid-configuration: https://auth.aave.com/.well-known/openid-configuration
+    jwks_uri: https://auth.aave.com/oauth2/v1/keys
+  - id: aboutyou
+    name: ABOUT YOU
+    openid-configuration: https://identity.aboutyou.com/.well-known/openid-configuration
+    jwks_uri: https://identity.aboutyou.com/oauth2/v1/keys
+  - id: ac-milan
+    name: AC Milan
+    openid-configuration: https://identity.acmilan.com/.well-known/openid-configuration
+    jwks_uri: https://identity.acmilan.com/id/keys
+  - id: academy
+    name: Academy Sports + Outdoors
+    openid-configuration: https://sso.academy.com/.well-known/openid-configuration
+    jwks_uri: https://sso.academy.com/pf/JWKS
+  - id: actblue-login
+    name: ActBlue (Login)
+    openid-configuration: https://login.actblue.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.actblue.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.actblue.com/.well-known/jwks.json
+  - id: actblue-signin
+    name: ActBlue (Sign In)
+    openid-configuration: https://signin.actblue.com/.well-known/openid-configuration
+    oauth-authorization-server: https://signin.actblue.com/.well-known/oauth-authorization-server
+    jwks_uri: https://signin.actblue.com/.well-known/jwks.json
+  - id: addi
+    name: Addi
+    openid-configuration: https://auth.addi.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.addi.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.addi.com/.well-known/jwks.json
+  - id: aep
+    name: American Electric Power
+    openid-configuration: https://login.aep.com/.well-known/openid-configuration
+    jwks_uri: https://login.aep.com/oauth2/v1/keys
+  - id: aer-lingus
+    name: Aer Lingus
+    openid-configuration: https://accounts.aerlingus.com/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.aerlingus.com/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.aerlingus.com/.well-known/jwks.json
+  - id: afr
+    name: Australian Financial Review
+    openid-configuration: https://login.afr.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.afr.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.afr.com/.well-known/jwks.json
+  - id: agilent
+    name: Agilent
+    openid-configuration: https://login.agilent.com/.well-known/openid-configuration
+    jwks_uri: https://login.agilent.com/oauth2/v1/keys
+  - id: airliquide
+    name: Air Liquide
+    openid-configuration: https://login.airliquide.com/.well-known/openid-configuration
+    jwks_uri: https://login.airliquide.com/oauth2/v1/keys
+  - id: airtasker
+    name: Airtasker
+    openid-configuration: https://id.airtasker.com/.well-known/openid-configuration
+    oauth-authorization-server: https://id.airtasker.com/.well-known/oauth-authorization-server
+    jwks_uri: https://id.airtasker.com/.well-known/jwks.json
+  - id: allegro
+    name: Allegro
+    openid-configuration: https://allegro.pl/.well-known/openid-configuration
+    jwks_uri: https://allegro.pl/auth/oauth/jwks
+    aliases:
+      - www.allegro.pl
+  - id: amedia
+    name: Amedia
+    openid-configuration: https://www.aid.no/.well-known/openid-configuration
+    jwks_uri: https://www.aid.no/oauth/discovery/keys
+    aliases:
+      - aid.no
+      - login.api.no
+      - www.bt.dk
+  - id: android-authority
+    name: Android Authority
+    openid-configuration: https://auth.androidauthority.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.androidauthority.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.androidauthority.com/.well-known/jwks.json
+  - id: angel-studios
+    name: Angel Studios
+    openid-configuration: https://auth.angel.com/.well-known/openid-configuration
+    jwks_uri: https://auth.angel.com/.well-known/jwks.json
+    aliases:
+      - auth.angelstudios.com
+  - id: anibis-ch
+    name: anibis.ch
+    openid-configuration: https://auth.anibis.ch/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.anibis.ch/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.anibis.ch/.well-known/jwks.json
+  - id: antpool
+    name: AntPool
+    openid-configuration: https://accounts.antpool.com/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.antpool.com/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.antpool.com/.well-known/jwks.json
+  - id: anytimefitness-identity
+    name: Anytime Fitness (Identity)
+    openid-configuration: https://identity.anytimefitness.com/.well-known/openid-configuration
+    jwks_uri: https://identity.anytimefitness.com/.well-known/openid-configuration/jwks
+  - id: anytimefitness-login
+    name: Anytime Fitness (Login)
+    openid-configuration: https://login.anytimefitness.com/.well-known/openid-configuration
+    jwks_uri: https://login.anytimefitness.com/oauth2/v1/keys
+  - id: applebees
+    name: Applebee’s
+    openid-configuration: https://login.applebees.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.applebees.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.applebees.com/.well-known/jwks.json
+  - id: argus-media
+    name: Argus Media
+    openid-configuration: https://auth.argusmedia.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.argusmedia.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.argusmedia.com/.well-known/jwks.json
+  - id: armani
+    name: Armani
+    openid-configuration: https://auth.armani.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.armani.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.armani.com/.well-known/jwks.json
+  - id: asahi
+    name: The Asahi Shimbun
+    openid-configuration: https://sso.asahi.com/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.asahi.com/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.asahi.com/.well-known/jwks.json
+  - id: aucfan
+    name: Aucfan
+    openid-configuration: https://auth.aucfan.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.aucfan.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.aucfan.com/oidc/jwks
+  - id: audi
+    name: Audi
+    openid-configuration: https://auth.audiusa.com/.well-known/openid-configuration
+    jwks_uri: https://auth.audiusa.com/.well-known/jwks.json
+  - id: autoscout24
+    name: AutoScout24
+    openid-configuration: https://auth.autoscout24.ch/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.autoscout24.ch/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.autoscout24.ch/.well-known/jwks.json
+  - id: autovit
+    name: Autovit
+    openid-configuration: https://auth.autovit.ro/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.autovit.ro/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.autovit.ro/.well-known/jwks.json
+  - id: awin
+    name: Awin
+    openid-configuration: https://id.awin.com/.well-known/openid-configuration
+    oauth-authorization-server: https://id.awin.com/.well-known/oauth-authorization-server
+    jwks_uri: https://id.awin.com/.well-known/jwks.json
+  - id: bakerhughes
+    name: Baker Hughes
+    openid-configuration: https://login.bakerhughes.com/.well-known/openid-configuration
+    jwks_uri: https://login.bakerhughes.com/oauth2/v1/keys
+  - id: bangkok-biz-news
+    name: Bangkok Biz News
+    openid-configuration: https://auth.bangkokbiznews.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.bangkokbiznews.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.bangkokbiznews.com/.well-known/jwks.json
+  - id: bankrate
+    name: Bankrate
+    openid-configuration: https://auth.bankrate.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.bankrate.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.bankrate.com/.well-known/jwks.json
+  - id: bark-auth
+    name: BARK (Auth)
+    openid-configuration: https://auth.bark.co/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.bark.co/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.bark.co/.well-known/jwks.json
+  - id: bbc-good-food
+    name: BBC Good Food
+    openid-configuration: https://auth.bbcgoodfood.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.bbcgoodfood.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.bbcgoodfood.com/.well-known/jwks.json
+  - id: beauty-bay
+    name: Beauty Bay
+    openid-configuration: https://auth.beautybay.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.beautybay.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.beautybay.com/.well-known/jwks.json
+  - id: bell-canada
+    name: Bell Canada
+    openid-configuration: https://id.bell.ca/.well-known/openid-configuration
+    jwks_uri: https://id.bell.ca/oauth2/v1/keys
+  - id: bilt
+    name: Bilt
+    openid-configuration: https://id.biltrewards.com/.well-known/openid-configuration
+    jwks_uri: https://id.biltrewards.com/.well-known/jwks.json
+  - id: biltema
+    name: Biltema
+    openid-configuration: https://id.biltema.com/.well-known/openid-configuration
+    jwks_uri: https://id.biltema.com/.well-known/openid-configuration/jwks
+  - id: bizjournals
+    name: American City Business Journals
+    openid-configuration: https://auth.bizjournals.com/.well-known/openid-configuration
+    jwks_uri: https://auth.bizjournals.com/oauth/jwks
+  - id: blockworks
+    name: Blockworks
+    openid-configuration: https://auth.blockworks.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.blockworks.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.blockworks.com/.well-known/jwks.json
+  - id: bloomberg
+    name: Bloomberg
+    openid-configuration: https://www.bloomberg.com/.well-known/openid-configuration
+    oauth-authorization-server: https://www.bloomberg.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.bloomberg.com/api/oauth/.well-known/jwks.json
+  - id: bluebeamstudio-login
+    name: Bluebeam Studio (Login)
+    openid-configuration: https://signin.bluebeamstudio.com.au/oauth2/aus10td4j2gKpamLW3l7/.well-known/openid-configuration
+    oauth-authorization-server: https://signin.bluebeamstudio.com.au/.well-known/oauth-authorization-server/oauth2/aus10td4j2gKpamLW3l7
+    jwks_uri: https://signin.bluebeamstudio.com.au/oauth2/aus10td4j2gKpamLW3l7/v1/keys
+    aliases:
+      - login.bluebeamstudio.com.au
+  - id: bluebeamstudio-signin
+    name: Bluebeam Studio (Sign In)
+    openid-configuration: https://signin.bluebeamstudio.com.au/.well-known/openid-configuration
+    jwks_uri: https://signin.bluebeamstudio.com.au/oauth2/v1/keys
+  - id: bmj
+    name: BMJ
+    openid-configuration: https://auth.bmj.com/.well-known/openid-configuration
+    jwks_uri: https://auth.bmj.com/pf/JWKS
+  - id: bnnvara
+    name: BNNVARA
+    openid-configuration: https://auth.bnnvara.nl/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.bnnvara.nl/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.bnnvara.nl/.well-known/jwks.json
+  - id: bobcat
+    name: Bobcat
+    openid-configuration: https://login.bobcat.com/.well-known/openid-configuration
+    jwks_uri: https://login.bobcat.com/oauth2/v1/keys
+  - id: booking-com
+    name: Booking.com
+    openid-configuration: https://auth.booking.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.booking.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.booking.com/.well-known/jwks.json
+  - id: bpost-bpost-be
+    name: bpost (bpost.be)
+    openid-configuration: https://login.bpost.be/.well-known/openid-configuration
+    jwks_uri: https://login.bpost.be/pf/JWKS
+  - id: bpost-bpost-cloud
+    name: bpost (bpost.cloud)
+    openid-configuration: https://login.bpost.cloud/.well-known/openid-configuration
+    oauth-authorization-server: https://login.bpost.cloud/.well-known/oauth-authorization-server
+    jwks_uri: https://login.bpost.cloud/pf/JWKS
+  - id: breitling
+    name: Breitling
+    openid-configuration: https://accounts.breitling.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.breitling.com/.well-known/openid-configuration/jwks
+  - id: british-airways
+    name: British Airways (Accounts)
+    openid-configuration: https://accounts.ba.com/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.ba.com/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.ba.com/.well-known/jwks.json
+  - id: brp
+    name: BRP
+    openid-configuration: https://auth.brp.com/.well-known/openid-configuration
+    jwks_uri: https://auth.brp.com/oauth2/v1/keys
+  - id: buffalowildwings
+    name: Buffalo Wild Wings
+    openid-configuration: https://login.buffalowildwings.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.buffalowildwings.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.buffalowildwings.com/.well-known/jwks.json
+  - id: bunnings-au
+    name: Bunnings (Australia)
+    openid-configuration: https://login.bunnings.com.au/.well-known/openid-configuration
+    jwks_uri: https://login.bunnings.com.au/oauth2/v1/keys
+  - id: bunnings-nz
+    name: Bunnings (New Zealand)
+    openid-configuration: https://login.bunnings.co.nz/.well-known/openid-configuration
+    jwks_uri: https://login.bunnings.co.nz/oauth2/v1/keys
+  - id: burberry
+    name: Burberry
+    openid-configuration: https://sso.burberry.com/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.burberry.com/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.burberry.com/pf/JWKS
+  - id: businessoffashion
+    name: The Business of Fashion
+    openid-configuration: https://id.businessoffashion.com/.well-known/openid-configuration
+    oauth-authorization-server: https://id.businessoffashion.com/.well-known/oauth-authorization-server
+    jwks_uri: https://id.businessoffashion.com/.well-known/jwks.json
+  - id: calzedonia
+    name: Calzedonia
+    openid-configuration: https://login.calzedonia.com/.well-known/openid-configuration
+    jwks_uri: https://login.calzedonia.com/oauth2/v1/keys
+  - id: campfire
+    name: CAMPFIRE
+    openid-configuration: https://camp-fire.jp/.well-known/openid-configuration
+    oauth-authorization-server: https://camp-fire.jp/.well-known/oauth-authorization-server
+    jwks_uri: https://camp-fire.jp/oauth/discovery/keys
+    aliases:
+      - www.camp-fire.jp
+  - id: canela
+    name: Canela
+    openid-configuration: https://auth.canela.tv/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.canela.tv/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.canela.tv/.well-known/jwks.json
+  - id: canyon
+    name: Canyon
+    openid-configuration: https://login.canyon.com/.well-known/openid-configuration
+    jwks_uri: https://login.canyon.com/id/keys
+  - id: care-com
+    name: Care.com
+    openid-configuration: https://auth.careapis.com/.well-known/openid-configuration
+    jwks_uri: https://auth.careapis.com/.well-known/jwks.json
+    aliases:
+      - auth.care.com
+  - id: careem
+    name: Careem
+    openid-configuration: https://identity.careem.com/.well-known/openid-configuration
+    jwks_uri: https://identity.careem.com/jwk
+  - id: carfax
+    name: CARFAX
+    openid-configuration: https://auth.carfax.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.carfax.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.carfax.com/.well-known/jwks.json
+  - id: carhartt
+    name: Carhartt
+    openid-configuration: https://connect.carhartt.com/.well-known/openid-configuration
+    jwks_uri: https://connect.carhartt.com/oauth2/v1/keys
+  - id: carsales-com-au
+    name: carsales.com.au
+    openid-configuration: https://id.carsales.com.au/.well-known/openid-configuration
+    oauth-authorization-server: https://id.carsales.com.au/.well-known/oauth-authorization-server
+    jwks_uri: https://id.carsales.com.au/.well-known/openid-configuration/jwks
+  - id: cartier-auth
+    name: Cartier (Auth)
+    openid-configuration: https://auth.cartier.com/.well-known/openid-configuration
+    jwks_uri: https://auth.cartier.com/.well-known/jwks.json
+  - id: cartier-login
+    name: Cartier (Login)
+    openid-configuration: https://login.cartier.com/.well-known/openid-configuration
+    jwks_uri: https://login.cartier.com/oauth2/v1/keys
+  - id: carvana-auth
+    name: Carvana (Auth)
+    openid-configuration: https://auth.carvana.io/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.carvana.io/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.carvana.io/.well-known/openid-configuration/jwks
+  - id: carwow
+    name: Carwow
+    openid-configuration: https://auth.carwow.co.uk/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.carwow.co.uk/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.carwow.co.uk/.well-known/jwks.json
+  - id: caseys
+    name: Casey’s
+    openid-configuration: https://login.caseys.com/.well-known/openid-configuration
+    jwks_uri: https://login.caseys.com/oauth2/v1/keys
+  - id: cathaypacific
+    name: Cathay Pacific
+    openid-configuration: https://openiam.cathaypacific.com:443/am/oauth2/.well-known/openid-configuration
+    jwks_uri: https://openiam.cathaypacific.com:443/am/oauth2/connect/jwk_uri
+    aliases:
+      - cathaypacific.com
+  - id: cbre
+    name: CBRE
+    openid-configuration: https://login.cbre.com/.well-known/openid-configuration
+    jwks_uri: https://login.cbre.com/oauth2/v1/keys
+  - id: cdw-canada
+    name: CDW Canada
+    openid-configuration: https://auth.cdw.ca/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.cdw.ca/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.cdw.ca/.well-known/jwks.json
+  - id: cebu-pacific
+    name: Cebu Pacific
+    openid-configuration: https://auth.cebupacificair.com/.well-known/openid-configuration
+    jwks_uri: https://auth.cebupacificair.com/oauth2/v1/keys
+  - id: central-dispatch
+    name: Central Dispatch
+    openid-configuration: https://id.centraldispatch.com/.well-known/openid-configuration
+    oauth-authorization-server: https://id.centraldispatch.com/.well-known/oauth-authorization-server
+    jwks_uri: https://id.centraldispatch.com/.well-known/openid-configuration/jwks
+  - id: centris
+    name: Centris
+    openid-configuration: https://accounts.centris.ca/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.centris.ca/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.centris.ca/.well-known/jwks
+  - id: checkatrade
+    name: Checkatrade
+    openid-configuration: https://checkatrade-prod.uk.auth0.com/.well-known/openid-configuration
+    oauth-authorization-server: https://checkatrade-prod.uk.auth0.com/.well-known/oauth-authorization-server
+    jwks_uri: https://checkatrade-prod.uk.auth0.com/.well-known/jwks.json
+    aliases:
+      - auth.checkatrade.com
+  - id: chemist-warehouse
+    name: Chemist Warehouse
+    openid-configuration: https://auth.chemistwarehouse.com.au/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.chemistwarehouse.com.au/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.chemistwarehouse.com.au/.well-known/jwks.json
+  - id: choice-hotels
+    name: Choice Hotels
+    openid-configuration: https://connect.choicehotels.com/vforcesite/.well-known/openid-configuration
+    jwks_uri: https://connect.choicehotels.com/vforcesite/id/keys
+  - id: christies
+    name: Christie’s
+    openid-configuration: https://signin.christies.com/.well-known/openid-configuration
+    oauth-authorization-server: https://signin.christies.com/.well-known/oauth-authorization-server
+    jwks_uri: https://signin.christies.com/.well-known/jwks.json
+  - id: circlek
+    name: Circle K
+    openid-configuration: https://login.circlek.com/.well-known/openid-configuration
+    jwks_uri: https://login.circlek.com/oauth2/v1/keys
+  - id: claas
+    name: CLAAS
+    openid-configuration: https://login.claas.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.claas.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.claas.com/.well-known/jwks.json
+  - id: cma-cgm
+    name: CMA CGM
+    openid-configuration: https://auth.cma-cgm.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.cma-cgm.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.cma-cgm.com/pf/JWKS
+  - id: coindesk
+    name: CoinDesk
+    openid-configuration: https://auth.coindesk.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.coindesk.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.coindesk.com/.well-known/jwks.json
+  - id: complex
+    name: Complex
+    openid-configuration: https://accounts.complex.com/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.complex.com/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.complex.com/.well-known/jwks.json
+  - id: conrad
+    name: Conrad
+    openid-configuration: https://accounts.conrad.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.conrad.com/.well-known/jwks.json
+  - id: cookunity
+    name: CookUnity
+    openid-configuration: https://auth.cookunity.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.cookunity.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.cookunity.com/.well-known/jwks.json
+  - id: copaair
+    name: Copa Airlines
+    openid-configuration: https://login.copaair.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.copaair.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.copaair.com/.well-known/jwks.json
+  - id: correos
+    name: Correos
+    openid-configuration: https://id.correos.es/.well-known/openid-configuration
+    oauth-authorization-server: https://id.correos.es/.well-known/oauth-authorization-server
+    jwks_uri: https://id.correos.es/.well-known/jwks.json
+  - id: coway
+    name: Coway
+    openid-configuration: https://id.coway.com/.well-known/openid-configuration
+    jwks_uri: https://id.coway.com/r2/authorization/oidc/certs
+  - id: crowdworks
+    name: CrowdWorks
+    openid-configuration: https://auth.crowdworks.jp/.well-known/openid-configuration
+    jwks_uri: https://auth.crowdworks.jp/.well-known/jwks.json
+  - id: cruise-critic
+    name: Cruise Critic
+    openid-configuration: https://auth.cruisecritic.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.cruisecritic.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.cruisecritic.com/.well-known/jwks.json
+  - id: curtiss-wright
+    name: Curtiss-Wright
+    openid-configuration: https://auth.curtisswright.com/.well-known/openid-configuration
+    jwks_uri: https://auth.curtisswright.com/oauth2/v1/keys
+  - id: custom-ink
+    name: Custom Ink
+    openid-configuration: https://auth.customink.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.customink.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.customink.com/.well-known/jwks.json
+  - id: daf-trucks
+    name: DAF Trucks
+    openid-configuration: https://auth.daf.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.daf.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.daf.com/.well-known/jwks.json
+  - id: dailypay
+    name: DailyPay
+    openid-configuration: https://auth.dailypay.com/.well-known/openid-configuration
+    jwks_uri: https://auth.dailypay.com/.well-known/jwks.json
+  - id: danfoss
+    name: Danfoss
+    openid-configuration: https://accounts.danfoss.com/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.danfoss.com/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.danfoss.com/.well-known/jwks.json
+  - id: data-center-dynamics
+    name: Data Center Dynamics
+    openid-configuration: https://auth.datacenterdynamics.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.datacenterdynamics.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.datacenterdynamics.com/.well-known/jwks.json
+  - id: deutsche-bahn
+    name: Deutsche Bahn
+    openid-configuration: https://id.bahn.de/auth/iam/realms/bahnid/.well-known/openid-configuration
+    jwks_uri: https://id.bahn.de/auth/iam/realms/bahnid/protocol/openid-connect/certs
+  - id: playstation
+    name: PlayStation
+    openid-configuration: https://signin.playstation.net/.well-known/openid-configuration
+    jwks_uri: https://signin.playstation.net/oauth2/v1/keys
+  - id: trip-com
+    name: Trip.com
+    openid-configuration: https://sso.ctrip.com/.well-known/openid-configuration
+    jwks_uri: https://sso.ctrip.com/.well-known/jwks.json
+  - id: whatsapp
+    name: WhatsApp
+    openid-configuration: https://www.whatsapp.com/.well-known/openid-configuration
+    jwks_uri: https://www.whatsapp.com/.well-known/oauth/openid/jwks/
