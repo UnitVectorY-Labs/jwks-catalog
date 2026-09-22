@@ -3064,3 +3064,180 @@ services:
     name: WhatsApp
     openid-configuration: https://www.whatsapp.com/.well-known/openid-configuration
     jwks_uri: https://www.whatsapp.com/.well-known/oauth/openid/jwks/
+  - id: aldoshoes
+    name: ALDO
+    openid-configuration: https://shopify.com/authentication/91188429099/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/91188429099
+    jwks_uri: https://shopify.com/authentication/91188429099/.well-known/jwks.json
+    aliases:
+      - www.aldoshoes.com
+  - id: aloyoga
+    name: Alo Yoga
+    openid-configuration: https://shopify.com/authentication/21852813/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/21852813
+    jwks_uri: https://shopify.com/authentication/21852813/.well-known/jwks.json
+    aliases:
+      - www.aloyoga.com
+  - id: alpinestars
+    name: Alpinestars
+    openid-configuration: https://shopify.com/authentication/25891602490/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/25891602490
+    jwks_uri: https://shopify.com/authentication/25891602490/.well-known/jwks.json
+    aliases:
+      - www.alpinestars.com
+  - id: altra-running
+    name: Altra Running
+    openid-configuration: https://shopify.com/authentication/69313396903/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/69313396903
+    jwks_uri: https://shopify.com/authentication/69313396903/.well-known/jwks.json
+    aliases:
+      - accounts.altrarunning.com
+      - www.altrarunning.com
+  - id: antonioli
+    name: Antonioli
+    openid-configuration: https://shopify.com/authentication/55767433394/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/55767433394
+    jwks_uri: https://shopify.com/authentication/55767433394/.well-known/jwks.json
+    aliases:
+      - www.antonioli.eu
+  - id: arhaus
+    name: Arhaus
+    openid-configuration: https://shopify.com/authentication/50790170795/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/50790170795
+    jwks_uri: https://shopify.com/authentication/50790170795/.well-known/jwks.json
+    aliases:
+      - www.arhaus.com
+  - id: artdeco
+    name: ARTDECO
+    openid-configuration: https://shopify.com/authentication/68914413888/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/68914413888
+    jwks_uri: https://shopify.com/authentication/68914413888/.well-known/jwks.json
+    aliases:
+      - www.artdeco.de
+  - id: ashford
+    name: Ashford
+    openid-configuration: https://shopify.com/authentication/90916258087/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/90916258087
+    jwks_uri: https://shopify.com/authentication/90916258087/.well-known/jwks.json
+    aliases:
+      - www.ashford.com
+  - id: avm
+    name: AVM
+    openid-configuration: https://shopify.com/authentication/91265958229/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/91265958229
+    jwks_uri: https://shopify.com/authentication/91265958229/.well-known/jwks.json
+    aliases:
+      - www.avm.de
+  - id: away
+    name: Away
+    openid-configuration: https://shopify.com/authentication/66474180792/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/66474180792
+    jwks_uri: https://shopify.com/authentication/66474180792/.well-known/jwks.json
+    aliases:
+      - accounts.awaytravel.com
+      - www.awaytravel.com
+  - id: bape
+    name: BAPE
+    openid-configuration: https://shopify.com/authentication/32636600451/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/32636600451
+    jwks_uri: https://shopify.com/authentication/32636600451/.well-known/jwks.json
+    aliases:
+      - www.bape.com
+  - id: bark-shopify
+    name: BARK (Shopify)
+    openid-configuration: https://shopify.com/authentication/55937138775/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/55937138775
+    jwks_uri: https://shopify.com/authentication/55937138775/.well-known/jwks.json
+    aliases:
+      - www.bark.co
+  - id: barnesandnoble
+    name: Barnes & Noble
+    openid-configuration: https://shopify.com/authentication/67454337265/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/67454337265
+    jwks_uri: https://shopify.com/authentication/67454337265/.well-known/jwks.json
+    aliases:
+      - barnesandnoble.com
+  - id: bauer
+    name: Bauer
+    openid-configuration: https://shopify.com/authentication/60627583214/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/60627583214
+    jwks_uri: https://shopify.com/authentication/60627583214/.well-known/jwks.json
+    aliases:
+      - www.bauer.com
+  - id: benetton
+    name: United Colors of Benetton
+    openid-configuration: https://shopify.com/authentication/95367299416/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/95367299416
+    jwks_uri: https://shopify.com/authentication/95367299416/.well-known/jwks.json
+    aliases:
+      - www.benetton.com
+  - id: blackdiamondequipment
+    name: Black Diamond Equipment
+    openid-configuration: https://shopify.com/authentication/88021958973/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/88021958973
+    jwks_uri: https://shopify.com/authentication/88021958973/.well-known/jwks.json
+    aliases:
+      - www.blackdiamondequipment.com
+  - id: bluettipower
+    name: BLUETTI
+    openid-configuration: https://shopify.com/authentication/53633908911/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/53633908911
+    jwks_uri: https://shopify.com/authentication/53633908911/.well-known/jwks.json
+    aliases:
+      - www.bluettipower.com
+  - id: boba
+    name: Boba
+    openid-configuration: https://shopify.com/authentication/18298191/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/18298191
+    jwks_uri: https://shopify.com/authentication/18298191/.well-known/jwks.json
+    aliases:
+      - www.boba.com
+  - id: boden
+    name: Boden
+    openid-configuration: https://shopify.com/authentication/63121260753/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/63121260753
+    jwks_uri: https://shopify.com/authentication/63121260753/.well-known/jwks.json
+    aliases:
+      - www.boden.com
+  - id: bodybuilding
+    name: Bodybuilding.com
+    openid-configuration: https://shopify.com/authentication/47133327519/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/47133327519
+    jwks_uri: https://shopify.com/authentication/47133327519/.well-known/jwks.json
+    aliases:
+      - www.bodybuilding.com
+  - id: bonobos
+    name: Bonobos
+    openid-configuration: https://shopify.com/authentication/76932153585/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/76932153585
+    jwks_uri: https://shopify.com/authentication/76932153585/.well-known/jwks.json
+    aliases:
+      - www.bonobos.com
+  - id: brooklinen
+    name: Brooklinen
+    openid-configuration: https://shopify.com/authentication/9517126/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/9517126
+    jwks_uri: https://shopify.com/authentication/9517126/.well-known/jwks.json
+    aliases:
+      - www.brooklinen.com
+  - id: burton
+    name: Burton
+    openid-configuration: https://shopify.com/authentication/80440623361/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/80440623361
+    jwks_uri: https://shopify.com/authentication/80440623361/.well-known/jwks.json
+    aliases:
+      - www.burton.com
+  - id: canadagoose
+    name: Canada Goose
+    openid-configuration: https://shopify.com/authentication/76146868448/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/76146868448
+    jwks_uri: https://shopify.com/authentication/76146868448/.well-known/jwks.json
+    aliases:
+      - www.canadagoose.com
+  - id: daiso
+    name: Daiso
+    openid-configuration: https://shopify.com/authentication/71046889790/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/71046889790
+    jwks_uri: https://shopify.com/authentication/71046889790/.well-known/jwks.json
+    aliases:
+      - www.daisonet.com

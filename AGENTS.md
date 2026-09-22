@@ -10,6 +10,10 @@ The `openid-configuration` URL domain in `services.yaml` must match the `issuer`
 
 The `aliases` field on a service entry is a list of alternative domain names through which the same OIDC configuration can be discovered. Aliases represent domains that serve the same OIDC configuration (same issuer and JWKS URI) but are not the canonical issuer domain. Only the bare domain name is stored in the YAML; the full `https://{domain}/.well-known/openid-configuration` URL is constructed at build time for display purposes.
 
+Some providers, including Shopify, advertise a vanity-domain JWKS URI in the alias discovery response and a different JWKS URI in the canonical discovery response. Such an alias is accepted only after both discovery documents return the exact same issuer and both JWKS endpoints have been fetched and confirmed to expose identical public signing-key material. Store the canonical issuer's discovery URL and JWKS URI in the entry.
+
+Shopify merchant issuers include a tenant-specific path, such as `https://shopify.com/authentication/{shop-id}`. Each distinct issuer remains a separate service, named for the merchant, with its verified storefront or account domains as aliases. Sharing the `shopify.com` hostname alone is not a reason to consolidate entries.
+
 ## Crawl Data Source
 
 Domain and issuer information is validated against crawl results from [jwks-observer](https://github.com/UnitVectorY-Labs/jwks-observer). The observer stores per-service data in `data/{service-id}/oidc.json`, which contains the raw OIDC discovery response including the `issuer` field. This crawl data is the source of truth for determining whether a domain mismatch or duplicate exists — the catalog build environment cannot call OIDC endpoints directly.
