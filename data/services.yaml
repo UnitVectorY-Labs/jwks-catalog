@@ -2262,3 +2262,311 @@ services:
     name: OpenAI (Auth)
     openid-configuration: https://auth.openai.com/.well-known/openid-configuration
     jwks_uri: https://auth.openai.com/.well-known/jwks.json
+  - id: '53'
+    name: Fifth Third Bank
+    openid-configuration: https://b2c-sso-prod.auth-b2c-prod.nube.53.com/.well-known/openid-configuration
+    oauth-authorization-server: https://b2c-sso-prod.auth-b2c-prod.nube.53.com/.well-known/oauth-authorization-server
+    jwks_uri: https://b2c-sso-prod.auth-b2c-prod.nube.53.com/pf/JWKS
+    aliases:
+      - sso.53.com
+  - id: aaas
+    name: AAAS
+    openid-configuration: https://identity.aaas.org/.well-known/openid-configuration
+    oauth-authorization-server: https://identity.aaas.org/.well-known/oauth-authorization-server
+    jwks_uri: https://identity.aaas.org/.well-known/jwks.json
+  - id: aap
+    name: American Academy of Pediatrics
+    openid-configuration: https://auth.aap.org/.well-known/openid-configuration
+    jwks_uri: https://auth.aap.org/oauth2/v1/keys
+  - id: aarp
+    name: AARP
+    openid-configuration: https://id.aarp.org/.well-known/openid-configuration
+    jwks_uri: https://id.aarp.org/oauth2/v1/keys
+  - id: aavso
+    name: American Association of Variable Star Observers
+    openid-configuration: https://auth.aavso.org/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.aavso.org/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.aavso.org/.well-known/jwks.json
+  - id: abbvie
+    name: AbbVie
+    openid-configuration: https://id.abbvie.com/.well-known/openid-configuration
+    jwks_uri: https://id.abbvie.com/id/keys
+  - id: abn-amro
+    name: ABN AMRO
+    openid-configuration: https://auth.abnamro.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.abnamro.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.abnamro.com/pf/JWKS
+  - id: abs
+    name: Australian Bureau of Statistics
+    openid-configuration: https://id.abs.gov.au/.well-known/openid-configuration
+    jwks_uri: https://id.abs.gov.au/oauth2/v1/keys
+  - id: account
+    name: GOV.UK One Login
+    openid-configuration: https://oidc.account.gov.uk/.well-known/openid-configuration
+    jwks_uri: https://oidc.account.gov.uk/.well-known/jwks.json
+  - id: acf
+    name: Administration for Children and Families
+    openid-configuration: https://login.acf.gov/.well-known/openid-configuration
+    jwks_uri: https://login.acf.gov/oauth2/v1/keys
+  - id: acog
+    name: American College of Obstetricians and Gynecologists
+    openid-configuration: https://auth.acog.org/.well-known/openid-configuration
+    jwks_uri: https://auth.acog.org/.well-known/openid-configuration/jwkis
+  - id: acs
+    name: American Chemical Society
+    openid-configuration: https://login.acs.org/.well-known/openid-configuration
+    oauth-authorization-server: https://login.acs.org/.well-known/oauth-authorization-server
+    jwks_uri: https://login.acs.org/.well-known/jwks.json
+  - id: adelaide
+    name: University of Adelaide
+    openid-configuration: https://id.adelaide.edu.au/.well-known/openid-configuration
+    jwks_uri: https://id.adelaide.edu.au/oauth2/v1/keys
+  - id: adelaide-university
+    name: Adelaide University
+    openid-configuration: https://id.adelaideuni.edu.au/.well-known/openid-configuration
+    jwks_uri: https://id.adelaideuni.edu.au/oauth2/v1/keys
+  - id: agid
+    name: Agenzia per l’Italia Digitale
+    openid-configuration: https://login.agid.gov.it/.well-known/openid-configuration
+    jwks_uri: https://login.agid.gov.it/certs
+  - id: ahrq
+    name: Agency for Healthcare Research and Quality
+    openid-configuration: https://id.ahrq.gov/.well-known/openid-configuration
+    jwks_uri: https://id.ahrq.gov/oauth2/v1/keys
+  - id: aib
+    name: AIB
+    openid-configuration: https://auth.aib.ie/.well-known/openid-configuration
+    jwks_uri: https://auth.aib.ie/pf/JWKS
+  - id: amgen
+    name: Amgen
+    openid-configuration: https://login.amgen.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.amgen.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.amgen.com/pf/JWKS
+  - id: anadolu-university
+    name: Anadolu University
+    openid-configuration: https://auth.anadolu.edu.tr/.well-known/openid-configuration
+    jwks_uri: https://auth.anadolu.edu.tr/.well-known/jwks.json
+  - id: animalleague
+    name: North Shore Animal League America
+    openid-configuration: https://www.animalleague.org/.well-known/openid-configuration
+    oauth-authorization-server: https://www.animalleague.org/.well-known/oauth-authorization-server
+    jwks_uri: https://www.animalleague.org/.well-known/keys/
+  - id: anl
+    name: Argonne National Laboratory
+    openid-configuration: https://login.anl.gov/.well-known/openid-configuration
+    jwks_uri: https://login.anl.gov/idp/profile/oidc/keyset
+  - id: anthem
+    name: Elevance Health
+    openid-configuration: https://login.anthem.com/.well-known/openid-configuration
+    jwks_uri: https://login.anthem.com/oauth2/v1/keys
+  - id: anu
+    name: Australian National University
+    openid-configuration: https://oauth.anu.edu.au/.well-known/openid-configuration
+    jwks_uri: https://oauth.anu.edu.au/idp/profile/oidc/keyset
+  - id: argentina
+    name: Argentina
+    openid-configuration: https://id.argentina.gob.ar/.well-known/openid-configuration
+    jwks_uri: https://id.argentina.gob.ar/jwks
+  - id: asco
+    name: American Society of Clinical Oncology
+    openid-configuration: https://signin.asco.org/.well-known/openid-configuration
+    jwks_uri: https://signin.asco.org/oauth2/v1/keys
+  - id: asic
+    name: Australian Securities and Investments Commission
+    openid-configuration: https://login.asic.gov.au/.well-known/openid-configuration
+    oauth-authorization-server: https://login.asic.gov.au/.well-known/oauth-authorization-server
+    jwks_uri: https://login.asic.gov.au/.well-known/jwks.json
+  - id: asme
+    name: American Society of Mechanical Engineers
+    openid-configuration: https://signin.asme.org/.well-known/openid-configuration
+    jwks_uri: https://signin.asme.org/id/keys
+  - id: associatedbank-login
+    name: Associated Bank (Login)
+    openid-configuration: https://login.associatedbank.com/.well-known/openid-configuration
+    jwks_uri: https://login.associatedbank.com/oauth2/v1/keys
+  - id: associatedbank-sso
+    name: Associated Bank (SSO)
+    openid-configuration: https://sso.associatedbank.com/.well-known/openid-configuration
+    jwks_uri: https://sso.associatedbank.com/oauth2/v1/keys
+  - id: axa
+    name: AXA
+    openid-configuration: https://connect.axa.fr/.well-known/openid-configuration
+    oauth-authorization-server: https://connect.axa.fr/.well-known/oauth-authorization-server
+    jwks_uri: https://connect.axa.fr/.well-known/openid-configuration/jwks
+  - id: bank-of-mexico
+    name: Bank of Mexico
+    openid-configuration: https://auth.banxico.org.mx/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.banxico.org.mx/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.banxico.org.mx/.well-known/jwks.json
+  - id: bankid
+    name: BankID
+    openid-configuration: https://oidc.bankid.com/.well-known/openid-configuration
+    jwks_uri: https://oidc.bankid.com/jwks
+  - id: bc
+    name: Boston College
+    openid-configuration: https://login.bc.edu/.well-known/openid-configuration
+    jwks_uri: https://login.bc.edu/idp/profile/oidc/keyset
+  - id: bea
+    name: U.S. Bureau of Economic Analysis
+    openid-configuration: https://auth.bea.gov/.well-known/openid-configuration
+    jwks_uri: https://auth.bea.gov/oauth2/v1/keys
+  - id: bfi
+    name: British Film Institute
+    openid-configuration: https://auth.bfi.org.uk/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.bfi.org.uk/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.bfi.org.uk/.well-known/jwks.json
+  - id: bgsu
+    name: Bowling Green State University
+    openid-configuration: https://login.bgsu.edu/.well-known/openid-configuration
+    jwks_uri: https://login.bgsu.edu/oauth2/v1/keys
+  - id: bis
+    name: Bank for International Settlements
+    openid-configuration: https://identity.bis.org/.well-known/openid-configuration
+    jwks_uri: https://identity.bis.org/oauth2/v1/keys
+  - id: blaby
+    name: Blaby District Council
+    openid-configuration: https://www.blaby.gov.uk/.well-known/openid-configuration
+    oauth-authorization-server: https://www.blaby.gov.uk/.well-known/oauth-authorization-server
+    jwks_uri: https://www.blaby.gov.uk/.well-known/jwks
+  - id: blackrock
+    name: BlackRock
+    openid-configuration: https://login.blackrock.com/.well-known/openid-configuration
+    jwks_uri: https://login.blackrock.com/oauth2/v1/keys
+  - id: blueshieldca
+    name: Blue Shield of California
+    openid-configuration: https://login.blueshieldca.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.blueshieldca.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.blueshieldca.com/.well-known/jwks.json
+  - id: boston
+    name: City of Boston
+    openid-configuration: https://sso.boston.gov/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.boston.gov/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.boston.gov/pf/JWKS
+  - id: bowdoin
+    name: Bowdoin College
+    openid-configuration: https://login.bowdoin.edu/.well-known/openid-configuration
+    jwks_uri: https://login.bowdoin.edu/oauth2/v1/keys
+  - id: bridgend
+    name: Bridgend County Borough Council
+    openid-configuration: https://www.bridgend.gov.uk/.well-known/openid-configuration
+    oauth-authorization-server: https://www.bridgend.gov.uk/.well-known/oauth-authorization-server
+    jwks_uri: https://www.bridgend.gov.uk/.well-known/jwks
+  - id: british-council
+    name: British Council
+    openid-configuration: https://connect.britishcouncil.org/.well-known/openid-configuration
+    jwks_uri: https://connect.britishcouncil.org/.well-known/openid-configuration/jwks
+  - id: brown
+    name: Brown University
+    openid-configuration: https://sso.brown.edu/.well-known/openid-configuration
+    jwks_uri: https://sso.brown.edu/idp/profile/oidc/keyset
+  - id: bsi-group
+    name: BSI Group
+    openid-configuration: https://id.bsigroup.com/.well-known/openid-configuration
+    oauth-authorization-server: https://id.bsigroup.com/.well-known/oauth-authorization-server
+    jwks_uri: https://id.bsigroup.com/.well-known/openid-configuration/jwks
+  - id: bswhealth
+    name: Baylor Scott & White Health
+    openid-configuration: https://id.bswhealth.com/.well-known/openid-configuration
+    jwks_uri: https://id.bswhealth.com/.well-known/openid-configuration/jwks
+  - id: btg-pactual
+    name: BTG Pactual
+    openid-configuration: https://id.btgpactual.com/.well-known/openid-configuration
+    jwks_uri: https://id.btgpactual.com/.well-known/jwks
+  - id: byu
+    name: Brigham Young University
+    openid-configuration: https://login.byu.edu/.well-known/openid-configuration
+    jwks_uri: https://login.byu.edu/oauth2/v1/keys
+  - id: cambridge
+    name: Cambridge City Council
+    openid-configuration: https://www.cambridge.gov.uk/.well-known/openid-configuration
+    oauth-authorization-server: https://www.cambridge.gov.uk/.well-known/oauth-authorization-server
+    jwks_uri: https://www.cambridge.gov.uk/.well-known/jwks
+  - id: case
+    name: CASE
+    openid-configuration: https://identity.case.org/.well-known/openid-configuration
+    oauth-authorization-server: https://identity.case.org/.well-known/oauth-authorization-server
+    jwks_uri: https://identity.case.org/.well-known/jwks.json
+  - id: cbp
+    name: U.S. Customs and Border Protection
+    openid-configuration: https://login.cbp.gov/.well-known/openid-configuration
+    jwks_uri: https://login.cbp.gov/id/keys
+  - id: cengage-auth
+    name: Cengage (Auth)
+    openid-configuration: https://auth.cengage.com/.well-known/openid-configuration
+    jwks_uri: https://auth.cengage.com/oauth2/v1/keys
+  - id: cengage-id
+    name: Cengage (ID)
+    openid-configuration: https://id.cengage.com/.well-known/openid-configuration
+    jwks_uri: https://id.cengage.com/oauth2/v1/keys
+  - id: cgm
+    name: CGM
+    openid-configuration: https://id.cgm.com/.well-known/openid-configuration
+    jwks_uri: https://id.cgm.com/jwks.json
+  - id: cheltenham
+    name: Cheltenham Borough Council
+    openid-configuration: https://www.cheltenham.gov.uk/.well-known/openid-configuration
+    oauth-authorization-server: https://www.cheltenham.gov.uk/.well-known/oauth-authorization-server
+    jwks_uri: https://www.cheltenham.gov.uk/.well-known/jwks
+  - id: churchofjesuschrist
+    name: The Church of Jesus Christ of Latter-day Saints
+    openid-configuration: https://id.churchofjesuschrist.org/.well-known/openid-configuration
+    jwks_uri: https://id.churchofjesuschrist.org/oauth2/v1/keys
+  - id: cityu
+    name: City University of Hong Kong
+    openid-configuration: https://auth.cityu.edu.hk/.well-known/openid-configuration
+    jwks_uri: https://auth.cityu.edu.hk/oauth2/v1/keys
+  - id: climatebase
+    name: Climatebase
+    openid-configuration: https://auth.climatebase.org/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.climatebase.org/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.climatebase.org/.well-known/jwks.json
+  - id: cmc-markets
+    name: CMC Markets
+    openid-configuration: https://auth.cmcmarkets.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.cmcmarkets.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.cmcmarkets.com/.well-known/jwks.json
+  - id: cme-group
+    name: CME Group (Auth)
+    openid-configuration: https://auth.cmegroup.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.cmegroup.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.cmegroup.com/pf/JWKS
+  - id: cmegroup
+    name: CME Group (SSO)
+    openid-configuration: https://sso.cmegroup.com/.well-known/openid-configuration
+    jwks_uri: https://sso.cmegroup.com/oauth2/v1/keys
+  - id: cmog
+    name: Corning Museum of Glass
+    openid-configuration: https://accounts.cmog.org/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.cmog.org/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.cmog.org/.well-known/jwks.json
+  - id: collegevine
+    name: CollegeVine
+    openid-configuration: https://auth.collegevine.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.collegevine.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.collegevine.com/.well-known/jwks.json
+  - id: commonspirit
+    name: CommonSpirit Health
+    openid-configuration: https://login.commonspirit.org/.well-known/openid-configuration
+    jwks_uri: https://login.commonspirit.org/oauth2/v1/keys
+  - id: computershare
+    name: Computershare
+    openid-configuration: https://auth.computershare.com:443/am/oauth2/.well-known/openid-configuration
+    jwks_uri: https://auth.computershare.com:443/am/oauth2/connect/jwk_uri
+  - id: cornwall
+    name: Cornwall Council
+    openid-configuration: https://www.cornwall.gov.uk/.well-known/openid-configuration
+    jwks_uri: https://www.cornwall.gov.uk/.well-known/jwks
+  - id: csun
+    name: California State University, Northridge
+    openid-configuration: https://shibboleth.csun.edu/.well-known/openid-configuration
+    jwks_uri: https://shibboleth.csun.edu/idp/profile/oidc/keyset
+    aliases:
+      - auth.csun.edu
+  - id: curtin-university
+    name: Curtin University
+    openid-configuration: https://id.curtin.edu.au:443/am/oauth2/.well-known/openid-configuration
+    jwks_uri: https://id.curtin.edu.au:443/am/oauth2/connect/jwk_uri
+  - id: u-s-census-bureau
+    name: U.S. Census Bureau
+    openid-configuration: https://auth.census.gov/.well-known/openid-configuration
+    jwks_uri: https://auth.census.gov/oauth2/v1/keys
