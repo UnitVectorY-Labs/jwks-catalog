@@ -4,6 +4,8 @@ services:
     openid-configuration: https://accounts.google.com/.well-known/openid-configuration
     oauth-authorization-server: https://accounts.google.com/.well-known/oauth-authorization-server
     jwks_uri: https://www.googleapis.com/oauth2/v3/certs
+    aliases:
+      - accounts.blogger.com
   - id: google-iap
     name: Google IaP
     openid-configuration: https://cloud.google.com/iap/.well-known/openid-configuration
@@ -20,6 +22,8 @@ services:
     name: Apple
     openid-configuration: https://appleid.apple.com/.well-known/openid-configuration
     jwks_uri: https://appleid.apple.com/auth/keys
+    aliases:
+      - id.apple.com
   - id: slack
     name: Slack
     openid-configuration: https://slack.com/.well-known/openid-configuration
@@ -33,6 +37,8 @@ services:
     name: Facebook
     openid-configuration: https://www.facebook.com/.well-known/openid-configuration
     jwks_uri: https://www.facebook.com/.well-known/oauth/openid/jwks/
+    aliases:
+      - oauth.facebook.com
   - id: zoom
     name: Zoom
     oauth-authorization-server: https://zoom.us/.well-known/oauth-authorization-server
@@ -58,6 +64,8 @@ services:
     name: Salesforce
     openid-configuration: https://login.salesforce.com/.well-known/openid-configuration
     jwks_uri: https://login.salesforce.com/id/keys
+    aliases:
+      - database.com
   - id: intuit
     name: Intuit
     open_id_configuration: https://developer.api.intuit.com/.well-known/openid_configuration
@@ -179,6 +187,8 @@ services:
     openid-configuration: https://login.coinbase.com/.well-known/openid-configuration
     oauth-authorization-server: https://login.coinbase.com/.well-known/oauth-authorization-server
     jwks_uri: https://login.coinbase.com/.well-known/jwks.json
+    aliases:
+      - www.coinbase.com
   - id: dowjones
     name: Dow Jones
     openid-configuration: https://sso.accounts.dowjones.com/.well-known/openid-configuration
@@ -295,6 +305,8 @@ services:
     name: Codecademy
     openid-configuration: https://www.codecademy.com/.well-known/openid-configuration
     jwks_uri: https://www.codecademy.com/openid-connect/jwks
+    aliases:
+      - codecademy.com
   - id: futurelearn
     name: FutureLearn
     openid-configuration: https://www.futurelearn.com/.well-known/openid-configuration
@@ -419,6 +431,8 @@ services:
     openid-configuration: https://ims-na1.adobelogin.com/ims/.well-known/openid-configuration
     oauth-authorization-server: https://ims-na1.adobelogin.com/.well-known/oauth-authorization-server
     jwks_uri: https://ims-na1.adobelogin.com/ims/keys
+    aliases:
+      - id.adobe.com
   - id: alibabacloud
     name: Alibaba Cloud
     openid-configuration: https://oauth.alibabacloud.com/.well-known/openid-configuration
@@ -748,6 +762,8 @@ services:
     name: Bethesda
     openid-configuration: https://api.bethesda.net/.well-known/openid-configuration
     jwks_uri: https://api.bethesda.net/.well-known/jwks.json
+    aliases:
+      - oauth.bethesda.net
   - id: caixa-api
     name: CAIXA
     openid-configuration: https://api.caixa.gov.br:8443/.well-known/openid-configuration
@@ -1041,6 +1057,8 @@ services:
     openid-configuration: https://id.cisco.com/.well-known/openid-configuration
     oauth-authorization-server: https://id.cisco.com/.well-known/oauth-authorization-server
     jwks_uri: https://id.cisco.com/oauth2/v1/keys
+    aliases:
+      - identity.cisco.com
   - id: cloudflareaccess-id
     name: Cloudflare Access (ID)
     openid-configuration: https://id.cloudflareaccess.com/.well-known/openid-configuration
