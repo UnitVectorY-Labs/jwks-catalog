@@ -4,8 +4,20 @@
     <span class="search-icon">&#128269;</span>
 </div>
 
+<div class="provider-filter">
+    <label for="providerFilter">Filter</label>
+    <select id="providerFilter">
+        <option value="all">All sites</option>
+        <option value="okta">Okta</option>
+        <option value="auth0">Auth0</option>
+        <option value="salesforce">Salesforce</option>
+        <option value="ping">ForgeRock / Ping</option>
+        <option value="other">Other</option>
+    </select>
+</div>
+
 <!-- Service Links -->
 {{range .Services}}
-<a href="./service-{{.Id | urlquery}}.html" hx-get="./snippets/{{.Id | urlquery}}.html" hx-target="#content"
-hx-push-url="./service-{{.Id | urlquery}}.html">{{.Name}}</a>
+<a class="service-link" data-providers="{{range .Providers}}{{.ID}} {{end}}" href="./service-{{.Id | urlquery}}.html" hx-get="./snippets/{{.Id | urlquery}}.html" hx-target="#content"
+hx-push-url="./service-{{.Id | urlquery}}.html"><span class="service-name">{{.Name}}</span>{{if .Providers}}<span class="provider-icons">{{range .Providers}}<img class="provider-icon" src="./providers/{{.ID}}.svg" alt="" title="{{.Name}}"><span class="sr-only"> ({{.Name}})</span>{{end}}</span>{{end}}</a>
 {{end}}

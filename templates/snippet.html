@@ -64,6 +64,39 @@
 </div>
 {{- end}}
 
+<section class="content-card provider-card">
+<h3>Identity Provider Signals</h3>
+{{if .ProviderEvidenceRows}}
+<div class="provider-heading">{{range .Providers}}<span class="provider-badge"><img class="provider-icon" src="./providers/{{.ID}}.svg" alt=""><strong>{{.Name}}</strong></span>{{end}}</div>
+{{if gt (len .Providers) 1}}<p>More than one provider signal was observed. Each matching filter includes this service.</p>{{end}}
+<p>Checked boxes mark headers observed on each endpoint during a successful crawl.</p>
+<div class="provider-table-wrap">
+<table class="provider-evidence-table">
+<thead><tr>
+{{if gt (len .Providers) 1}}<th scope="col">Signal</th>{{end}}
+<th scope="col">Response header</th>
+{{if .OpenIDConfiguration}}<th scope="col"><a href="{{.OpenIDConfiguration}}" target="_blank" rel="noopener noreferrer" title="OpenID configuration">OIDC</a></th>{{end}}
+{{if .OAuthAuthorizationServerURI}}<th scope="col"><a href="{{.OAuthAuthorizationServerURI}}" target="_blank" rel="noopener noreferrer" title="OAuth 2.0 authorization server metadata">OAuth</a></th>{{end}}
+<th scope="col"><a href="{{.JWKSURI}}" target="_blank" rel="noopener noreferrer">JWKS</a></th>
+</tr></thead>
+<tbody>
+{{range .ProviderEvidenceRows}}<tr>
+{{if gt (len $.Providers) 1}}<td class="provider-signal-cell">{{.Provider}}</td>{{end}}
+<th scope="row"><code>{{.Header}}</code></th>
+{{if $.OpenIDConfiguration}}<td><input type="checkbox" disabled {{if .OIDC}}checked{{end}} aria-label="{{.Header}} {{if .OIDC}}observed{{else}}not observed{{end}} on OIDC endpoint"></td>{{end}}
+{{if $.OAuthAuthorizationServerURI}}<td><input type="checkbox" disabled {{if .OAuth}}checked{{end}} aria-label="{{.Header}} {{if .OAuth}}observed{{else}}not observed{{end}} on OAuth endpoint"></td>{{end}}
+<td><input type="checkbox" disabled {{if .JWKS}}checked{{end}} aria-label="{{.Header}} {{if .JWKS}}observed{{else}}not observed{{end}} on JWKS endpoint"></td>
+</tr>{{end}}
+</tbody>
+</table>
+</div>
+<p class="provider-note">Header signals are clues, not proof of the identity platform. Proxies can add or remove headers.</p>
+{{range .Providers}}{{if eq .ID "salesforce"}}<p class="provider-note">Salesforce headers identify its edge infrastructure; they do not by themselves establish which identity service is behind it.</p>{{end}}{{end}}
+{{else}}
+<p>No listed provider signal was found in the available response headers. These providers may still be in use.</p>
+{{end}}
+</section>
+
 {{- if .InactiveKeys}}
 <div class="content-card">
 <h3>Recently Deactivated Keys</h3>

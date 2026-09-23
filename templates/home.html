@@ -52,3 +52,18 @@
     </dd>
 </dl>
 </section>
+
+<section class="content-card">
+<h3>Identity provider signals</h3>
+<p>The catalog looks for distinctive response headers in crawled OIDC, OAuth metadata, and JWKS endpoints. The filter and service pages show matches for:</p>
+<table class="provider-list-table">
+<thead><tr><th scope="col">Provider signal</th><th scope="col">Response header</th><th scope="col">Evidence source</th></tr></thead>
+<tbody>
+<tr><th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/okta.svg" alt="">Okta</span></th><td><code>X-Okta-Request-Id</code></td><td><a href="https://developer.okta.com/docs/reference/core-okta-api/#request-debugging" target="_blank" rel="noopener noreferrer">Okta request debugging</a></td></tr>
+<tr><th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/auth0.svg" alt="">Auth0</span></th><td><code>X-Auth0-L</code>, <code>X-Auth0-RequestId</code></td><td><a href="https://auth.auth0.com/.well-known/openid-configuration" target="_blank" rel="noopener noreferrer">Auth0 discovery response</a></td></tr>
+<tr><th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/salesforce.svg" alt="">Salesforce</span></th><td><code>X-Sfdc-Edge-Cache</code>, <code>X-Sfdc-Request-Id</code></td><td><a href="https://github.com/UnitVectorY-Labs/jwks-observer/pull/114" target="_blank" rel="noopener noreferrer">Observer header notes</a></td></tr>
+<tr><th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/ping.svg" alt="">ForgeRock / Ping</span></th><td><code>X-ForgeRock-TransactionId</code></td><td><a href="https://docs.pingidentity.com/pingoneaic/tenants/audit-debug-logs-pull.html" target="_blank" rel="noopener noreferrer">Ping request tracing</a></td></tr>
+</tbody>
+</table>
+<p>These are best-effort hints, not verified ownership. Salesforce headers identify its edge infrastructure, which also serves non-identity products; they do not establish that Salesforce provides the identity service. Proxies can add or remove headers, and a service shown as Other may still use one of these providers. A service can show more than one signal.</p>
+</section>

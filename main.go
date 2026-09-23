@@ -14,6 +14,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 	"time"
 
 	"gopkg.in/yaml.v3"
@@ -63,12 +64,36 @@ type KeyFile struct {
 
 // Service represents a JWKS service.
 type Service struct {
-	Id                          string   `yaml:"id"`
-	Name                        string   `yaml:"name"`
-	OpenIDConfiguration         string   `yaml:"openid-configuration"`
-	OAuthAuthorizationServerURI string   `yaml:"oauth-authorization-server"`
-	JWKSURI                     string   `yaml:"jwks_uri"`
-	Aliases                     []string `yaml:"aliases,omitempty"`
+	Id                          string             `yaml:"id"`
+	Name                        string             `yaml:"name"`
+	OpenIDConfiguration         string             `yaml:"openid-configuration"`
+	OAuthAuthorizationServerURI string             `yaml:"oauth-authorization-server"`
+	JWKSURI                     string             `yaml:"jwks_uri"`
+	Aliases                     []string           `yaml:"aliases,omitempty"`
+	Providers                   []DetectedProvider `yaml:"-"`
+	ProviderEvidence            []ProviderEvidence `yaml:"-"`
+}
+
+type DetectedProvider struct {
+	ID   string
+	Name string
+}
+
+// ProviderEvidence records a distinctive response header seen on a crawled endpoint.
+type ProviderEvidence struct {
+	ProviderID   string
+	ProviderName string
+	Header       string
+	Endpoint     string
+	URL          string
+}
+
+type ProviderEvidenceRow struct {
+	Provider string
+	Header   string
+	OIDC     bool
+	OAuth    bool
+	JWKS     bool
 }
 
 // AliasDisplay holds an alias domain and its OIDC discovery URL for template rendering.
@@ -84,6 +109,7 @@ type ServicePageData struct {
 	InactiveKeys          []KeyRecord
 	DefaultKeyHistorySize int
 	AliasDisplays         []AliasDisplay
+	ProviderEvidenceRows  []ProviderEvidenceRow
 }
 
 // Data holds the list of services and content
@@ -252,6 +278,14 @@ func main() {
 	sort.Slice(data.Services, func(i, j int) bool {
 		return data.Services[i].Id < data.Services[j].Id
 	})
+	observerPath := os.Getenv("JWKS_OBSERVER_PATH")
+	if observerPath != "" {
+		for i := range data.Services {
+			if err := loadProviderEvidence(&data.Services[i], observerPath); err != nil {
+				log.Printf("Warning: could not load provider evidence for '%s': %v", data.Services[i].Id, err)
+			}
+		}
+	}
 
 	// Parse templates
 	mainTemplate, err := template.ParseFiles("templates/index.html")
@@ -281,6 +315,14 @@ func main() {
 	// Copy style.css to the output directory
 	if err := copyFile("assets/style.css", filepath.Join(outputDir, "style.css")); err != nil {
 		log.Fatalf("Error copying style.css: %v", err)
+	}
+	if err := os.MkdirAll(filepath.Join(outputDir, "providers"), 0755); err != nil {
+		log.Fatalf("Error creating provider assets directory: %v", err)
+	}
+	for _, name := range []string{"okta", "auth0", "salesforce", "ping"} {
+		if err := copyFile(filepath.Join("assets", "providers", name+".svg"), filepath.Join(outputDir, "providers", name+".svg")); err != nil {
+			log.Fatalf("Error copying %s logo: %v", name, err)
+		}
 	}
 
 	// Generate main index.html with home content
@@ -348,10 +390,10 @@ func main() {
 			Service:               service,
 			DefaultKeyHistorySize: DefaultKeyHistorySize,
 			AliasDisplays:         aliasDisplays,
+			ProviderEvidenceRows:  providerEvidenceRows(service.ProviderEvidence),
 		}
 
 		// Load key history if observer path is set
-		observerPath := os.Getenv("JWKS_OBSERVER_PATH")
 		if observerPath != "" {
 			activeKeys, inactiveKeys, err := loadKeyHistory(service.Id, observerPath)
 			if err != nil {
@@ -422,6 +464,109 @@ func loadServices(filename string) (*Data, error) {
 		return nil, err
 	}
 	return &data, nil
+}
+
+// loadProviderEvidence uses only headers from successful observer fetches. Failed
+// fetches may leave an older headers file behind, so status.json is authoritative.
+func loadProviderEvidence(service *Service, observerPath string) error {
+	base := filepath.Join(observerPath, "data", service.Id)
+	statusData, err := os.ReadFile(filepath.Join(base, "status.json"))
+	if os.IsNotExist(err) {
+		return nil
+	}
+	if err != nil {
+		return err
+	}
+	var statuses map[string]struct {
+		StatusCode int `json:"status_code"`
+	}
+	if err := json.Unmarshal(statusData, &statuses); err != nil {
+		return err
+	}
+	endpoints := []struct{ key, file, label, url string }{
+		{"oidc", "oidc-headers.json", "OpenID configuration", service.OpenIDConfiguration},
+		{"oauth_authorization_server", "oauth-authorization-server-headers.json", "OAuth 2.0 authorization server metadata", service.OAuthAuthorizationServerURI},
+		{"jwks", "jwks-headers.json", "JWKS", service.JWKSURI},
+	}
+	providerHeaders := map[string]DetectedProvider{
+		"x-auth0-l":                 {"auth0", "Auth0"},
+		"x-auth0-requestid":         {"auth0", "Auth0"},
+		"x-okta-request-id":         {"okta", "Okta"},
+		"x-sfdc-edge-cache":         {"salesforce", "Salesforce"},
+		"x-sfdc-request-id":         {"salesforce", "Salesforce"},
+		"x-forgerock-transactionid": {"ping", "ForgeRock / Ping"},
+	}
+	providers := make(map[string]DetectedProvider)
+	for _, endpoint := range endpoints {
+		if endpoint.url == "" || statuses[endpoint.key].StatusCode != 200 {
+			continue
+		}
+		content, err := os.ReadFile(filepath.Join(base, endpoint.file))
+		if os.IsNotExist(err) {
+			continue
+		}
+		if err != nil {
+			return err
+		}
+		var headers map[string]string
+		if err := json.Unmarshal(content, &headers); err != nil {
+			return fmt.Errorf("%s: %w", endpoint.file, err)
+		}
+		for header, value := range headers {
+			provider, ok := providerHeaders[strings.ToLower(header)]
+			if !ok || value != "[present]" {
+				continue
+			}
+			providers[provider.ID] = provider
+			service.ProviderEvidence = append(service.ProviderEvidence, ProviderEvidence{provider.ID, provider.Name, header, endpoint.label, endpoint.url})
+		}
+	}
+	sort.Slice(service.ProviderEvidence, func(i, j int) bool {
+		a, b := service.ProviderEvidence[i], service.ProviderEvidence[j]
+		if a.ProviderName != b.ProviderName {
+			return a.ProviderName < b.ProviderName
+		}
+		if a.Header != b.Header {
+			return a.Header < b.Header
+		}
+		return a.Endpoint < b.Endpoint
+	})
+	for _, provider := range providers {
+		service.Providers = append(service.Providers, provider)
+	}
+	sort.Slice(service.Providers, func(i, j int) bool { return service.Providers[i].Name < service.Providers[j].Name })
+	return nil
+}
+
+func providerEvidenceRows(evidence []ProviderEvidence) []ProviderEvidenceRow {
+	byHeader := make(map[string]*ProviderEvidenceRow)
+	for _, item := range evidence {
+		key := item.ProviderID + ":" + item.Header
+		row := byHeader[key]
+		if row == nil {
+			row = &ProviderEvidenceRow{Provider: item.ProviderName, Header: item.Header}
+			byHeader[key] = row
+		}
+		switch item.Endpoint {
+		case "OpenID configuration":
+			row.OIDC = true
+		case "OAuth 2.0 authorization server metadata":
+			row.OAuth = true
+		case "JWKS":
+			row.JWKS = true
+		}
+	}
+	rows := make([]ProviderEvidenceRow, 0, len(byHeader))
+	for _, row := range byHeader {
+		rows = append(rows, *row)
+	}
+	sort.Slice(rows, func(i, j int) bool {
+		if rows[i].Provider != rows[j].Provider {
+			return rows[i].Provider < rows[j].Provider
+		}
+		return rows[i].Header < rows[j].Header
+	})
+	return rows
 }
 
 func generateSitemap(outputDir, website string) error {
