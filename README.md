@@ -12,6 +12,21 @@ Available at: [https://jwks-catalog.unitvectorylabs.com/](https://jwks-catalog.u
 
 This catalog aggregates JWKS URLs and discovery metadata from popular services such as Google, GitHub, Microsoft, Apple, and others, creating a resource for developers to quickly find and reference token-validation keys and authorization-server configuration. OAuth 2.0 authorization server metadata endpoints follow [RFC 8414](https://datatracker.ietf.org/doc/html/rfc8414).
 
+## Identity provider signals
+
+When `JWKS_OBSERVER_PATH` points to a [jwks-observer](https://github.com/UnitVectorY-Labs/jwks-observer) checkout, the site reads presence-only response headers from successful OIDC, OAuth metadata, and JWKS crawls. It recognizes:
+
+| Displayed signal | Header markers |
+| --- | --- |
+| Okta | `X-Okta-Request-Id` |
+| Auth0 | `X-Auth0-L`, `X-Auth0-RequestId` |
+| Salesforce | `X-Sfdc-Edge-Cache`, `X-Sfdc-Request-Id` |
+| ForgeRock / Ping | `X-ForgeRock-TransactionId` |
+
+The [observer's provider evidence notes](https://github.com/UnitVectorY-Labs/jwks-observer#provider-header-evidence) explain the marker sources and limits. A service may have multiple signals; the sidebar shows each matching logo, each provider filter includes that service, and the service page groups the observed headers by provider and endpoint. “Other” means none of the listed markers were present in the available successful crawl data. It does not rule out a provider.
+
+These signals are hints, not verified ownership. In particular, `X-Sfdc-*` indicates Salesforce edge infrastructure and does not by itself prove that Salesforce runs the identity service. Failed crawls can retain older header files, so the catalog only uses evidence whose endpoint has HTTP 200 in the observer's `status.json`.
+
 ## Contributing
 
 This catalog is open to contributions which can be added by adding entries to the following file: [services.yaml](https://github.com/UnitVectorY-Labs/jwks-catalog/blob/main/data/services.yaml)

@@ -38,19 +38,21 @@
     // Function to initialize search functionality
     function initializeSearch() {
         const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-            searchInput.addEventListener('input', function() {
-                const filter = this.value.toLowerCase();
-                const links = document.querySelectorAll('.left-panel a');
-                links.forEach(function(link) {
-                    if (link.textContent.toLowerCase().includes(filter)) {
-                        link.style.display = 'block';
-                    } else {
-                        link.style.display = 'none';
-                    }
-                });
+        const providerFilter = document.getElementById('providerFilter');
+        if (!searchInput || !providerFilter) return;
+        function applyFilters() {
+            const query = searchInput.value.trim().toLowerCase();
+            const provider = providerFilter.value;
+            document.querySelectorAll('.left-panel .service-link').forEach(function(link) {
+                const matchesText = link.querySelector('.service-name').textContent.toLowerCase().includes(query);
+                const providers = link.dataset.providers.trim().split(/\s+/).filter(Boolean);
+                const matchesProvider = provider === 'all' || (provider === 'other' ? providers.length === 0 : providers.includes(provider));
+                link.hidden = !(matchesText && matchesProvider);
             });
         }
+        searchInput.addEventListener('input', applyFilters);
+        providerFilter.addEventListener('change', applyFilters);
+        applyFilters();
     }
 
     // Initialize search when navigation is loaded
