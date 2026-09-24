@@ -47,6 +47,8 @@ header {
 }
 
 .left-panel .service-link {
+    /* Keep absolutely positioned screen-reader labels inside the scroll pane. */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
