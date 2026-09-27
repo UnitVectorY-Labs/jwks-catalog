@@ -293,6 +293,8 @@ services:
     name: Letterboxd
     openid-configuration: https://letterboxd.com/.well-known/openid-configuration
     jwks_uri: https://letterboxd.com/.well-known/jwks.json
+    aliases:
+      - www.letterboxd.com
   - id: goodreads
     name: Goodreads
     openid-configuration: https://www.goodreads.com/.well-known/openid-configuration
@@ -3685,3 +3687,132 @@ services:
     openid-configuration: https://auth.flysas.com/.well-known/openid-configuration
     oauth-authorization-server: https://auth.flysas.com/.well-known/oauth-authorization-server
     jwks_uri: https://auth.flysas.com/.well-known/jwks.json
+  - id: figma
+    name: Figma
+    openid-configuration: https://www.figma.com/.well-known/openid-configuration
+    jwks_uri: https://www.figma.com/.well-known/jwks.json
+  - id: dhl-ecommerce
+    name: DHL eCommerce
+    openid-configuration: https://auth.dhlecs.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.dhlecs.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.dhlecs.com/.well-known/jwks.json
+  - id: first-citizens-bank
+    name: First Citizens Bank
+    openid-configuration: https://login.firstcitizens.com/.well-known/openid-configuration
+    jwks_uri: https://login.firstcitizens.com/oauth2/v1/keys
+  - id: frost-bank
+    name: Frost Bank
+    openid-configuration: https://auth.frostbank.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.frostbank.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.frostbank.com/pf/JWKS
+  - id: huntington-bank
+    name: Huntington Bank
+    openid-configuration: https://login.huntington.org/.well-known/openid-configuration
+    oauth-authorization-server: https://login.huntington.org/.well-known/oauth-authorization-server
+    jwks_uri: https://login.huntington.org/.well-known/jwks.json
+  - id: keybank
+    name: KeyBank
+    openid-configuration: https://login.keybank.com/.well-known/openid-configuration
+    jwks_uri: https://login.keybank.com/oauth2/v1/keys
+  - id: enterprisedb
+    name: EnterpriseDB
+    openid-configuration: https://auth.enterprisedb.com/.well-known/openid-configuration
+    jwks_uri: https://auth.enterprisedb.com/oauth2/v1/keys
+  - id: legora
+    name: Legora
+    openid-configuration: https://auth.legora.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.legora.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.legora.com/.well-known/jwks.json
+  - id: hinge-health
+    name: Hinge Health
+    openid-configuration: https://login.hingehealth.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.hingehealth.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.hingehealth.com/.well-known/jwks.json
+  - id: ge-appliances
+    name: GE Appliances
+    openid-configuration: https://sso.geappliances.com/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.geappliances.com/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.geappliances.com/.well-known/jwks.json
+  - id: delta-faucet
+    name: Delta Faucet
+    openid-configuration: https://auth.deltafaucet.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.deltafaucet.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.deltafaucet.com/.well-known/jwks.json
+  - id: mattel
+    name: Mattel
+    openid-configuration: https://login.mattel.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.mattel.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.mattel.com/.well-known/jwks.json
+  - id: levi-strauss
+    name: Levi Strauss & Co.
+    openid-configuration: https://auth.levi.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.levi.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.levi.com/.well-known/jwks.json
+  - id: indigo-books
+    name: Indigo
+    openid-configuration: https://auth.indigo.ca/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.indigo.ca/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.indigo.ca/.well-known/jwks.json
+  - id: mercedes-amg-petronas-f1
+    name: Mercedes-AMG PETRONAS F1 Team
+    openid-configuration: https://auth.mercedesamgf1.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.mercedesamgf1.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.mercedesamgf1.com/.well-known/jwks.json
+  - id: intuitive-surgical
+    name: Intuitive
+    openid-configuration: https://login.intuitive.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.intuitive.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.intuitive.com/.well-known/jwks.json
+  - id: us-department-of-commerce
+    name: U.S. Department of Commerce
+    openid-configuration: https://auth.doc.gov/.well-known/openid-configuration
+    jwks_uri: https://auth.doc.gov/oauth2/v1/keys
+  - id: international-baccalaureate
+    name: International Baccalaureate
+    openid-configuration: https://sso.ibo.org/.well-known/openid-configuration
+    jwks_uri: https://sso.ibo.org/pf/JWKS
+  - id: minds
+    name: Minds
+    openid-configuration: https://www.minds.com/.well-known/openid-configuration
+    jwks_uri: https://www.minds.com/api/v3/oauth/jwks
+  - id: etoro
+    name: eToro
+    openid-configuration: https://www.etoro.com/.well-known/openid-configuration
+    oauth-authorization-server: https://www.etoro.com/.well-known/oauth-authorization-server
+    jwks_uri: https://www.etoro.com/.well-known/jwks.json
+  - id: expeditors
+    name: Expeditors
+    openid-configuration: https://www.expeditors.com/.well-known/openid-configuration
+    jwks_uri: https://www.expeditors.com/.well-known/jwks
+  - id: miele
+    name: Miele
+    openid-configuration: https://www.miele.com/.well-known/openid-configuration
+    jwks_uri: https://www.miele.com/.well-known/jwks.json
+  - id: iata
+    name: International Air Transport Association
+    openid-configuration: https://www.iata.org/.well-known/openid-configuration
+    oauth-authorization-server: https://www.iata.org/.well-known/oauth-authorization-server
+    jwks_uri: https://www.iata.org/.well-known/jwks
+  - id: iea
+    name: International Energy Agency
+    openid-configuration: https://www.iea.org/.well-known/openid-configuration
+    jwks_uri: https://www.iea.org/jwks
+  - id: kenya-airways
+    name: Kenya Airways
+    openid-configuration: https://www.kenya-airways.com/.well-known/openid-configuration
+    oauth-authorization-server: https://www.kenya-airways.com/.well-known/oauth-authorization-server
+    jwks_uri: https://www.kenya-airways.com/.well-known/jwks
+  - id: make
+    name: Make
+    openid-configuration: https://www.make.com/.well-known/openid-configuration
+    jwks_uri: https://www.make.com/oauth/v2/oidc/jwks
+  - id: mercari
+    name: Mercari
+    openid-configuration: https://auth.mercari.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.mercari.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.mercari.com/jp/v1/certs
+  - id: saudi-ministry-of-health
+    name: Saudi Ministry of Health
+    openid-configuration: https://sso.moh.gov.sa/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.moh.gov.sa/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.moh.gov.sa/pf/JWKS
