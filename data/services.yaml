@@ -6,6 +6,7 @@ services:
     jwks_uri: https://www.googleapis.com/oauth2/v3/certs
     aliases:
       - accounts.blogger.com
+      - accounts.googlesource.com
   - id: google-iap
     name: Google IaP
     openid-configuration: https://cloud.google.com/iap/.well-known/openid-configuration
@@ -33,12 +34,15 @@ services:
     openid-configuration: https://gitlab.com/.well-known/openid-configuration
     oauth-authorization-server: https://gitlab.com/.well-known/oauth-authorization-server
     jwks_uri: https://gitlab.com/oauth/discovery/keys
+    aliases:
+      - www.gitlab.com
   - id: facebook
     name: Facebook
     openid-configuration: https://www.facebook.com/.well-known/openid-configuration
     jwks_uri: https://www.facebook.com/.well-known/oauth/openid/jwks/
     aliases:
       - oauth.facebook.com
+      - www.fb.com
   - id: zoom
     name: Zoom
     oauth-authorization-server: https://zoom.us/.well-known/oauth-authorization-server
@@ -65,6 +69,7 @@ services:
     openid-configuration: https://login.salesforce.com/.well-known/openid-configuration
     jwks_uri: https://login.salesforce.com/id/keys
     aliases:
+      - connect.landg.com
       - database.com
   - id: intuit
     name: Intuit
@@ -82,6 +87,8 @@ services:
     name: Discord
     openid-configuration: https://discord.com/.well-known/openid-configuration
     jwks_uri: https://discord.com/api/oauth2/keys
+    aliases:
+      - www.discordapp.com
   - id: login-dot-gov
     name: Login.gov
     openid-configuration: https://secure.login.gov/.well-known/openid-configuration
@@ -182,6 +189,7 @@ services:
     jwks_uri: https://www.dropbox.com/.well-known/jwks
     aliases:
       - dropbox.com
+      - www.getdropbox.com
   - id: coinbase
     name: Coinbase
     openid-configuration: https://login.coinbase.com/.well-known/openid-configuration
@@ -312,6 +320,8 @@ services:
     openid-configuration: https://www.futurelearn.com/.well-known/openid-configuration
     oauth-authorization-server: https://www.futurelearn.com/.well-known/oauth-authorization-server
     jwks_uri: https://www.futurelearn.com/oauth/discovery/keys
+    aliases:
+      - futurelearn.com
   - id: salesloft
     name: Salesloft
     openid-configuration: https://accounts.salesloft.com/.well-known/openid-configuration
@@ -498,6 +508,8 @@ services:
     openid-configuration: https://auth.meethue.com/.well-known/openid-configuration
     oauth-authorization-server: https://auth.meethue.com/.well-known/oauth-authorization-server
     jwks_uri: https://auth.meethue.com/.well-known/jwks.json
+    aliases:
+      - login.meethue.com
   - id: auth.mozilla.com
     name: Mozilla
     openid-configuration: https://auth.mozilla.auth0.com/.well-known/openid-configuration
@@ -1052,6 +1064,8 @@ services:
     openid-configuration: https://huggingface.co/.well-known/openid-configuration
     oauth-authorization-server: https://huggingface.co/.well-known/oauth-authorization-server
     jwks_uri: https://huggingface.co/oauth/jwks
+    aliases:
+      - www.huggingface.co
   - id: cisco-id
     name: Cisco
     openid-configuration: https://id.cisco.com/.well-known/openid-configuration
@@ -1194,6 +1208,8 @@ services:
     name: King
     openid-configuration: https://www.king.com/.well-known/openid-configuration
     jwks_uri: https://www.king.com/.well-known/jwks
+    aliases:
+      - king.com
   - id: amplience-login
     name: Amplience
     openid-configuration: https://login.amplience.net/.well-known/openid-configuration
@@ -1355,6 +1371,8 @@ services:
     openid-configuration: https://instructure.okta.com/.well-known/openid-configuration
     oauth-authorization-server: https://instructure.okta.com/.well-known/oauth-authorization-server
     jwks_uri: https://instructure.okta.com/oauth2/v1/keys
+    aliases:
+      - sso.instructure.com
   - id: okta-weather
     name: Okta Weather
     openid-configuration: https://weather.okta.com/.well-known/openid-configuration
@@ -1695,6 +1713,7 @@ services:
     jwks_uri: https://www.instagram.com/.well-known/oauth/openid/jwks/
     aliases:
       - instagram.com
+      - www.instagram.com.br
   - id: 1worldsync
     name: 1WorldSync
     openid-configuration: https://auth.1worldsync.com/.well-known/openid-configuration
@@ -3241,3 +3260,428 @@ services:
     jwks_uri: https://shopify.com/authentication/71046889790/.well-known/jwks.json
     aliases:
       - www.daisonet.com
+
+  - id: datasite
+    name: Datasite
+    openid-configuration: https://auth.datasite.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.datasite.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.datasite.com/pf/JWKS
+  - id: davivienda
+    name: Davivienda
+    openid-configuration: https://auth.davivienda.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.davivienda.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.davivienda.com/.well-known/jwks.json
+  - id: dealroom
+    name: Dealroom
+    openid-configuration: https://accounts.dealroom.co/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.dealroom.co/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.dealroom.co/.well-known/jwks.json
+  - id: deep-silver
+    name: Deep Silver
+    openid-configuration: https://www.deepsilver.com/.well-known/openid-configuration
+    oauth-authorization-server: https://www.deepsilver.com/.well-known/oauth-authorization-server
+    jwks_uri: https://www.deepsilver.com/.well-known/jwks
+  - id: deepl
+    name: DeepL
+    openid-configuration: https://auth.deepl.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.deepl.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.deepl.com/.well-known/jwks
+  - id: delta-dental
+    name: Delta Dental
+    openid-configuration: https://auth.deltadental.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.deltadental.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.deltadental.com/.well-known/jwks.json
+  - id: delta-dental-insurance
+    name: Delta Dental Insurance
+    openid-configuration: https://auth.deltadentalins.com/.well-known/openid-configuration
+    jwks_uri: https://auth.deltadentalins.com/oauth2/v1/keys
+  - id: deriv
+    name: Deriv
+    openid-configuration: https://auth.deriv.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.deriv.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.deriv.com/.well-known/jwks.json
+  - id: descript
+    name: Descript
+    openid-configuration: https://auth.descript.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.descript.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.descript.com/.well-known/jwks.json
+  - id: digikey
+    name: DigiKey
+    openid-configuration: https://sso.digikey.com/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.digikey.com/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.digikey.com/pf/JWKS
+  - id: discovery-education
+    name: Discovery Education
+    openid-configuration: https://auth.discoveryeducation.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.discoveryeducation.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.discoveryeducation.com/pf/JWKS
+  - id: dolby
+    name: Dolby
+    openid-configuration: https://auth.dolby.com/.well-known/openid-configuration
+    jwks_uri: https://auth.dolby.com/oauth2/v1/keys
+  - id: dominos
+    name: Domino's
+    openid-configuration: https://auth.dominos.com/.well-known/openid-configuration
+    jwks_uri: https://auth.dominos.com/pf/JWKS
+  - id: domo
+    name: Domo
+    openid-configuration: https://accounts.domo.com/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.domo.com/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.domo.com/oauth2/jwks
+  - id: doximity
+    name: Doximity
+    openid-configuration: https://auth.doximity.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.doximity.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.doximity.com/.well-known/jwks.json
+  - id: doxy-me
+    name: Doxy.me
+    openid-configuration: https://auth.doxy.me/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.doxy.me/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.doxy.me/.well-known/jwks.json
+  - id: draftkings
+    name: DraftKings
+    openid-configuration: https://accounts.draftkings.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.draftkings.com/.well-known/jwks.json
+  - id: dsv
+    name: DSV
+    openid-configuration: https://auth.dsv.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.dsv.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.dsv.com/pf/JWKS
+  - id: dun-bradstreet
+    name: Dun & Bradstreet
+    openid-configuration: https://sso.dnb.com/.well-known/openid-configuration
+    jwks_uri: https://sso.dnb.com/oauth2/v1/keys
+  - id: dunelm
+    name: Dunelm
+    openid-configuration: https://auth.dunelm.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.dunelm.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.dunelm.com/.well-known/jwks.json
+  - id: e2open
+    name: e2open
+    openid-configuration: https://www.e2open.com/.well-known/openid-configuration
+    jwks_uri: https://www.e2open.com/.well-known/jwks
+  - id: emerson
+    name: Emerson
+    openid-configuration: https://auth.emerson.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.emerson.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.emerson.com/.well-known/jwks.json
+  - id: eon
+    name: E.ON
+    openid-configuration: https://auth.eon.de/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.eon.de/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.eon.de/.well-known/jwks.json
+  - id: epson
+    name: Epson
+    openid-configuration: https://auth.epson.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.epson.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.epson.com/.well-known/jwks.json
+  - id: equinix
+    name: Equinix
+    openid-configuration: https://auth.equinix.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.equinix.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.equinix.com/.well-known/jwks.json
+  - id: evervault
+    name: Evervault
+    openid-configuration: https://auth.evervault.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.evervault.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.evervault.com/.well-known/jwks.json
+  - id: exact
+    name: Exact
+    openid-configuration: https://signin.exact.com/.well-known/openid-configuration
+    oauth-authorization-server: https://signin.exact.com/.well-known/oauth-authorization-server
+    jwks_uri: https://signin.exact.com/.well-known/jwks.json
+  - id: expedia-group
+    name: Expedia Group
+    openid-configuration: https://accounts.expediagroup.com/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.expediagroup.com/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.expediagroup.com/.well-known/jwks.json
+  - id: factory-ai
+    name: Factory AI
+    openid-configuration: https://auth.factory.ai/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.factory.ai/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.factory.ai/oauth2/jwks
+  - id: factset
+    name: FactSet
+    openid-configuration: https://auth.factset.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.factset.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.factset.com/pf/JWKS
+  - id: fal-ai
+    name: fal.ai
+    openid-configuration: https://auth.fal.ai/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.fal.ai/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.fal.ai/.well-known/jwks.json
+  - id: fareharbor
+    name: FareHarbor
+    openid-configuration: https://auth.fareharbor.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.fareharbor.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.fareharbor.com/.well-known/jwks.json
+  - id: fastmarkets
+    name: Fastmarkets
+    openid-configuration: https://auth.fastmarkets.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.fastmarkets.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.fastmarkets.com/.well-known/openid-configuration/jwks
+  - id: fiba
+    name: FIBA
+    openid-configuration: https://auth.fiba.basketball/.well-known/openid-configuration
+    jwks_uri: https://auth.fiba.basketball/jwks.json
+  - id: fireblocks
+    name: Fireblocks
+    openid-configuration: https://auth.fireblocks.io/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.fireblocks.io/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.fireblocks.io/.well-known/jwks.json
+  - id: fiserv
+    name: Fiserv
+    openid-configuration: https://auth.fiservapps.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.fiservapps.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.fiservapps.com/pf/JWKS
+  - id: fitch
+    name: Fitch Group
+    openid-configuration: https://auth.fitch.group/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.fitch.group/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.fitch.group/.well-known/jwks.json
+  - id: five9
+    name: Five9
+    openid-configuration: https://auth.five9.com/.well-known/openid-configuration
+    jwks_uri: https://auth.five9.com/oauth2/v1/keys
+  - id: flight-centre
+    name: Flight Centre
+    openid-configuration: https://auth.flightcentre.com.au/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.flightcentre.com.au/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.flightcentre.com.au/.well-known/jwks.json
+  - id: flybuys
+    name: Flybuys
+    openid-configuration: https://auth.flybuys.com.au/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.flybuys.com.au/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.flybuys.com.au/.well-known/jwks.json
+  - id: gaia
+    name: Gaia
+    openid-configuration: https://auth.gaia.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.gaia.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.gaia.com/.well-known/jwks.json
+  - id: galaxus
+    name: Galaxus
+    openid-configuration: https://auth.galaxus.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.galaxus.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.galaxus.com/.well-known/openid-configuration/jwks
+  - id: gap
+    name: Gap
+    openid-configuration: https://auth.gap.co.uk/.well-known/openid-configuration
+    jwks_uri: https://auth.gap.co.uk/.well-known/jwks.json
+  - id: gardaworld
+    name: GardaWorld
+    openid-configuration: https://garda.okta.com/.well-known/openid-configuration
+    jwks_uri: https://garda.okta.com/oauth2/v1/keys
+    aliases:
+      - auth.garda.com
+  - id: gartner
+    name: Gartner
+    openid-configuration: https://sso.gartner.com/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.gartner.com/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.gartner.com/pf/JWKS
+  - id: gatorade
+    name: Gatorade
+    openid-configuration: https://auth.gatorade.com/.well-known/openid-configuration
+    jwks_uri: https://auth.gatorade.com/oauth2/v1/keys
+  - id: gdit
+    name: General Dynamics Information Technology
+    openid-configuration: https://sso.gdit.com/.well-known/openid-configuration
+    jwks_uri: https://sso.gdit.com/oauth2/v1/keys
+  - id: globalgiving
+    name: GlobalGiving
+    openid-configuration: https://accounts.globalgiving.org/.well-known/openid-configuration
+    jwks_uri: https://accounts.globalgiving.org/.well-known/jwks.json
+  - id: gm-financial
+    name: GM Financial
+    openid-configuration: https://auth.gmfinancial.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.gmfinancial.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.gmfinancial.com/.well-known/jwks.json
+  - id: goldman-sachs
+    name: Goldman Sachs
+    openid-configuration: https://accounts.gs.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.gs.com/oauth2/v1/keys
+  - id: golf-genius
+    name: Golf Genius
+    openid-configuration: https://www.golfgenius.com/.well-known/openid-configuration
+    jwks_uri: https://www.golfgenius.com/oauth/discovery/keys
+  - id: greenhouse
+    name: Greenhouse
+    openid-configuration: https://auth.greenhouse.io/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.greenhouse.io/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.greenhouse.io/.well-known/jwks.json
+  - id: gsk
+    name: GSK
+    openid-configuration: https://federation.gsk.com/.well-known/openid-configuration
+    jwks_uri: https://federation.gsk.com/pf/JWKS
+    aliases:
+      - auth.gsk.com
+  - id: harvard-business-school
+    name: Harvard Business School
+    openid-configuration: https://sso.hbs.edu/.well-known/openid-configuration
+    jwks_uri: https://sso.hbs.edu/idp/profile/oidc/keyset
+  - id: hashicorp
+    name: HashiCorp
+    openid-configuration: https://auth.hashicorp.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.hashicorp.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.hashicorp.com/.well-known/jwks.json
+  - id: headspace
+    name: Headspace
+    openid-configuration: https://auth.headspace.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.headspace.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.headspace.com/.well-known/jwks.json
+  - id: healthstream
+    name: HealthStream
+    openid-configuration: https://sso.healthstream.com/.well-known/openid-configuration
+    jwks_uri: https://sso.healthstream.com/pf/JWKS
+  - id: honda
+    name: Honda
+    openid-configuration: https://login.honda.com/.well-known/openid-configuration
+    jwks_uri: https://login.honda.com/id/keys
+  - id: hotdoc
+    name: HotDoc
+    openid-configuration: https://www.hotdoc.com.au/.well-known/openid-configuration
+    jwks_uri: https://www.hotdoc.com.au/oauth/discovery/keys
+  - id: huma-num
+    name: Huma-Num
+    openid-configuration: https://humanid.huma-num.fr/.well-known/openid-configuration
+    jwks_uri: https://humanid.huma-num.fr/oauth2/jwks
+    aliases:
+      - auth.huma-num.fr
+  - id: hyperice
+    name: Hyperice
+    openid-configuration: https://shopify.com/authentication/78618525910/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/78618525910
+    jwks_uri: https://shopify.com/authentication/78618525910/.well-known/jwks.json
+    aliases:
+      - accounts.hyperice.com
+  - id: iberia
+    name: Iberia
+    openid-configuration: https://accounts.iberia.com/.well-known/openid-configuration
+    oauth-authorization-server: https://accounts.iberia.com/.well-known/oauth-authorization-server
+    jwks_uri: https://accounts.iberia.com/.well-known/jwks.json
+  - id: illinois-state-university
+    name: Illinois State University
+    openid-configuration: https://sso.illinoisstate.edu/.well-known/openid-configuration
+    jwks_uri: https://sso.illinoisstate.edu/idp/profile/oidc/keyset
+  - id: indiana-government
+    name: State of Indiana
+    openid-configuration: https://signin.in.gov/.well-known/openid-configuration
+    jwks_uri: https://signin.in.gov/oauth2/v1/keys
+  - id: infineon
+    name: Infineon
+    openid-configuration: https://sso.infineon.com/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.infineon.com/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.infineon.com/pf/JWKS
+  - id: informatica
+    name: Informatica
+    openid-configuration: https://sso.informatica.com/.well-known/openid-configuration
+    jwks_uri: https://sso.informatica.com/oauth2/v1/keys
+  - id: jimmy-johns
+    name: Jimmy John's
+    openid-configuration: https://prod-auth.jimmyjohns.com/.well-known/openid-configuration
+    jwks_uri: https://prod-auth.jimmyjohns.com/.well-known/openid-configuration/jwks
+    aliases:
+      - auth.jimmyjohns.com
+  - id: kantata
+    name: Kantata
+    openid-configuration: https://app.mavenlink.com/.well-known/openid-configuration
+    jwks_uri: https://app.mavenlink.com/openid/discovery/keys
+  - id: kinetica-sports
+    name: Kinetica Sports
+    openid-configuration: https://shopify.com/authentication/32718192773/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/32718192773
+    jwks_uri: https://shopify.com/authentication/32718192773/.well-known/jwks.json
+    aliases:
+      - accounts.kineticasports.com
+  - id: king-arthur-baking
+    name: King Arthur Baking
+    openid-configuration: https://login.kingarthurbaking.com/.well-known/openid-configuration
+    oauth-authorization-server: https://login.kingarthurbaking.com/.well-known/oauth-authorization-server
+    jwks_uri: https://login.kingarthurbaking.com/.well-known/jwks.json
+  - id: labcorp
+    name: Labcorp
+    openid-configuration: https://sso.labcorp.com/.well-known/openid-configuration
+    jwks_uri: https://sso.labcorp.com/oauth2/v1/keys
+  - id: le-temps
+    name: Le Temps
+    openid-configuration: https://www.letemps.ch/.well-known/openid-configuration
+    oauth-authorization-server: https://www.letemps.ch/.well-known/oauth-authorization-server
+    jwks_uri: https://www.letemps.ch/discovery/keys
+  - id: leafly
+    name: Leafly
+    openid-configuration: https://sso.leafly.com/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.leafly.com/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.leafly.com/jwks
+  - id: legalzoom
+    name: LegalZoom
+    openid-configuration: https://auth.legalzoom.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.legalzoom.com/.well-known/oauth-authorization-server
+    jwks_uri: https://authorization-service.apps.prd.aws-01.legalzoom.com/oauth2/jwks
+  - id: lidl
+    name: Lidl
+    openid-configuration: https://accounts.lidl.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.lidl.com/.well-known/openid-configuration/jwks
+  - id: lilly
+    name: Lilly
+    openid-configuration: https://sso.lilly.com/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.lilly.com/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.lilly.com/.well-known/jwks.json
+  - id: linux-foundation
+    name: Linux Foundation
+    openid-configuration: https://sso.linuxfoundation.org/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.linuxfoundation.org/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.linuxfoundation.org/.well-known/jwks.json
+  - id: liquidation-channel
+    name: Liquidation Channel
+    openid-configuration: https://shopify.com/authentication/77016891589/.well-known/openid-configuration
+    oauth-authorization-server: https://shopify.com/.well-known/oauth-authorization-server/authentication/77016891589
+    jwks_uri: https://shopify.com/authentication/77016891589/.well-known/jwks.json
+    aliases:
+      - accounts.liquidationchannel.com
+  - id: liveramp
+    name: LiveRamp
+    openid-configuration: https://sso.liveramp.com/.well-known/openid-configuration
+    jwks_uri: https://sso.liveramp.com/oauth2/v1/keys
+  - id: logitech
+    name: Logitech
+    openid-configuration: https://accounts.logi.com/.well-known/openid-configuration
+    jwks_uri: https://accounts.logi.com/identity/keys
+  - id: malaysia-airlines
+    name: Malaysia Airlines
+    openid-configuration: https://sso.malaysiaairlines.com/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.malaysiaairlines.com/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.malaysiaairlines.com/pf/JWKS
+  - id: masterclass
+    name: MasterClass
+    openid-configuration: https://auth.masterclass.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.masterclass.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.masterclass.com/.well-known/jwks.json
+  - id: medline
+    name: Medline
+    openid-configuration: https://sso.medline.com/.well-known/openid-configuration
+    oauth-authorization-server: https://sso.medline.com/.well-known/oauth-authorization-server
+    jwks_uri: https://sso.medline.com/pf/JWKS
+  - id: mehilainen
+    name: Mehiläinen
+    openid-configuration: https://sso.mehilainen.fi/.well-known/openid-configuration
+    jwks_uri: https://sso.mehilainen.fi/pf/JWKS
+  - id: mercado-bitcoin
+    name: Mercado Bitcoin
+    openid-configuration: https://accounts.mercadobitcoin.net/.well-known/openid-configuration
+    jwks_uri: https://accounts.mercadobitcoin.net/.well-known/jwks.json
+  - id: monoprix
+    name: Monoprix
+    openid-configuration: https://sso.monoprix.fr/.well-known/openid-configuration
+    jwks_uri: https://sso.monoprix.fr/jwks.json
+  - id: monzo
+    name: Monzo
+    openid-configuration: https://auth.monzo.com/.well-known/openid-configuration
+    jwks_uri: https://api.monzo.com/login/jwks
+  - id: porter-airlines
+    name: Porter Airlines
+    openid-configuration: https://auth.flyporter.com/.well-known/openid-configuration
+    jwks_uri: https://auth.flyporter.com/oauth2/v1/keys
+  - id: sas
+    name: SAS
+    openid-configuration: https://auth.flysas.com/.well-known/openid-configuration
+    oauth-authorization-server: https://auth.flysas.com/.well-known/oauth-authorization-server
+    jwks_uri: https://auth.flysas.com/.well-known/jwks.json
