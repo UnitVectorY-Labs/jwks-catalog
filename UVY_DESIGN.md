@@ -1,6 +1,6 @@
 # UVY Design adoption
 
-This application vendors [UVY Design v0.1.0](https://github.com/UnitVectorY-Labs/uvy-design/releases/tag/v0.1.0), source commit `396a65021c2bcab8dbcb3d1bb4cb498c807a4396`. The [style guide](https://github.com/UnitVectorY-Labs/uvy-design/blob/v0.1.0/docs/style-guide.md) defines the visual contract; application CSS remains the adapter.
+This application vendors [UVY Design v0.1.0](https://github.com/UnitVectorY-Labs/uvy-design/tree/12f8e3d964785d78628346516351fe4dac583cef), source commit `12f8e3d964785d78628346516351fe4dac583cef`. The [style guide](https://github.com/UnitVectorY-Labs/uvy-design/blob/12f8e3d964785d78628346516351fe4dac583cef/docs/style-guide.md) defines the visual contract; application CSS remains the adapter.
 
 ## Pinned assets
 
@@ -30,4 +30,4 @@ The screenshot baseline is origin/main `0d3f9cd57149ab38b515c472409d2a281b190e57
 
 ## Updating
 
-Select a reviewed future tag, verify release checksums, replace the shared files verbatim, retain notices, and update this record. Review adapter diffs and repeat application/browser/screenshot checks. Do not retrieve mutable upstream CSS/JS at runtime or overwrite application rules with the design prototype's layout stylesheet.
+Select a reviewed future commit, verify file checksums, replace the shared files verbatim, retain notices, and update this record. Review adapter diffs and repeat application/browser/screenshot checks. Do not retrieve mutable upstream CSS/JS at runtime or overwrite application rules with the design prototype's layout stylesheet.
