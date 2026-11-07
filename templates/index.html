@@ -4,85 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="htmx-config" content='{"noSwap":[204,304,"4xx","5xx"]}'>
-    <title>JWKS Catalog</title>
+    <title>{{.Title}}</title>
+    <script src="./uvy-theme.js"></script>
+    <link rel="stylesheet" href="./uvy-tokens.css">
+    <link rel="stylesheet" href="./uvy-elements.css">
     <link rel="stylesheet" href="./style.css">
-    <script src="https://unpkg.com/htmx.org@4.0.0/dist/htmx.min.js" integrity="sha384-BvJpBiO8Kh31EqtJe5DRIeWrHWnCGkwytKs9NKFi86Hhw96dEqdEMzZDeK9iEGTc" crossorigin="anonymous"></script>
+    <script src="./vendor/htmx-4.0.0.min.js" defer></script>
+    <script src="./site.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <header>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation" aria-controls="service-navigation" aria-expanded="false"><svg class="uvy-icon" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M4 6l16 0" />
+  <path d="M4 12l16 0" />
+  <path d="M4 18l16 0" />
+</svg>
+</button>
         <a href="index.html" hx-get="./snippets/home.html" hx-target="#content" hx-push-url="index.html"><h1>JWKS Catalog</h1></a>
+        <button class="uvy-theme-toggle" type="button" data-uvy-theme-toggle hidden aria-label="Switch to dark mode"><span class="uvy-theme-dark-icon"><svg class="uvy-icon" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008" />
+</svg>
+</span><span class="uvy-theme-light-icon"><svg class="uvy-icon" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+</svg>
+</span></button>
     </header>
     <div class="container">
-        <!-- Left Navigation Panel -->
-        <nav class="left-panel" hx-get="./nav.html" hx-trigger="load" hx-swap="innerHTML">
-            <!-- Navigation will be loaded here via HTMX -->
-        </nav>
-
-        <!-- Right Content Panel -->
-        <main class="right-panel" id="content">
-            {{.Content}}
-        </main>
+        <nav class="left-panel" id="service-navigation" aria-label="Services">{{.Nav}}</nav>
+        <main class="right-panel" id="content" tabindex="-1">{{.Content}}</main>
     </div>
-    <footer>
-        <p>
-            <a href="https://github.com/UnitVectorY-Labs">UnitVectorY Labs</a> | 
-            <a href="https://opensource.org/licenses/MIT">MIT License</a> | 
-            <a href="https://github.com/UnitVectorY-Labs/jwks-catalog"><strong>jwks-catalog</strong></a> and
-            <a href="https://github.com/UnitVectorY-Labs/jwks-observer"><strong>jwks-observer</strong></a> on GitHub
-        </p>
+    <footer class="uvy-footer">
+        <p><a href="https://github.com/UnitVectorY-Labs/jwks-catalog"><svg class="uvy-icon" aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+ Open source on GitHub</a> <span aria-hidden="true">·</span> <a href="https://github.com/UnitVectorY-Labs/jwks-catalog/blob/main/LICENSE">MIT License</a> <span aria-hidden="true">·</span> <a href="https://github.com/UnitVectorY-Labs/jwks-observer">Observer source</a></p>
     </footer>
-
-    <!-- JavaScript for Search Functionality -->
-    <script>
-    // Function to initialize search functionality
-    function initializeSearch() {
-        const searchInput = document.getElementById('searchInput');
-        const providerFilter = document.getElementById('providerFilter');
-        if (!searchInput || !providerFilter) return;
-        function applyFilters() {
-            const query = searchInput.value.trim().toLowerCase();
-            const provider = providerFilter.value;
-            document.querySelectorAll('.left-panel .service-link').forEach(function(link) {
-                const matchesText = link.querySelector('.service-name').textContent.toLowerCase().includes(query);
-                const providers = link.dataset.providers.trim().split(/\s+/).filter(Boolean);
-                const matchesProvider = provider === 'all' || (provider === 'other' ? providers.length === 0 : providers.includes(provider));
-                link.hidden = !(matchesText && matchesProvider);
-            });
-        }
-        searchInput.addEventListener('input', applyFilters);
-        providerFilter.addEventListener('change', applyFilters);
-        applyFilters();
-    }
-
-    // Initialize search when navigation is loaded
-    document.body.addEventListener('htmx:after:swap', function(event) {
-        if (event.target.classList.contains('left-panel')) {
-            initializeSearch();
-        }
-    });
-
-    // Also initialize on page load (fallback)
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(initializeSearch, 100);
-    });
-
-    // Mobile navigation toggle
-    document.addEventListener('DOMContentLoaded', function() {
-        var navToggle = document.getElementById('navToggle');
-        var leftPanel = document.querySelector('.left-panel');
-        if (navToggle && leftPanel) {
-            navToggle.addEventListener('click', function() {
-                leftPanel.classList.toggle('nav-open');
-            });
-            // Close nav when a link inside is clicked on mobile
-            leftPanel.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    leftPanel.classList.remove('nav-open');
-                }
-            });
-        }
-    });
-    </script>
 </body>
 </html>

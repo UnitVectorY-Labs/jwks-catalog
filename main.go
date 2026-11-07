@@ -114,8 +114,10 @@ type ServicePageData struct {
 
 // Data holds the list of services and content
 type Data struct {
-	Services []Service     `yaml:"services"`
-	Content  template.HTML // Added Content field
+	Services []Service `yaml:"services"`
+	Content  template.HTML
+	Nav      template.HTML
+	Title    string
 }
 
 // SitemapURL represents a single URL entry in sitemap.xml
@@ -312,10 +314,22 @@ func main() {
 		log.Fatalf("Error creating output directory: %v", err)
 	}
 
-	// Copy style.css to the output directory
-	if err := copyFile("assets/style.css", filepath.Join(outputDir, "style.css")); err != nil {
-		log.Fatalf("Error copying style.css: %v", err)
+	// Runtime dependencies and design assets are served from the generated site.
+	for _, name := range []string{"style.css", "site.js", "uvy-tokens.css", "uvy-elements.css", "uvy-theme.js", "vendor/htmx-4.0.0.min.js", "licenses/UVY-DESIGN-LICENSE", "licenses/TABLER-ICONS-LICENSE", "licenses/HTMX-LICENSE"} {
+		destination := filepath.Join(outputDir, name)
+		if err := os.MkdirAll(filepath.Dir(destination), 0755); err != nil {
+			log.Fatal(err)
+		}
+		if err := copyFile(filepath.Join("assets", name), destination); err != nil {
+			log.Fatalf("Error copying %s: %v", name, err)
+		}
 	}
+	// The same navigation partial supports full-page/no-JS entry and nav.html.
+	navBuffer := new(bytes.Buffer)
+	if err := navTemplate.Execute(navBuffer, Data{Services: data.Services}); err != nil {
+		log.Fatal(err)
+	}
+
 	if err := os.MkdirAll(filepath.Join(outputDir, "providers"), 0755); err != nil {
 		log.Fatalf("Error creating provider assets directory: %v", err)
 	}
@@ -340,7 +354,9 @@ func main() {
 
 	mainData := Data{
 		Services: data.Services,
-		Content:  template.HTML(contentBuffer.String()), // Assign Content
+		Content:  template.HTML(contentBuffer.String()),
+		Nav:      template.HTML(navBuffer.String()),
+		Title:    "JWKS Catalog",
 	}
 
 	if err := mainTemplate.Execute(indexOut, mainData); err != nil {
@@ -432,7 +448,9 @@ func main() {
 
 		serviceData := Data{
 			Services: data.Services,
-			Content:  template.HTML(snippetBuffer.String()), // Assign snippet content
+			Content:  template.HTML(snippetBuffer.String()),
+			Nav:      template.HTML(navBuffer.String()),
+			Title:    service.Name + " · JWKS Catalog",
 		}
 
 		if err := mainTemplate.Execute(serviceOut, serviceData); err != nil {
