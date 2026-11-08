@@ -314,8 +314,8 @@ func main() {
 		log.Fatalf("Error creating output directory: %v", err)
 	}
 
-	// Runtime dependencies and design assets are served from the generated site.
-	for _, name := range []string{"style.css", "site.js", "uvy-tokens.css", "uvy-elements.css", "uvy-theme.js", "vendor/htmx-4.0.0.min.js", "licenses/UVY-DESIGN-LICENSE", "licenses/TABLER-ICONS-LICENSE", "licenses/HTMX-LICENSE"} {
+	// Copy application assets to the generated site.
+	for _, name := range []string{"style.css", "site.js", "licenses/TABLER-ICONS-LICENSE"} {
 		destination := filepath.Join(outputDir, name)
 		if err := os.MkdirAll(filepath.Dir(destination), 0755); err != nil {
 			log.Fatal(err)
