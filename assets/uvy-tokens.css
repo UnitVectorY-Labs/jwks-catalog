@@ -26,11 +26,11 @@
   --uvy-danger: #a32232;
   --uvy-danger-soft: #fdecef;
   --uvy-radius-small: 4px;
-  --uvy-radius-control: 6px;
-  --uvy-radius-panel: 8px;
+  --uvy-radius-control: 0.375rem;
+  --uvy-radius-panel: 0.5rem;
   --uvy-shadow: 0 1px 3px rgb(24 43 73 / 8%);
-  --uvy-section-gap: 24px;
-  --uvy-panel-pad: 16px;
+  --uvy-section-gap: 2rem;
+  --uvy-panel-pad: 1rem;
   --uvy-row-y: 12px;
   --uvy-row-x: 16px;
   --uvy-field-gap: 12px;

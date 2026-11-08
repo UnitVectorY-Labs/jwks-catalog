@@ -1,6 +1,6 @@
 /* App-specific adapter for UVY Design v0.1.0; existing explorer layout is retained. */
 * { box-sizing: border-box; }
-body { font-family: var(--uvy-font); font-size: 16px; line-height: 1.5; color: var(--uvy-text); margin: 0; display: flex; flex-direction: column; height: 100dvh; min-height: 100dvh; background: var(--uvy-page); }
+body { font-family: var(--uvy-font); font-size: 1rem; line-height: 1.5; color: var(--uvy-text); margin: 0; display: flex; flex-direction: column; height: 100dvh; min-height: 100dvh; background: var(--uvy-page); }
 a { color: var(--uvy-link); text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 button, input, select { font: inherit; }
@@ -8,7 +8,7 @@ button, a, input, select { -webkit-tap-highlight-color: transparent; }
 :focus-visible { outline: 3px solid var(--uvy-focus); outline-offset: 3px; }
 header { position: relative; flex-shrink: 0; background: var(--uvy-masthead); color: var(--uvy-on-masthead); padding: 20px 64px; text-align: center; border-bottom: 4px solid var(--uvy-accent-fill); }
 header a { color: inherit; text-decoration: none; }
-header h1 { color: inherit; font-size: 26px; font-weight: 700; line-height: 1.25; margin: 0; }
+header h1 { color: inherit; font-size: 2rem; font-weight: 600; line-height: 1.2; margin: 0; }
 header :focus-visible { outline-color: #fff; }
 header .uvy-theme-toggle { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
 .skip-link { position: fixed; top: -100px; left: 16px; z-index: 300; background: var(--uvy-surface); padding: 12px; }
@@ -31,8 +31,8 @@ header .uvy-theme-toggle { position: absolute; right: 16px; top: 50%; transform:
 .search-input::placeholder { color: var(--uvy-muted); opacity: 1; }
 .search-icon { position: absolute; right: 10px; bottom: 18px; color: var(--uvy-muted); pointer-events: none; line-height: 1; }
 .right-panel { flex: 1; min-width: 0; padding: 24px 32px 32px; overflow-y: auto; overflow-x: hidden; background: var(--uvy-page); }
-.right-panel h2 { color: var(--uvy-text); font-size: 28px; font-weight: 700; line-height: 1.25; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 2px solid var(--uvy-accent-fill); overflow-wrap: anywhere; }
-.right-panel h3 { color: var(--uvy-link); font-size: 18px; font-weight: 650; line-height: 1.35; margin: 0 0 12px; }
+.right-panel h2 { color: var(--uvy-link); font-size: 1.5rem; font-weight: 600; line-height: 1.2; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 2px solid var(--uvy-accent-fill); overflow-wrap: anywhere; }
+.right-panel h3 { color: var(--uvy-link); font-size: 1.25rem; font-weight: 600; line-height: 1.2; margin: 0 0 12px; }
 .right-panel p { margin: 0 0 16px; line-height: 1.5; color: var(--uvy-text); }
 .right-panel p:last-child { margin-bottom: 0; }
 .content-card { background: var(--uvy-surface); border: 1px solid var(--uvy-divider); border-radius: var(--uvy-radius-panel); padding: var(--uvy-panel-pad); margin-bottom: var(--uvy-section-gap); box-shadow: var(--uvy-shadow); min-width: 0; }
@@ -74,7 +74,7 @@ footer p { margin: 0; line-height: 1.5; }footer a { display: inline-flex; align-
 .nav-toggle { display: none; }.mobile-label { display: none; }
 [hidden] { display: none !important; }
 @media (max-width: 768px) {
-    header { padding: 20px 60px; }header h1 { font-size: 22px; }
+    header { padding: 20px 60px; }
     .nav-toggle { display: inline-flex; align-items: center; justify-content: center; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); min-height: 44px; width: 44px; background: transparent; border: 1px solid #b6d3ff; border-radius: var(--uvy-radius-control); color: #fff; cursor: pointer; padding: 0; }
     header .uvy-theme-toggle { right: 12px; }
     body { height: auto; min-height: 100dvh; }
@@ -84,7 +84,6 @@ footer p { margin: 0; line-height: 1.5; }footer a { display: inline-flex; align-
     html:not([data-theme]) .left-panel { display: block; }
     html:not([data-theme]) .nav-toggle { display: none; }
     .right-panel { padding: 20px 16px; overflow-x: hidden; }
-    .right-panel h2 { font-size: 26px; }
     .content-card, .endpoint-card { padding: 16px; }
     .right-panel pre { white-space: pre-wrap; overflow-wrap: anywhere; }
     .provider-evidence-table th, .provider-evidence-table td, .provider-list-table th, .provider-list-table td { padding: 8px 6px; font-size: 13px; }
