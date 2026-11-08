@@ -56,3 +56,7 @@ The workflow includes:
 3. Generating “snippet” pages for each service to support HTMX-driven dynamic content loading without requiring a full-page reload.
 
 The final static files are deployed to GitHub Pages using the [jwks-catalog-go-pages-deploy.yml](https://github.com/UnitVectorY-Labs/jwks-catalog/blob/main/.github/workflows/jwks-catalog-go-pages-deploy.yml) GitHub Action workflow, which is automatically triggered on every push to the `main` branch.
+
+### Service changes and crawl refreshes
+
+[Validate services](.github/workflows/validate-services.yml) runs `go run . -validate` for pull requests and pushes to `main` that change `data/services.yaml` or the validation workflow. After a successful push run on `main`, ghook4action dispatches the [jwks-observer crawl](https://github.com/UnitVectorY-Labs/jwks-observer/blob/main/.github/workflows/jwks-observer-run.yml). Pull-request validation does not start a crawl. The observer reads the latest catalog on `main`; it retains its daily and manual triggers. Successful crawls trigger catalog Pages publication through ghook4action. Pages deployment does not trigger another crawl.
