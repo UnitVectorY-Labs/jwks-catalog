@@ -17,7 +17,7 @@ header .uvy-theme-toggle { position: absolute; right: 16px; top: 50%; transform:
 .left-panel { width: 240px; min-width: 240px; background: var(--uvy-surface); border-right: 1px solid var(--uvy-divider); overflow-y: auto; padding: 0 16px 16px; }
 .left-panel a { display: block; padding: 8px 12px; color: var(--uvy-link); text-decoration: none; border-radius: var(--uvy-radius-control); margin-bottom: 4px; min-height: 44px; }
 .left-panel a:hover { background: var(--uvy-blue-soft); }
-.left-panel a[aria-current=page] { background: var(--uvy-blue-soft); border-left: 3px solid var(--uvy-accent-fill); padding-left: 9px; font-weight: 650; }
+.left-panel a[aria-current=page] { background: var(--uvy-blue-soft); font-weight: 650; }
 .left-panel .service-link { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; }
 .service-name { min-width: 0; overflow-wrap: anywhere; }
 .provider-icon { width: 18px; height: 18px; flex: 0 0 18px; object-fit: contain; }
@@ -36,12 +36,10 @@ header .uvy-theme-toggle { position: absolute; right: 16px; top: 50%; transform:
 .right-panel p { margin: 0 0 16px; line-height: 1.5; color: var(--uvy-text); }
 .right-panel p:last-child { margin-bottom: 0; }
 .content-card { background: var(--uvy-surface); border: 1px solid var(--uvy-divider); border-radius: var(--uvy-radius-panel); padding: var(--uvy-panel-pad); margin-bottom: var(--uvy-section-gap); box-shadow: var(--uvy-shadow); min-width: 0; }
-.welcome-card { border-left: 4px solid var(--uvy-accent-fill); }
 .endpoint-cards { display: flex; flex-direction: column; gap: var(--uvy-field-gap); margin-bottom: var(--uvy-section-gap); }
 .endpoint-card { background: var(--uvy-surface); border: 1px solid var(--uvy-divider); border-radius: var(--uvy-radius-panel); padding: var(--uvy-panel-pad); box-shadow: var(--uvy-shadow); overflow-wrap: anywhere; }
 .endpoint-label { display: block; font-size: 13px; font-weight: 600; color: var(--uvy-muted); margin-bottom: 6px; }
 .endpoint-card a { font-family: var(--uvy-mono); font-size: 14px; }
-.aliases-card { border-left: 4px solid var(--uvy-accent-fill); }
 .alias-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .alias-list li { margin: 0; }
 .alias-list li a { display: inline-block; padding: 6px 10px; background: var(--uvy-blue-soft); border: 1px solid var(--uvy-divider); border-radius: var(--uvy-radius-control); color: var(--uvy-link); font-size: 14px; overflow-wrap: anywhere; }

@@ -2,6 +2,8 @@
 
 This application vendors [UVY Design v0.1.0](https://github.com/UnitVectorY-Labs/uvy-design/tree/12f8e3d964785d78628346516351fe4dac583cef), source commit `12f8e3d964785d78628346516351fe4dac583cef`. The [style guide](https://github.com/UnitVectorY-Labs/uvy-design/blob/12f8e3d964785d78628346516351fe4dac583cef/docs/style-guide.md) defines the visual contract; application CSS remains the adapter.
 
+Current [UVY Design guidance](https://github.com/UnitVectorY-Labs/uvy-design/tree/7091d87) supersedes the older style guide for visual decisions: cards and panels use neutral borders without colored top or left accents. The files below remain pinned from the earlier release.
+
 ## Pinned assets
 
 | Verbatim shared file | SHA-256 |
