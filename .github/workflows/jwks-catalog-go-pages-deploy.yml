@@ -5,12 +5,8 @@ on:
   push:
     branches: ["main"]
 
-  # Allows manual runs from the Actions tab
+  # Allows manual runs and ghook4action dispatches after successful observer crawls
   workflow_dispatch:
-  
-  # Run the schedule after the daily observer crawl runs to ensure the latest crawl is deployed
-  schedule:
-    - cron: "15 5 * * *"
 
 permissions:
   contents: read  # Required to clone the repository
