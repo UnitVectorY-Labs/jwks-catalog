@@ -114,10 +114,8 @@ type ServicePageData struct {
 
 // Data holds the list of services and content
 type Data struct {
-	Services []Service `yaml:"services"`
-	Content  template.HTML
-	Nav      template.HTML
-	Title    string
+	Services []Service     `yaml:"services"`
+	Content  template.HTML // Added Content field
 }
 
 // SitemapURL represents a single URL entry in sitemap.xml
@@ -324,12 +322,6 @@ func main() {
 			log.Fatalf("Error copying %s: %v", name, err)
 		}
 	}
-	// The same navigation partial supports full-page/no-JS entry and nav.html.
-	navBuffer := new(bytes.Buffer)
-	if err := navTemplate.Execute(navBuffer, Data{Services: data.Services}); err != nil {
-		log.Fatal(err)
-	}
-
 	if err := os.MkdirAll(filepath.Join(outputDir, "providers"), 0755); err != nil {
 		log.Fatalf("Error creating provider assets directory: %v", err)
 	}
@@ -354,9 +346,7 @@ func main() {
 
 	mainData := Data{
 		Services: data.Services,
-		Content:  template.HTML(contentBuffer.String()),
-		Nav:      template.HTML(navBuffer.String()),
-		Title:    "JWKS Catalog",
+		Content:  template.HTML(contentBuffer.String()), // Assign Content
 	}
 
 	if err := mainTemplate.Execute(indexOut, mainData); err != nil {
@@ -448,9 +438,7 @@ func main() {
 
 		serviceData := Data{
 			Services: data.Services,
-			Content:  template.HTML(snippetBuffer.String()),
-			Nav:      template.HTML(navBuffer.String()),
-			Title:    service.Name + " · JWKS Catalog",
+			Content:  template.HTML(snippetBuffer.String()), // Assign snippet content
 		}
 
 		if err := mainTemplate.Execute(serviceOut, serviceData); err != nil {

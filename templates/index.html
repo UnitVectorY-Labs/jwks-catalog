@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="htmx-config" content='{"noSwap":[204,304,"4xx","5xx"]}'>
-    <title>{{.Title}}</title>
+    <title>JWKS Catalog</title>
     <link rel="stylesheet" href="./style.css">
     <script src="https://unpkg.com/htmx.org@4.0.0/dist/htmx.min.js" integrity="sha384-BvJpBiO8Kh31EqtJe5DRIeWrHWnCGkwytKs9NKFi86Hhw96dEqdEMzZDeK9iEGTc" crossorigin="anonymous" defer></script>
     <script src="./site.js" defer></script>
@@ -59,7 +59,7 @@
 </span></button>
     </header>
     <div class="container">
-        <nav class="left-panel" id="service-navigation" aria-label="Services">{{.Nav}}</nav>
+        <nav class="left-panel" id="service-navigation" aria-label="Services" hx-get="./nav.html" hx-trigger="load" hx-swap="innerHTML"></nav>
         <main class="right-panel" id="content" tabindex="-1">{{.Content}}</main>
     </div>
     <footer class="uvy-footer">

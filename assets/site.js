@@ -41,9 +41,17 @@
   const nav = document.querySelector('.left-panel');
   const toggle = document.querySelector('#navToggle');
   const content = document.querySelector('#content');
-  const search = document.querySelector('#searchInput');
-  const provider = document.querySelector('#providerFilter');
-  if (!nav || !toggle || !content || !search || !provider) return;
+  if (!nav || !toggle || !content) return;
+  let search, provider;
+  const initializeFilters = () => {
+    search = nav.querySelector('#searchInput');
+    provider = nav.querySelector('#providerFilter');
+    if (!search || !provider) return;
+    search.addEventListener('input', applyFilters);
+    provider.addEventListener('change', applyFilters);
+    applyFilters();
+    syncPage();
+  };
   const closeNavigation = () => {
     nav.classList.remove('nav-open');
     toggle.setAttribute('aria-expanded', 'false');
@@ -64,24 +72,22 @@
       else link.removeAttribute('aria-current');
     });
   };
-  search.addEventListener('input', applyFilters);
-  provider.addEventListener('change', applyFilters);
   toggle.addEventListener('click', () => {
     const open = nav.classList.toggle('nav-open');
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-    if (open) search.focus();
+    if (open && search) search.focus();
   });
   nav.addEventListener('click', event => { if (event.target.closest('a')) closeNavigation(); });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && nav.classList.contains('nav-open')) { closeNavigation(); toggle.focus(); }
   });
   // HTMX 4 dispatches after:swap on the requesting link, not the swap target.
-  document.body.addEventListener('htmx:after:swap', () => {
-    syncPage(); content.focus();
+  document.body.addEventListener('htmx:after:swap', event => {
+    if (event.target === nav) initializeFilters();
+    else { syncPage(); content.focus(); }
   });
   window.addEventListener('popstate', () => { requestAnimationFrame(syncPage); });
   document.body.addEventListener('htmx:history:restore', syncPage);
-  applyFilters();
-  syncPage();
+  initializeFilters();
 })();
