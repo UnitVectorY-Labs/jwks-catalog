@@ -8,10 +8,7 @@ on:
   # Allows manual runs and ghook4action dispatches after successful observer crawls
   workflow_dispatch:
 
-permissions:
-  contents: read  # Required to clone the repository
-  pages: write    # Allows publishing to GitHub Pages
-  id-token: write # Required for the `actions/deploy-pages@v4`
+permissions: {}
 
 concurrency:
   group: "pages"
@@ -21,6 +18,8 @@ jobs:
   # Build job
   build:
     if: github.repository_owner == 'UnitVectorY-Labs'
+    permissions:
+      contents: read # Required to clone the repository
     runs-on: arc-runner-set
     env:
       WEBSITE: ${{ secrets.WEBSITE }}
@@ -78,6 +77,9 @@ jobs:
   # Deployment job
   deploy:
     if: github.repository_owner == 'UnitVectorY-Labs'
+    permissions:
+      pages: write # Allows publishing to GitHub Pages
+      id-token: write # Required by actions/deploy-pages
     environment:
       name: github-pages
       url: jwks-catalog.unitvectorylabs.com
