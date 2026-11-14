@@ -312,9 +312,15 @@ func main() {
 		log.Fatalf("Error creating output directory: %v", err)
 	}
 
-	// Copy style.css to the output directory
-	if err := copyFile("assets/style.css", filepath.Join(outputDir, "style.css")); err != nil {
-		log.Fatalf("Error copying style.css: %v", err)
+	// Copy application assets to the generated site.
+	for _, name := range []string{"style.css", "site.js", "licenses/TABLER-ICONS-LICENSE"} {
+		destination := filepath.Join(outputDir, name)
+		if err := os.MkdirAll(filepath.Dir(destination), 0755); err != nil {
+			log.Fatal(err)
+		}
+		if err := copyFile(filepath.Join("assets", name), destination); err != nil {
+			log.Fatalf("Error copying %s: %v", name, err)
+		}
 	}
 	if err := os.MkdirAll(filepath.Join(outputDir, "providers"), 0755); err != nil {
 		log.Fatalf("Error creating provider assets directory: %v", err)
