@@ -112,10 +112,22 @@ type ServicePageData struct {
 	ProviderEvidenceRows  []ProviderEvidenceRow
 }
 
+// HomeData holds summary counts for the catalog landing page.
+type HomeData struct {
+	TotalServices       int
+	OIDCCount           int
+	OAuthCount          int
+	ProviderSignalCount int
+}
+
 // Data holds the list of services and content
 type Data struct {
-	Services []Service     `yaml:"services"`
-	Content  template.HTML // Added Content field
+	Services        []Service     `yaml:"services"`
+	Content         template.HTML // Added Content field
+	PageTitle       string        `yaml:"-"`
+	ActiveServiceID string        `yaml:"-"`
+	TotalServices   int           `yaml:"-"`
+	LastUpdated     string        `yaml:"-"`
 }
 
 // SitemapURL represents a single URL entry in sitemap.xml
@@ -312,9 +324,18 @@ func main() {
 		log.Fatalf("Error creating output directory: %v", err)
 	}
 
-	// Copy style.css to the output directory
-	if err := copyFile("assets/style.css", filepath.Join(outputDir, "style.css")); err != nil {
-		log.Fatalf("Error copying style.css: %v", err)
+	// Copy static assets to the output directory
+	for _, asset := range []struct{ src, dst string }{
+		{"assets/uvy.css", "uvy.css"},
+		{"assets/uvy.js", "uvy.js"},
+		{"assets/style.css", "style.css"},
+		{"assets/uvy-standalone-mark-light.svg", "uvy-standalone-mark-light.svg"},
+		{"assets/uvy-standalone-mark-dark.svg", "uvy-standalone-mark-dark.svg"},
+		{"LICENSE", "LICENSE"},
+	} {
+		if err := copyFile(asset.src, filepath.Join(outputDir, asset.dst)); err != nil {
+			log.Fatalf("Error copying %s: %v", asset.src, err)
+		}
 	}
 	if err := os.MkdirAll(filepath.Join(outputDir, "providers"), 0755); err != nil {
 		log.Fatalf("Error creating provider assets directory: %v", err)
@@ -322,6 +343,22 @@ func main() {
 	for _, name := range []string{"okta", "auth0", "salesforce", "ping"} {
 		if err := copyFile(filepath.Join("assets", "providers", name+".svg"), filepath.Join(outputDir, "providers", name+".svg")); err != nil {
 			log.Fatalf("Error copying %s logo: %v", name, err)
+		}
+	}
+
+	lastUpdated := time.Now().UTC().Format(time.RFC3339)
+	homeData := HomeData{
+		TotalServices: len(data.Services),
+	}
+	for _, service := range data.Services {
+		if service.OpenIDConfiguration != "" {
+			homeData.OIDCCount++
+		}
+		if service.OAuthAuthorizationServerURI != "" {
+			homeData.OAuthCount++
+		}
+		if len(service.Providers) > 0 {
+			homeData.ProviderSignalCount++
 		}
 	}
 
@@ -334,13 +371,16 @@ func main() {
 	defer indexOut.Close()
 
 	contentBuffer := new(bytes.Buffer)
-	if err := homeTemplate.Execute(contentBuffer, nil); err != nil {
+	if err := homeTemplate.Execute(contentBuffer, homeData); err != nil {
 		log.Fatalf("Error executing home template: %v", err)
 	}
 
 	mainData := Data{
-		Services: data.Services,
-		Content:  template.HTML(contentBuffer.String()), // Assign Content
+		Services:      data.Services,
+		Content:       template.HTML(contentBuffer.String()), // Assign Content
+		PageTitle:     "JWKS Catalog — UnitVectorY-Labs",
+		TotalServices: len(data.Services),
+		LastUpdated:   lastUpdated,
 	}
 
 	if err := mainTemplate.Execute(indexOut, mainData); err != nil {
@@ -371,7 +411,7 @@ func main() {
 	}
 	defer homeServiceOut.Close()
 
-	if err := homeTemplate.Execute(homeServiceOut, nil); err != nil {
+	if err := homeTemplate.Execute(homeServiceOut, homeData); err != nil {
 		log.Fatalf("Error executing home template for services: %v", err)
 	}
 
@@ -431,8 +471,12 @@ func main() {
 		defer serviceOut.Close()
 
 		serviceData := Data{
-			Services: data.Services,
-			Content:  template.HTML(snippetBuffer.String()), // Assign snippet content
+			Services:        data.Services,
+			Content:         template.HTML(snippetBuffer.String()), // Assign snippet content
+			PageTitle:       service.Name + " — JWKS Catalog — UnitVectorY-Labs",
+			ActiveServiceID: service.Id,
+			TotalServices:   len(data.Services),
+			LastUpdated:     lastUpdated,
 		}
 
 		if err := mainTemplate.Execute(serviceOut, serviceData); err != nil {
