@@ -1,69 +1,120 @@
-<section class="content-card welcome-card">
-<h2>Welcome to the JWKS Catalog</h2>
-<p>
-    The JWKS Catalog is a centralized, open resource designed for developers and security professionals to easily locate, compare, and evaluate public JSON Web Key Set (JWKS) endpoints from popular services. This site aggregates key endpoints from well-known providers to simplify the discovery of cryptographic keys used in modern authentication systems.
-</p>
-</section>
+<div data-page-title="JWKS Catalog — UnitVectorY-Labs" data-service-id="">
+  <div class="uvy-page-header">
+    <div>
+      <h1>JWKS Catalog</h1>
+      <p class="uvy-lead">A centralized, open resource for developers and security professionals to locate, compare, and evaluate public JSON Web Key Set (JWKS) endpoints from popular services.</p>
+    </div>
+  </div>
 
-<section class="content-card">
-<h3>Catalog Purpose</h3>
-<ul>
-    <li>
-    <strong>Simplification and Comparison:</strong> 
-    Quickly find and compare the implementation of JWKS endpoints across different providers.
-    </li>
-    <li>
-    <strong>Reference and Research:</strong> 
-    Use this catalog to understand how various popular services implement token validation and key distribution.
-    </li>
-    <li>
-    <strong>Community Driven:</strong> 
-    Contributions are welcome! Add or update entries for any public-facing, popular sites by submitting the relevant JWKS and OIDC configuration endpoints on <a href="https://github.com/UnitVectorY-Labs/jwks-catalog" target="_blank">GitHub</a>.
-    </li>
-</ul>
-</section>
+  <dl class="uvy-stats">
+    <div>
+      <dt>Cataloged services</dt>
+      <dd>{{.TotalServices}}</dd>
+    </div>
+    <div>
+      <dt>OIDC discovery</dt>
+      <dd>{{.OIDCCount}}</dd>
+    </div>
+    <div>
+      <dt>OAuth 2.0 metadata</dt>
+      <dd>{{.OAuthCount}}</dd>
+    </div>
+    <div>
+      <dt>Provider signals</dt>
+      <dd>{{.ProviderSignalCount}}</dd>
+    </div>
+  </dl>
 
-<section class="content-card">
-<h3>Understanding the Endpoints</h3>
-<p>
-    This catalog features three types of endpoints:
-</p>
-<dl>
-    <dt>OpenID Connect (OIDC) Endpoints</dt>
-    <dd>
-    OIDC endpoints provide configuration information as defined in the
-    <a href="https://openid.net/specs/openid-connect-discovery-1_0.html" target="_blank">OpenID Connect Discovery 1.0 specification</a>.
-    They are served at the standard path <code>/.well-known/openid-configuration</code> and offer a discovery mechanism for client applications to obtain necessary configuration data for authentication.
-    <br><em>Note:</em> Not all services expose an OIDC configuration endpoint. Some instead expose OAuth 2.0 authorization-server metadata, or only a JWKS endpoint.
-    </dd>
-    <dt>OAuth 2.0 Authorization Server Metadata Endpoints</dt>
-    <dd>
-    OAuth 2.0 authorization server metadata endpoints, standardized in
-    <a href="https://datatracker.ietf.org/doc/html/rfc8414" target="_blank">RFC 8414</a>,
-    are served at the standard path <code>/.well-known/oauth-authorization-server</code> and publish authorization-server configuration such as authorization, token, and (when available) JWKS endpoints.
-    They provide OAuth 2.0 discovery independently of OpenID Connect.
-    </dd>
-    <dt>JWKS Endpoints</dt>
-    <dd>
-    JSON Web Key Set endpoints, standardized in 
-    <a href="https://datatracker.ietf.org/doc/html/rfc7517" target="_blank">RFC 7517</a>, 
-    allow clients to retrieve public keys used to verify the signatures of tokens (such as JWTs). 
-    These keys are critical for ensuring token integrity and authenticity.
-    </dd>
-</dl>
-</section>
+  <section class="uvy-panel" aria-labelledby="purpose-title">
+    <div class="uvy-panel__header">
+      <h2 id="purpose-title">Catalog purpose</h2>
+    </div>
+    <p>This site aggregates public key endpoints from well-known providers to simplify the discovery of cryptographic keys used in modern authentication systems.</p>
+    <ul class="purpose-list">
+      <li>
+        <strong>Simplification and comparison:</strong>
+        Quickly find and compare the implementation of JWKS endpoints across different providers.
+      </li>
+      <li>
+        <strong>Reference and research:</strong>
+        Use this catalog to understand how various popular services implement token validation and key distribution.
+      </li>
+      <li>
+        <strong>Community driven:</strong>
+        Contributions are welcome. Add or update entries for any public-facing, popular sites by submitting the relevant JWKS and OIDC configuration endpoints on <a href="https://github.com/UnitVectorY-Labs/jwks-catalog" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </li>
+    </ul>
+  </section>
 
-<section class="content-card">
-<h3>Identity provider signals</h3>
-<p>The catalog looks for distinctive response headers in crawled OIDC, OAuth metadata, and JWKS endpoints. The filter and service pages show matches for:</p>
-<table class="provider-list-table">
-<thead><tr><th scope="col">Provider signal</th><th scope="col">Response header</th><th scope="col">Evidence source</th></tr></thead>
-<tbody>
-<tr><th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/okta.svg" alt="">Okta</span></th><td><code>X-Okta-Request-Id</code></td><td><a href="https://developer.okta.com/docs/reference/core-okta-api/#request-debugging" target="_blank" rel="noopener noreferrer">Okta request debugging</a></td></tr>
-<tr><th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/auth0.svg" alt="">Auth0</span></th><td><code>X-Auth0-L</code>, <code>X-Auth0-RequestId</code></td><td><a href="https://auth.auth0.com/.well-known/openid-configuration" target="_blank" rel="noopener noreferrer">Auth0 discovery response</a></td></tr>
-<tr><th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/salesforce.svg" alt="">Salesforce</span></th><td><code>X-Sfdc-Edge-Cache</code>, <code>X-Sfdc-Request-Id</code></td><td><a href="https://github.com/UnitVectorY-Labs/jwks-observer/pull/114" target="_blank" rel="noopener noreferrer">Observer header notes</a></td></tr>
-<tr><th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/ping.svg" alt="">ForgeRock / Ping</span></th><td><code>X-ForgeRock-TransactionId</code></td><td><a href="https://docs.pingidentity.com/pingoneaic/tenants/audit-debug-logs-pull.html" target="_blank" rel="noopener noreferrer">Ping request tracing</a></td></tr>
-</tbody>
-</table>
-<p>These are best-effort hints, not verified ownership. Salesforce headers identify its edge infrastructure, which also serves non-identity products; they do not establish that Salesforce provides the identity service. Proxies can add or remove headers, and a service shown as Other may still use one of these providers. A service can show more than one signal.</p>
-</section>
+  <section class="uvy-panel" aria-labelledby="endpoints-guide-title">
+    <div class="uvy-panel__header">
+      <h2 id="endpoints-guide-title">Understanding the endpoints</h2>
+    </div>
+    <p>This catalog features three types of endpoints:</p>
+    <dl class="endpoint-dl">
+      <dt>OpenID Connect (OIDC) endpoints</dt>
+      <dd>
+        OIDC endpoints provide configuration information as defined in the
+        <a href="https://openid.net/specs/openid-connect-discovery-1_0.html" target="_blank" rel="noopener noreferrer">OpenID Connect Discovery 1.0 specification</a>.
+        They are served at the standard path <code>/.well-known/openid-configuration</code> and offer a discovery mechanism for client applications to obtain necessary configuration data for authentication.
+        Not all services expose an OIDC configuration endpoint; some instead expose OAuth 2.0 authorization-server metadata, or only a JWKS endpoint.
+      </dd>
+      <dt>OAuth 2.0 Authorization Server Metadata endpoints</dt>
+      <dd>
+        OAuth 2.0 authorization server metadata endpoints, standardized in
+        <a href="https://datatracker.ietf.org/doc/html/rfc8414" target="_blank" rel="noopener noreferrer">RFC 8414</a>,
+        are served at the standard path <code>/.well-known/oauth-authorization-server</code> and publish authorization-server configuration such as authorization, token, and (when available) JWKS endpoints.
+        They provide OAuth 2.0 discovery independently of OpenID Connect.
+      </dd>
+      <dt>JWKS endpoints</dt>
+      <dd>
+        JSON Web Key Set endpoints, standardized in
+        <a href="https://datatracker.ietf.org/doc/html/rfc7517" target="_blank" rel="noopener noreferrer">RFC 7517</a>,
+        allow clients to retrieve public keys used to verify the signatures of tokens (such as JWTs).
+        These keys are critical for ensuring token integrity and authenticity.
+      </dd>
+    </dl>
+  </section>
+
+  <section class="uvy-panel" aria-labelledby="provider-signals-guide-title">
+    <div class="uvy-panel__header">
+      <h2 id="provider-signals-guide-title">Identity provider signals</h2>
+    </div>
+    <p>The catalog looks for distinctive response headers in crawled OIDC, OAuth metadata, and JWKS endpoints. The filter and service pages show matches for:</p>
+    <div class="table-wrap" role="region" aria-label="Identity provider header signals" tabindex="0">
+      <table class="provider-list-table">
+        <caption class="sr-only">Response headers used to identify identity provider signals</caption>
+        <thead>
+          <tr>
+            <th scope="col">Provider signal</th>
+            <th scope="col">Response header</th>
+            <th scope="col">Evidence source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/okta.svg" alt="" width="16" height="16">Okta</span></th>
+            <td><code>X-Okta-Request-Id</code></td>
+            <td><a href="https://developer.okta.com/docs/reference/core-okta-api/#request-debugging" target="_blank" rel="noopener noreferrer">Okta request debugging</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/auth0.svg" alt="" width="16" height="16">Auth0</span></th>
+            <td><code>X-Auth0-L</code>, <code>X-Auth0-RequestId</code></td>
+            <td><a href="https://auth.auth0.com/.well-known/openid-configuration" target="_blank" rel="noopener noreferrer">Auth0 discovery response</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/salesforce.svg" alt="" width="16" height="16">Salesforce</span></th>
+            <td><code>X-Sfdc-Edge-Cache</code>, <code>X-Sfdc-Request-Id</code></td>
+            <td><a href="https://github.com/UnitVectorY-Labs/jwks-observer/pull/114" target="_blank" rel="noopener noreferrer">Observer header notes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="provider-table-name"><img class="provider-icon" src="./providers/ping.svg" alt="" width="16" height="16">ForgeRock / Ping</span></th>
+            <td><code>X-ForgeRock-TransactionId</code></td>
+            <td><a href="https://docs.pingidentity.com/pingoneaic/tenants/audit-debug-logs-pull.html" target="_blank" rel="noopener noreferrer">Ping request tracing</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="uvy-hint provider-note">These are best-effort hints, not verified ownership. Salesforce headers identify its edge infrastructure, which also serves non-identity products; they do not establish that Salesforce provides the identity service. Proxies can add or remove headers, and a service shown as Other may still use one of these providers. A service can show more than one signal.</p>
+  </section>
+</div>

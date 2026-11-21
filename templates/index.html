@@ -1,88 +1,304 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="htmx-config" content='{"noSwap":[204,304,"4xx","5xx"]}'>
-    <title>JWKS Catalog</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="https://unpkg.com/htmx.org@4.0.0/dist/htmx.min.js" integrity="sha384-BvJpBiO8Kh31EqtJe5DRIeWrHWnCGkwytKs9NKFi86Hhw96dEqdEMzZDeK9iEGTc" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="htmx-config" content='{"noSwap":[204,304,"4xx","5xx"]}'>
+  <title>{{.PageTitle}}</title>
+  <link rel="icon" type="image/svg+xml" href="./uvy-standalone-mark-light.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="./uvy-standalone-mark-dark.svg" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="./uvy.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./uvy.js"></script>
+  <script src="https://unpkg.com/htmx.org@4.0.0/dist/htmx.min.js" integrity="sha384-BvJpBiO8Kh31EqtJe5DRIeWrHWnCGkwytKs9NKFi86Hhw96dEqdEMzZDeK9iEGTc" crossorigin="anonymous"></script>
 </head>
-<body>
-    <header>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
-        <a href="index.html" hx-get="./snippets/home.html" hx-target="#content" hx-push-url="index.html"><h1>JWKS Catalog</h1></a>
-    </header>
-    <div class="container">
-        <!-- Left Navigation Panel -->
-        <nav class="left-panel" hx-get="./nav.html" hx-trigger="load" hx-swap="innerHTML">
-            <!-- Navigation will be loaded here via HTMX -->
-        </nav>
+<body data-active-service="{{.ActiveServiceID}}">
+  <a class="skip" href="#content">Skip to content</a>
 
-        <!-- Right Content Panel -->
-        <main class="right-panel" id="content">
-            {{.Content}}
-        </main>
+  <!-- Tabler Icons: https://tabler.io/icons
+  MIT License
+
+  Copyright (c) 2020-2026 Paweł Kuna
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+  -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="sr-only" aria-hidden="true" focusable="false">
+    <symbol id="tabler-moon" viewBox="0 0 24 24">
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008" />
+    </symbol>
+    <symbol id="tabler-sun" viewBox="0 0 24 24">
+      <path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+      <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+    </symbol>
+    <symbol id="tabler-menu" viewBox="0 0 24 24">
+      <path d="M4 6l16 0" />
+      <path d="M4 12l16 0" />
+      <path d="M4 18l16 0" />
+    </symbol>
+    <symbol id="tabler-x" viewBox="0 0 24 24">
+      <path d="M18 6l-12 12" />
+      <path d="M6 6l12 12" />
+    </symbol>
+    <symbol id="tabler-copy" viewBox="0 0 24 24">
+      <path d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" />
+      <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+    </symbol>
+    <symbol id="tabler-check" viewBox="0 0 24 24">
+      <path d="M5 12l5 5l10 -10" />
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-identity">
+        <button id="menu" class="icon-button menu-button" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false" hidden>
+          <svg class="icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-menu"></use></svg>
+        </button>
+        <a class="brand" href="./index.html" hx-get="./snippets/home.html" hx-target="#content" hx-push-url="./index.html">
+          <svg class="uvy-mark" aria-hidden="true" width="28" height="28" viewBox="0 0 100 100">
+            <g stroke-width="4" stroke-linejoin="round">
+              <polygon class="uvy-mark__top" points="50,8 82.5,26.75 50,45.5 17.5,26.75" />
+              <polygon class="uvy-mark__left" points="12.3,35.75 44.8,54.5 44.8,92 12.3,73.25" />
+              <polygon class="uvy-mark__right" points="55.2,54.5 87.7,35.75 87.7,73.25 55.2,92" />
+            </g>
+          </svg>
+          <span>JWKS Catalog</span>
+        </a>
+      </div>
+      <nav aria-label="Main navigation">
+        <a id="nav-home-link" href="./index.html" hx-get="./snippets/home.html" hx-target="#content" hx-push-url="./index.html"{{if not .ActiveServiceID}} aria-current="page"{{end}}>Overview</a>
+        <a href="https://github.com/UnitVectorY-Labs/jwks-catalog" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+      <button id="theme" class="icon-button" type="button" aria-label="Switch color theme" hidden>
+        <svg class="icon" aria-hidden="true" data-icon="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-moon"></use></svg>
+        <svg class="icon" aria-hidden="true" data-icon="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-sun"></use></svg>
+      </button>
     </div>
-    <footer>
-        <p>
-            <a href="https://github.com/UnitVectorY-Labs">UnitVectorY Labs</a> | 
-            <a href="https://opensource.org/licenses/MIT">MIT License</a> | 
-            <a href="https://github.com/UnitVectorY-Labs/jwks-catalog"><strong>jwks-catalog</strong></a> and
-            <a href="https://github.com/UnitVectorY-Labs/jwks-observer"><strong>jwks-observer</strong></a> on GitHub
-        </p>
-    </footer>
+  </header>
 
-    <!-- JavaScript for Search Functionality -->
-    <script>
-    // Function to initialize search functionality
-    function initializeSearch() {
-        const searchInput = document.getElementById('searchInput');
-        const providerFilter = document.getElementById('providerFilter');
-        if (!searchInput || !providerFilter) return;
-        function applyFilters() {
-            const query = searchInput.value.trim().toLowerCase();
-            const provider = providerFilter.value;
-            document.querySelectorAll('.left-panel .service-link').forEach(function(link) {
-                const matchesText = link.querySelector('.service-name').textContent.toLowerCase().includes(query);
-                const providers = link.dataset.providers.trim().split(/\s+/).filter(Boolean);
-                const matchesProvider = provider === 'all' || (provider === 'other' ? providers.length === 0 : providers.includes(provider));
-                link.hidden = !(matchesText && matchesProvider);
-            });
-        }
-        searchInput.addEventListener('input', applyFilters);
-        providerFilter.addEventListener('change', applyFilters);
-        applyFilters();
+  <main class="page layout" id="main">
+    <aside id="sidebar" class="sidebar" aria-label="Catalog services">
+      <div class="sidebar-tools">
+        <div class="sidebar-heading">
+          <h2>Services</h2>
+          <div class="sidebar-heading-actions">
+            <span id="nav-count" class="uvy-count" role="status">{{.TotalServices}}</span>
+            <button id="menu-close" class="icon-button sidebar-close" type="button" aria-label="Close navigation" hidden>
+              <svg class="icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-x"></use></svg>
+            </button>
+          </div>
+        </div>
+        <div class="nav-filters" data-requires-js hidden>
+          <div class="uvy-field">
+            <label for="searchInput">Find a service</label>
+            <input type="search" id="searchInput" class="uvy-input--mono" autocomplete="off" placeholder="Search services...">
+          </div>
+          <div class="uvy-field">
+            <label for="providerFilter">Provider signal</label>
+            <select id="providerFilter">
+              <option value="all">All sites</option>
+              <option value="okta">Okta</option>
+              <option value="auth0">Auth0</option>
+              <option value="salesforce">Salesforce</option>
+              <option value="ping">ForgeRock / Ping</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div id="sidebar-nav" hx-get="./nav.html" hx-trigger="load" hx-swap="innerHTML">
+        <noscript>
+          <p class="uvy-hint sidebar-noscript"><a href="./nav.html">Browse all {{.TotalServices}} services</a></p>
+        </noscript>
+      </div>
+      <p id="nav-empty" class="uvy-hint sidebar-empty" hidden>No services match. Clear the search or filter.</p>
+    </aside>
+
+    <div class="workspace" id="content" tabindex="-1">
+      {{.Content}}
+    </div>
+  </main>
+
+  <button id="menu-backdrop" class="menu-backdrop" type="button" aria-label="Close navigation" tabindex="-1" hidden></button>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>
+        <a href="https://github.com/UnitVectorY-Labs">UnitVectorY-Labs</a>
+        <span class="footer-sep" aria-hidden="true">|</span>
+        <a href="./LICENSE">MIT License</a>
+        <span class="footer-sep" aria-hidden="true">|</span>
+        <a href="https://github.com/UnitVectorY-Labs/jwks-catalog"><strong>jwks-catalog</strong></a>
+        and
+        <a href="https://github.com/UnitVectorY-Labs/jwks-observer"><strong>jwks-observer</strong></a>
+        on GitHub
+      </p>
+      {{- if .LastUpdated}}
+      <p class="footer-meta">Last updated: <time datetime="{{.LastUpdated}}">{{.LastUpdated}}</time></p>
+      {{- end}}
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    const searchInput = document.getElementById('searchInput');
+    const providerFilter = document.getElementById('providerFilter');
+    const navCount = document.getElementById('nav-count');
+    const navEmpty = document.getElementById('nav-empty');
+    const homeLink = document.getElementById('nav-home-link');
+
+    function getActiveServiceId() {
+      const marker = document.querySelector('#content [data-service-id]');
+      if (marker) return marker.dataset.serviceId || '';
+      const match = window.location.pathname.match(/service-([^/]+)\.html$/);
+      if (match) {
+        try { return decodeURIComponent(match[1]); } catch (_) { return match[1]; }
+      }
+      return document.body.dataset.activeService || '';
     }
 
-    // Initialize search when navigation is loaded
-    document.body.addEventListener('htmx:after:swap', function(event) {
-        if (event.target.classList.contains('left-panel')) {
-            initializeSearch();
+    function syncActiveNavigation(scrollIntoView) {
+      const activeId = getActiveServiceId();
+      document.body.dataset.activeService = activeId;
+
+      if (homeLink) {
+        if (!activeId) homeLink.setAttribute('aria-current', 'page');
+        else homeLink.removeAttribute('aria-current');
+      }
+
+      let activeEl = null;
+      document.querySelectorAll('#sidebar-nav .service-link').forEach(function (link) {
+        const isCurrent = activeId !== '' && link.dataset.serviceId === activeId;
+        if (isCurrent) {
+          link.setAttribute('aria-current', 'page');
+          activeEl = link;
+        } else {
+          link.removeAttribute('aria-current');
         }
+      });
+
+      if (scrollIntoView && activeEl) {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar) {
+          const targetTop = activeEl.offsetTop - sidebar.clientHeight / 2 + activeEl.offsetHeight / 2;
+          sidebar.scrollTop = Math.max(0, targetTop);
+        }
+      }
+    }
+
+    function applyFilters() {
+      const links = document.querySelectorAll('#sidebar-nav .service-link');
+      if (!links.length) return;
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+      const provider = providerFilter ? providerFilter.value : 'all';
+      let visible = 0;
+
+      links.forEach(function (link) {
+        const nameEl = link.querySelector('.service-name');
+        const nameText = nameEl ? nameEl.textContent.toLowerCase() : link.textContent.toLowerCase();
+        const matchesText = nameText.includes(query);
+        const providers = (link.dataset.providers || '').trim().split(/\s+/).filter(Boolean);
+        const matchesProvider =
+          provider === 'all' ||
+          (provider === 'other' ? providers.length === 0 : providers.includes(provider));
+        const show = matchesText && matchesProvider;
+        link.hidden = !show;
+        if (show) visible++;
+      });
+
+      if (navCount) {
+        navCount.textContent = visible === links.length ? String(links.length) : visible + ' / ' + links.length;
+      }
+      if (navEmpty) {
+        navEmpty.hidden = visible > 0;
+      }
+    }
+
+    function bindCopyButtons(root) {
+      root.querySelectorAll('[data-enable-with-js]').forEach(function (control) {
+        control.disabled = false;
+      });
+      root.querySelectorAll('[data-requires-js]').forEach(function (control) {
+        control.hidden = false;
+      });
+      root.querySelectorAll('[data-copy-target], [data-copy-text]').forEach(function (button) {
+        button.addEventListener('click', async function () {
+          const targetId = button.dataset.copyTarget;
+          const text = targetId
+            ? (document.getElementById(targetId)?.textContent ?? '').trim()
+            : button.dataset.copyText || '';
+          if (!text) return;
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(text);
+            } else {
+              const area = document.createElement('textarea');
+              area.value = text;
+              area.setAttribute('readonly', '');
+              area.style.position = 'fixed';
+              area.style.opacity = '0';
+              document.body.append(area);
+              area.select();
+              document.execCommand('copy');
+              area.remove();
+            }
+          } catch (_) {}
+          button.classList.add('is-copied');
+          clearTimeout(button._copyTimer);
+          button._copyTimer = setTimeout(function () {
+            button.classList.remove('is-copied');
+          }, 1800);
+        });
+      });
+    }
+
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
+    if (providerFilter) providerFilter.addEventListener('change', applyFilters);
+
+    document.body.addEventListener('htmx:after:swap', function (event) {
+      const swapTarget = (event.detail && event.detail.ctx && event.detail.ctx.target) || event.target;
+      if (swapTarget && swapTarget.id === 'sidebar-nav') {
+        applyFilters();
+        syncActiveNavigation(true);
+      } else if (swapTarget && swapTarget.id === 'content') {
+        bindCopyButtons(swapTarget);
+        const marker = swapTarget.querySelector('[data-page-title]');
+        if (marker && marker.dataset.pageTitle) {
+          document.title = marker.dataset.pageTitle;
+        }
+        syncActiveNavigation(false);
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
     });
 
-    // Also initialize on page load (fallback)
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(initializeSearch, 100);
-    });
-
-    // Mobile navigation toggle
-    document.addEventListener('DOMContentLoaded', function() {
-        var navToggle = document.getElementById('navToggle');
-        var leftPanel = document.querySelector('.left-panel');
-        if (navToggle && leftPanel) {
-            navToggle.addEventListener('click', function() {
-                leftPanel.classList.toggle('nav-open');
-            });
-            // Close nav when a link inside is clicked on mobile
-            leftPanel.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    leftPanel.classList.remove('nav-open');
-                }
-            });
+    window.addEventListener('popstate', function () {
+      const content = document.getElementById('content');
+      if (content) {
+        bindCopyButtons(content);
+        const marker = content.querySelector('[data-page-title]');
+        if (marker && marker.dataset.pageTitle) {
+          document.title = marker.dataset.pageTitle;
         }
+      }
+      syncActiveNavigation(true);
     });
-    </script>
+  })();
+  </script>
 </body>
 </html>

@@ -1,135 +1,195 @@
-<h2>{{.Name}}</h2>
+<div data-page-title="{{.Name}} — JWKS Catalog — UnitVectorY-Labs" data-service-id="{{.Id}}">
+  <nav class="uvy-breadcrumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="./index.html" hx-get="./snippets/home.html" hx-target="#content" hx-push-url="./index.html">catalog</a></li>
+      <li aria-current="page">{{.Id}}</li>
+    </ol>
+  </nav>
 
-<div class="endpoint-cards">
-{{if .OpenIDConfiguration}}
-<div class="endpoint-card">
-<span class="endpoint-label">OpenID Configuration</span>
-<a href="{{.OpenIDConfiguration}}" target="_blank">{{.OpenIDConfiguration}}</a>
-</div>
-{{end}}
-{{if .OAuthAuthorizationServerURI}}
-<div class="endpoint-card">
-<span class="endpoint-label">OAuth 2.0 Authorization Server Metadata</span>
-<a href="{{.OAuthAuthorizationServerURI}}" target="_blank">{{.OAuthAuthorizationServerURI}}</a>
-</div>
-{{end}}
-<div class="endpoint-card">
-<span class="endpoint-label">JWKS URI</span>
-<a href="{{.JWKSURI}}" target="_blank">{{.JWKSURI}}</a>
-</div>
-</div>
-
-{{- if .AliasDisplays}}
-<div class="content-card aliases-card">
-<h3>Also Discoverable Via</h3>
-<ul class="alias-list">
-{{- range .AliasDisplays}}
-  <li><a href="{{.OpenIDConfiguration}}" target="_blank">{{.Domain}}</a></li>
-{{- end}}
-</ul>
-</div>
-{{- end}}
-
-{{- if .ActiveKeys}}
-<div class="content-card">
-<h3>Active Keys</h3>
-<table class="key-history">
-  <thead>
-    <tr>
-  <th class="kid-col">KID</th>
-  <th class="use-col">Use</th>
-  <th class="alg-col">Alg/Crv</th>
-  <th class="keylength-col">Key Length</th>
-  <th class="keydate-col">Observed</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{- range .ActiveKeys}}
-    <tr class="status-active">
-      <td class="kid">{{.Kid}}</td>
-      <td>{{.Use}}</td>
-      {{if eq .Kty "EC"}}
-      <td>{{.Crv}}</td>
-      {{else}}
-      <td>{{.Alg}}</td>
-      {{end}}
-      <td>{{.KeyLength}}</td>
-      <td>
-        {{.FirstObservedFormatted}}
-      </td>
-    </tr>
+  <div class="uvy-page-header">
+    <div>
+      <h1>{{.Name}}</h1>
+    </div>
+    {{- if .ActiveKeys}}
+    <span class="uvy-status uvy-status--active">{{len .ActiveKeys}} active {{if eq (len .ActiveKeys) 1}}key{{else}}keys{{end}}</span>
     {{- end}}
-  </tbody>
-</table>
-</div>
-{{- end}}
+  </div>
 
-<section class="content-card provider-card">
-<h3>Identity Provider Signals</h3>
-{{if .ProviderEvidenceRows}}
-<div class="provider-heading">{{range .Providers}}<span class="provider-badge"><img class="provider-icon" src="./providers/{{.ID}}.svg" alt=""><strong>{{.Name}}</strong></span>{{end}}</div>
-{{if gt (len .Providers) 1}}<p>More than one provider signal was observed. Each matching filter includes this service.</p>{{end}}
-<p>Checked boxes mark headers observed on each endpoint during a successful crawl.</p>
-<div class="provider-table-wrap">
-<table class="provider-evidence-table">
-<thead><tr>
-{{if gt (len .Providers) 1}}<th scope="col">Signal</th>{{end}}
-<th scope="col">Response header</th>
-{{if .OpenIDConfiguration}}<th scope="col"><a href="{{.OpenIDConfiguration}}" target="_blank" rel="noopener noreferrer" title="OpenID configuration">OIDC</a></th>{{end}}
-{{if .OAuthAuthorizationServerURI}}<th scope="col"><a href="{{.OAuthAuthorizationServerURI}}" target="_blank" rel="noopener noreferrer" title="OAuth 2.0 authorization server metadata">OAuth</a></th>{{end}}
-<th scope="col"><a href="{{.JWKSURI}}" target="_blank" rel="noopener noreferrer">JWKS</a></th>
-</tr></thead>
-<tbody>
-{{range .ProviderEvidenceRows}}<tr>
-{{if gt (len $.Providers) 1}}<td class="provider-signal-cell">{{.Provider}}</td>{{end}}
-<th scope="row"><code>{{.Header}}</code></th>
-{{if $.OpenIDConfiguration}}<td><input type="checkbox" disabled {{if .OIDC}}checked{{end}} aria-label="{{.Header}} {{if .OIDC}}observed{{else}}not observed{{end}} on OIDC endpoint"></td>{{end}}
-{{if $.OAuthAuthorizationServerURI}}<td><input type="checkbox" disabled {{if .OAuth}}checked{{end}} aria-label="{{.Header}} {{if .OAuth}}observed{{else}}not observed{{end}} on OAuth endpoint"></td>{{end}}
-<td><input type="checkbox" disabled {{if .JWKS}}checked{{end}} aria-label="{{.Header}} {{if .JWKS}}observed{{else}}not observed{{end}} on JWKS endpoint"></td>
-</tr>{{end}}
-</tbody>
-</table>
-</div>
-<p class="provider-note">Header signals are clues, not proof of the identity platform. Proxies can add or remove headers.</p>
-{{range .Providers}}{{if eq .ID "salesforce"}}<p class="provider-note">Salesforce headers identify its edge infrastructure; they do not by themselves establish which identity service is behind it.</p>{{end}}{{end}}
-{{else}}
-<p>No listed provider signal was found in the available response headers. These providers may still be in use.</p>
-{{end}}
-</section>
+  <section class="uvy-panel" aria-labelledby="endpoints-title">
+    <div class="uvy-panel__header">
+      <h2 id="endpoints-title">Endpoints and discovery</h2>
+    </div>
+    <dl class="uvy-kv" style="margin-bottom:0">
+      {{- if .OpenIDConfiguration}}
+      <div>
+        <dt>OpenID configuration</dt>
+        <dd class="endpoint-value">
+          <a class="endpoint-link" href="{{.OpenIDConfiguration}}" target="_blank" rel="noopener noreferrer">{{.OpenIDConfiguration}}</a>
+          <button type="button" class="uvy-button--quiet uvy-button--small uvy-copy" data-copy-text="{{.OpenIDConfiguration}}" data-enable-with-js disabled aria-label="Copy OpenID configuration URL"><span data-copy class="with-icon"><svg class="icon icon-small" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-copy"></use></svg>Copy</span><span data-copied class="with-icon"><svg class="icon icon-small" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-check"></use></svg>Copied</span></button>
+        </dd>
+      </div>
+      {{- end}}
+      {{- if .OAuthAuthorizationServerURI}}
+      <div>
+        <dt>OAuth 2.0 metadata</dt>
+        <dd class="endpoint-value">
+          <a class="endpoint-link" href="{{.OAuthAuthorizationServerURI}}" target="_blank" rel="noopener noreferrer">{{.OAuthAuthorizationServerURI}}</a>
+          <button type="button" class="uvy-button--quiet uvy-button--small uvy-copy" data-copy-text="{{.OAuthAuthorizationServerURI}}" data-enable-with-js disabled aria-label="Copy OAuth 2.0 authorization server metadata URL"><span data-copy class="with-icon"><svg class="icon icon-small" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-copy"></use></svg>Copy</span><span data-copied class="with-icon"><svg class="icon icon-small" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-check"></use></svg>Copied</span></button>
+        </dd>
+      </div>
+      {{- end}}
+      <div>
+        <dt>JWKS URI</dt>
+        <dd class="endpoint-value">
+          <a class="endpoint-link" href="{{.JWKSURI}}" target="_blank" rel="noopener noreferrer">{{.JWKSURI}}</a>
+          <button type="button" class="uvy-button--quiet uvy-button--small uvy-copy" data-copy-text="{{.JWKSURI}}" data-enable-with-js disabled aria-label="Copy JWKS URI"><span data-copy class="with-icon"><svg class="icon icon-small" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-copy"></use></svg>Copy</span><span data-copied class="with-icon"><svg class="icon icon-small" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-check"></use></svg>Copied</span></button>
+        </dd>
+      </div>
+      {{- if .AliasDisplays}}
+      <div>
+        <dt>Also discoverable via</dt>
+        <dd>
+          <ul class="alias-list">
+            {{- range .AliasDisplays}}
+            <li><a href="{{.OpenIDConfiguration}}" target="_blank" rel="noopener noreferrer">{{.Domain}}</a></li>
+            {{- end}}
+          </ul>
+        </dd>
+      </div>
+      {{- end}}
+    </dl>
+  </section>
 
-{{- if .InactiveKeys}}
-<div class="content-card">
-<h3>Recently Deactivated Keys</h3>
-{{if eq $.DefaultKeyHistorySize (len .InactiveKeys)}}
-<p><em>(Most recent {{.DefaultKeyHistorySize}} records shown)</em></p>
-{{end}}
-<table class="key-history">
-  <thead>
-    <tr>
-  <th class="kid-col">KID</th>
-  <th class="use-col">Use</th>
-  <th class="alg-col">Alg/Crv</th>
-  <th class="keylength-col">Key Length</th>
-  <th class="keydate-col">Observed</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{- range .InactiveKeys}}
-    <tr class="status-inactive">
-      <td class="kid">{{.Kid}}</td>
-      <td>{{.Use}}</td>
-      {{if eq .Kty "EC"}}
-      <td>{{.Crv}}</td>
-      {{else}}
-      <td>{{.Alg}}</td>
-      {{end}}
-      <td>{{.KeyLength}}</td>
-      <td>
-        {{.FirstObservedFormatted}} to {{.LastObservedFormatted}} ({{.DaysActive}} days)
-      </td>
-    </tr>
+  {{- if .ActiveKeys}}
+  <section class="uvy-panel" aria-labelledby="active-keys-title">
+    <div class="uvy-panel__header">
+      <h2 id="active-keys-title">Active keys</h2>
+      <span class="uvy-status uvy-status--active">{{len .ActiveKeys}} active</span>
+    </div>
+    <div class="table-wrap" role="region" aria-label="Active keys" tabindex="0">
+      <table class="key-history uvy-table--comparison">
+        <caption class="sr-only">Active signing keys observed for {{.Name}}</caption>
+        <thead>
+          <tr>
+            <th scope="col">Key ID</th>
+            <th scope="col">Use</th>
+            <th scope="col">Alg / Crv</th>
+            <th scope="col" class="num">Key length</th>
+            <th scope="col">Observed</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{- range .ActiveKeys}}
+          <tr class="lifecycle-active">
+            <th scope="row">{{if .Kid}}<code>{{.Kid}}</code>{{else}}<span class="uvy-unknown">—</span>{{end}}</th>
+            <td>{{if .Use}}<span class="uvy-badge">{{.Use}}</span>{{else}}<span class="uvy-unknown">—</span>{{end}}</td>
+            {{- if eq .Kty "EC"}}
+            <td>{{if .Crv}}<span class="uvy-badge">{{.Crv}}</span>{{else}}<span class="uvy-unknown">—</span>{{end}}</td>
+            {{- else}}
+            <td>{{if .Alg}}<span class="uvy-badge">{{.Alg}}</span>{{else}}<span class="uvy-unknown">—</span>{{end}}</td>
+            {{- end}}
+            <td class="num">{{if .KeyLength}}{{.KeyLength}} bits{{else}}<span class="uvy-unknown">—</span>{{end}}</td>
+            <td class="observed-cell"><time datetime="{{.FirstObservedFormatted}}">{{.FirstObservedFormatted}}</time></td>
+          </tr>
+          {{- end}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {{- end}}
+
+  <section class="uvy-panel" aria-labelledby="provider-signals-title">
+    <div class="uvy-panel__header">
+      <h2 id="provider-signals-title">Identity provider signals</h2>
+      {{- if .Providers}}
+      <div class="provider-heading">
+        {{- range .Providers}}
+        <span class="provider-badge"><img class="provider-icon" src="./providers/{{.ID}}.svg" alt="" width="16" height="16">{{.Name}}</span>
+        {{- end}}
+      </div>
+      {{- end}}
+    </div>
+    {{- if .ProviderEvidenceRows}}
+    {{- if gt (len .Providers) 1}}
+    <p>More than one provider signal was observed. Each matching filter includes this service.</p>
     {{- end}}
-  </tbody>
-</table>
+    <p class="uvy-hint">Checked boxes mark headers observed on each endpoint during a successful crawl.</p>
+    <div class="table-wrap" role="region" aria-label="Identity provider header evidence" tabindex="0">
+      <table class="provider-evidence-table">
+        <caption class="sr-only">Response headers observed on crawled endpoints for {{.Name}}</caption>
+        <thead>
+          <tr>
+            {{- if gt (len .Providers) 1}}<th scope="col">Signal</th>{{end}}
+            <th scope="col">Response header</th>
+            {{- if .OpenIDConfiguration}}<th scope="col" class="endpoint-col"><a href="{{.OpenIDConfiguration}}" target="_blank" rel="noopener noreferrer" title="OpenID configuration">OIDC</a></th>{{end}}
+            {{- if .OAuthAuthorizationServerURI}}<th scope="col" class="endpoint-col"><a href="{{.OAuthAuthorizationServerURI}}" target="_blank" rel="noopener noreferrer" title="OAuth 2.0 authorization server metadata">OAuth</a></th>{{end}}
+            <th scope="col" class="endpoint-col"><a href="{{.JWKSURI}}" target="_blank" rel="noopener noreferrer">JWKS</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{- range .ProviderEvidenceRows}}
+          <tr>
+            {{- if gt (len $.Providers) 1}}<td>{{.Provider}}</td>{{end}}
+            <th scope="row"><code>{{.Header}}</code></th>
+            {{- if $.OpenIDConfiguration}}<td class="endpoint-cell"><input type="checkbox" disabled {{if .OIDC}}checked{{end}} aria-label="{{.Header}} {{if .OIDC}}observed{{else}}not observed{{end}} on OIDC endpoint"></td>{{end}}
+            {{- if $.OAuthAuthorizationServerURI}}<td class="endpoint-cell"><input type="checkbox" disabled {{if .OAuth}}checked{{end}} aria-label="{{.Header}} {{if .OAuth}}observed{{else}}not observed{{end}} on OAuth endpoint"></td>{{end}}
+            <td class="endpoint-cell"><input type="checkbox" disabled {{if .JWKS}}checked{{end}} aria-label="{{.Header}} {{if .JWKS}}observed{{else}}not observed{{end}} on JWKS endpoint"></td>
+          </tr>
+          {{- end}}
+        </tbody>
+      </table>
+    </div>
+    <p class="uvy-hint provider-note">Header signals are clues, not proof of the identity platform. Proxies can add or remove headers.</p>
+    {{- range .Providers}}{{if eq .ID "salesforce"}}<p class="uvy-hint provider-note">Salesforce headers identify its edge infrastructure; they do not by themselves establish which identity service is behind it.</p>{{end}}{{end}}
+    {{- else}}
+    <p class="uvy-hint" style="margin-bottom:0">No listed provider signal was found in the available response headers. These providers may still be in use.</p>
+    {{- end}}
+  </section>
+
+  {{- if .InactiveKeys}}
+  <section class="uvy-panel" aria-labelledby="inactive-keys-title">
+    <div class="uvy-panel__header">
+      <h2 id="inactive-keys-title">Recently deactivated keys</h2>
+      {{- if eq $.DefaultKeyHistorySize (len .InactiveKeys)}}
+      <span class="uvy-status uvy-status--inactive">Most recent {{.DefaultKeyHistorySize}} shown</span>
+      {{- else}}
+      <span class="uvy-status uvy-status--inactive">{{len .InactiveKeys}} deactivated</span>
+      {{- end}}
+    </div>
+    <div class="table-wrap" role="region" aria-label="Recently deactivated keys" tabindex="0">
+      <table class="key-history uvy-table--comparison">
+        <caption class="sr-only">Recently deactivated signing keys observed for {{.Name}}</caption>
+        <thead>
+          <tr>
+            <th scope="col">Key ID</th>
+            <th scope="col">Use</th>
+            <th scope="col">Alg / Crv</th>
+            <th scope="col" class="num">Key length</th>
+            <th scope="col">Observed</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{- range .InactiveKeys}}
+          <tr class="lifecycle-inactive">
+            <th scope="row">{{if .Kid}}<code>{{.Kid}}</code>{{else}}<span class="uvy-unknown">—</span>{{end}}</th>
+            <td>{{if .Use}}<span class="uvy-badge">{{.Use}}</span>{{else}}<span class="uvy-unknown">—</span>{{end}}</td>
+            {{- if eq .Kty "EC"}}
+            <td>{{if .Crv}}<span class="uvy-badge">{{.Crv}}</span>{{else}}<span class="uvy-unknown">—</span>{{end}}</td>
+            {{- else}}
+            <td>{{if .Alg}}<span class="uvy-badge">{{.Alg}}</span>{{else}}<span class="uvy-unknown">—</span>{{end}}</td>
+            {{- end}}
+            <td class="num">{{if .KeyLength}}{{.KeyLength}} bits{{else}}<span class="uvy-unknown">—</span>{{end}}</td>
+            <td class="observed-cell">
+              <span class="observed-range">
+                <span><time datetime="{{.FirstObservedFormatted}}">{{.FirstObservedFormatted}}</time> to <time datetime="{{.LastObservedFormatted}}">{{.LastObservedFormatted}}</time></span>
+                <span class="uvy-count">({{.DaysActive}} days)</span>
+              </span>
+            </td>
+          </tr>
+          {{- end}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {{- end}}
 </div>
-{{- end}}
