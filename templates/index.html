@@ -81,10 +81,6 @@
           <span>JWKS Catalog</span>
         </a>
       </div>
-      <nav aria-label="Main navigation">
-        <a id="nav-home-link" href="./index.html" hx-get="./snippets/home.html" hx-target="#content" hx-push-url="./index.html"{{if not .ActiveServiceID}} aria-current="page"{{end}}>Overview</a>
-        <a href="https://github.com/UnitVectorY-Labs/jwks-catalog" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </nav>
       <button id="theme" class="icon-button" type="button" aria-label="Switch color theme" hidden>
         <svg class="icon" aria-hidden="true" data-icon="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-moon"></use></svg>
         <svg class="icon" aria-hidden="true" data-icon="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#tabler-sun"></use></svg>
@@ -161,7 +157,6 @@
     const providerFilter = document.getElementById('providerFilter');
     const navCount = document.getElementById('nav-count');
     const navEmpty = document.getElementById('nav-empty');
-    const homeLink = document.getElementById('nav-home-link');
 
     function getActiveServiceId() {
       const marker = document.querySelector('#content [data-service-id]');
@@ -176,11 +171,6 @@
     function syncActiveNavigation(scrollIntoView) {
       const activeId = getActiveServiceId();
       document.body.dataset.activeService = activeId;
-
-      if (homeLink) {
-        if (!activeId) homeLink.setAttribute('aria-current', 'page');
-        else homeLink.removeAttribute('aria-current');
-      }
 
       let activeEl = null;
       document.querySelectorAll('#sidebar-nav .service-link').forEach(function (link) {
