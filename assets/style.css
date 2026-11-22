@@ -213,6 +213,11 @@
   margin-top: calc(-1 * var(--uvy-space-5));
 }
 
+/* Home page intro: lead paragraph stands alone without a page title */
+.uvy-page-header .uvy-lead:only-child {
+  margin-top: 0;
+}
+
 /* Home endpoint definitions */
 .endpoint-dl {
   margin-bottom: 0;
