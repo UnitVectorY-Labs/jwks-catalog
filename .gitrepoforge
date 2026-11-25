@@ -8,8 +8,6 @@ config:
   release: release-go
   justfile: true
   status: active
-  codecov:
-    enabled: true
   gitignore:
     - output
     - node_modules
