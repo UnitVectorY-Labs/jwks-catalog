@@ -76,3 +76,76 @@ func TestLoadMultipleProviderEvidence(t *testing.T) {
 		t.Fatalf("Salesforce evidence collapsed incorrectly: %#v", edge)
 	}
 }
+
+func TestLoadProviderEvidenceRejectsInvalidJSON(t *testing.T) {
+	for _, tc := range []struct {
+		name, status, headers string
+	}{
+		{"duplicate status key", `{"oidc":{"status_code":200,"status_code":503}}`, `{}`},
+		{"duplicate header", `{"oidc":{"status_code":200}}`, `{"X-Auth0-L":"[present]","X-Auth0-L":"[present]"}`},
+		{"invalid UTF-8", `{"oidc":{"status_code":200}}`, "{\"X-Auth0-L\":\"\xff\"}"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			root := t.TempDir()
+			dir := filepath.Join(root, "data", "example")
+			if err := os.MkdirAll(dir, 0755); err != nil {
+				t.Fatal(err)
+			}
+			for name, body := range map[string]string{"status.json": tc.status, "oidc-headers.json": tc.headers} {
+				if err := os.WriteFile(filepath.Join(dir, name), []byte(body), 0644); err != nil {
+					t.Fatal(err)
+				}
+			}
+			service := Service{Id: "example", OpenIDConfiguration: "https://example.com/oidc"}
+			if err := loadProviderEvidence(&service, root); err == nil {
+				t.Fatal("expected invalid JSON to be rejected")
+			}
+		})
+	}
+}
+
+func TestLoadKeyHistoryJSON(t *testing.T) {
+	root := t.TempDir()
+	dir := filepath.Join(root, "data", "example", "keys")
+	if err := os.MkdirAll(dir, 0755); err != nil {
+		t.Fatal(err)
+	}
+	for name, body := range map[string]string{
+		"valid.json":     `{"kid":"good","kty":"RSA","first_observed":"2024-01-02T00:00:00Z","last_observed":null}`,
+		"duplicate.json": `{"kid":"bad","kid":"other","first_observed":"2024-01-02T00:00:00Z"}`,
+	} {
+		if err := os.WriteFile(filepath.Join(dir, name), []byte(body), 0644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	active, inactive, err := loadKeyHistory("example", root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(active) != 1 || active[0].Kid != "good" || active[0].FirstObservedFormatted != "2024-01-02" || len(inactive) != 0 {
+		t.Fatalf("unexpected key history: active=%#v inactive=%#v", active, inactive)
+	}
+}
+
+func TestLoadProviderEvidenceMatchesStatusFieldExactly(t *testing.T) {
+	root := t.TempDir()
+	dir := filepath.Join(root, "data", "example")
+	if err := os.MkdirAll(dir, 0755); err != nil {
+		t.Fatal(err)
+	}
+	for name, body := range map[string]string{
+		"status.json":       `{"oidc":{"STATUS_CODE":200}}`,
+		"oidc-headers.json": `{"X-Auth0-L":"[present]"}`,
+	} {
+		if err := os.WriteFile(filepath.Join(dir, name), []byte(body), 0644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	service := Service{Id: "example", OpenIDConfiguration: "https://example.com/oidc"}
+	if err := loadProviderEvidence(&service, root); err != nil {
+		t.Fatal(err)
+	}
+	if len(service.ProviderEvidence) != 0 {
+		t.Fatalf("unexpected evidence from mismatched status field: %#v", service.ProviderEvidence)
+	}
+}
